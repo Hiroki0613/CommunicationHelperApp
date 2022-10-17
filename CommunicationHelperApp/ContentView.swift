@@ -23,6 +23,12 @@
  staff、workerはアニノマスログインを行う。
  */
 
+/*
+ QRコードをswiftUIで作る方法
+ 【SwiftUI】QRコードを生成して、中心に可愛いアイコンを付ける方法
+ https://dev.classmethod.jp/articles/swift-generate-qr-code/
+ */
+
 import SwiftUI
 
 struct ContentView: View {
