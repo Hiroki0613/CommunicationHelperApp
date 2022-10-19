@@ -12,7 +12,7 @@ struct TopState: Equatable {
 }
 
 enum TopAction {
-    
+    // TODO: 理想はFirebaseの処理はenvironmentから行うのが良いが、今回はaction+別modelでfuncを用意する方向にする。
 }
 
 struct TopEnvironment {
