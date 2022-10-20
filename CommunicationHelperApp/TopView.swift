@@ -45,13 +45,14 @@ struct TopView: View {
                 }, label: {
                  Text("Owrner")
                 })
-                Spacer().frame(height: 30)
+                Spacer().frame(height: 100)
                 Button(
                     action: {
-                    print("Staff、Workerに遷移")
+                    print("Staff、Worker画面に遷移")
                 }, label: {
                  Text("Staff,Worker")
                 })
+                Spacer()
             }
             // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
             // TODO: 現時点では、オーナー側はダミーQRコードが出るようにする。
@@ -62,7 +63,6 @@ struct TopView: View {
             // TODO: ここの段階では心拍数の結果がわかるだけで良い。保存は次のステップにする。
             
         }
-        .padding()
     }
 }
 
