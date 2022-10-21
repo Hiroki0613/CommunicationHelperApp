@@ -19,6 +19,7 @@
 		7F29D56728F3F3F000F93A87 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7F29D56628F3F3F000F93A87 /* FirebaseFirestore */; };
 		7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56828FEECE900F93A87 /* TopCore.swift */; };
 		7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */; };
+		7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F29D56828FEECE900F93A87 /* TopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCore.swift; sourceTree = "<group>"; };
 		7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerQRCodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			children = (
 				7F29D54C28F3D44600F93A87 /* CommunicationHelperAppApp.swift */,
 				7F29D54E28F3D44600F93A87 /* TopView.swift */,
+				7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */,
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */,
 				7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */,
@@ -171,6 +174,7 @@
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
 				7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */,
 				7F29D54D28F3D44600F93A87 /* CommunicationHelperAppApp.swift in Sources */,
+				7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */,
 				7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
