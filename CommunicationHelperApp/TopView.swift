@@ -49,7 +49,7 @@ struct TopView: View {
                 NavigationLink(
                     destination: {
                         // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
-                        OwnerQRCodeView()
+                        WorkerTopView()
                     },
                     label: {
                         Text("利用者さん")

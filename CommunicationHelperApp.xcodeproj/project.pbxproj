@@ -22,6 +22,7 @@
 		7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */; };
 		7F29D56F2902E63300F93A87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56E2902E63300F93A87 /* Constants.swift */; };
 		7F29D5712902EB3300F93A87 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5702902EB3300F93A87 /* UIImage+Ext.swift */; };
+		7F29D5732902F37C00F93A87 /* WorkerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5722902F37C00F93A87 /* WorkerTopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerQRCodeView.swift; sourceTree = "<group>"; };
 		7F29D56E2902E63300F93A87 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F29D5702902EB3300F93A87 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		7F29D5722902F37C00F93A87 /* WorkerTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				7F29D56E2902E63300F93A87 /* Constants.swift */,
 				7F29D54E28F3D44600F93A87 /* TopView.swift */,
 				7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */,
+				7F29D5722902F37C00F93A87 /* WorkerTopView.swift */,
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5702902EB3300F93A87 /* UIImage+Ext.swift */,
 				7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */,
@@ -105,6 +108,7 @@
 				7F29D54528F3D44600F93A87 /* Sources */,
 				7F29D54628F3D44600F93A87 /* Frameworks */,
 				7F29D54728F3D44600F93A87 /* Resources */,
+				7F29D5742902F55800F93A87 /* Run SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -172,6 +176,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7F29D5742902F55800F93A87 /* Run SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7F29D54528F3D44600F93A87 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -183,6 +208,7 @@
 				7F29D54D28F3D44600F93A87 /* CommunicationHelperAppApp.swift in Sources */,
 				7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */,
 				7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */,
+				7F29D5732902F37C00F93A87 /* WorkerTopView.swift in Sources */,
 				7F29D56F2902E63300F93A87 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

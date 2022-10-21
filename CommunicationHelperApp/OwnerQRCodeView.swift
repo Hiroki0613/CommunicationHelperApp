@@ -23,3 +23,9 @@ struct OwnerQRCodeView: View {
         }
     }
 }
+
+struct OwnerQRCodeView_Previews: PreviewProvider {
+    static var previews: some View {
+        OwnerQRCodeView()
+    }
+}
