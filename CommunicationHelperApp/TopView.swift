@@ -29,11 +29,6 @@
  staff、workerはアニノマスログインを行う。
  */
 
-/*
- QRコードをswiftUIで作る方法
- 【SwiftUI】QRコードを生成して、中心に可愛いアイコンを付ける方法
- https://dev.classmethod.jp/articles/swift-generate-qr-code/
- */
 
 import SwiftUI
 
@@ -62,12 +57,11 @@ struct TopView: View {
                             .font(.system(size: 20))
                             .foregroundColor(Color.black)
                             .frame(maxWidth: .infinity, minHeight: 96)
-                            .background(Color(red: 0.961, green: 0.961, blue: 0.937))
+                            .background(PrimaryColor.buttonColor)
                             .padding(.horizontal, 22)
                     }
                 )
-//                Spacer().frame(height: 100)
-                Spacer()
+                Spacer().frame(height: 66)
                 NavigationLink(
                     destination: {
                         // TODO: 現時点では、オーナー側はダミーQRコードが出るようにする。
@@ -78,13 +72,13 @@ struct TopView: View {
                             .font(.system(size: 20))
                             .foregroundColor(Color.black)
                             .frame(maxWidth: .infinity, minHeight: 96)
-                            .background(Color(red: 0.961, green: 0.961, blue: 0.937))
+                            .background(PrimaryColor.buttonColor)
                             .padding(.horizontal, 22)
                     }
                 )
                 Spacer()
             }
-            .background(Color(red: 0.424, green: 0.780, blue: 0.761))
+            .background(PrimaryColor.background)
             .navigationBarHidden(true)
         }
     }

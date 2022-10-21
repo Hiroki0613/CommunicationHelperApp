@@ -7,19 +7,19 @@
 
 import SwiftUI
 
+// QRコードを作成
 struct OwnerQRCodeView: View {
     @State private var qrCodeImage: UIImage?
     private let qRCodeGenerator = QRCodeGenerator()
     
     var body: some View {
-        VStack(spacing: 16) {
-            Spacer()
+        ZStack {
+            PrimaryColor.background
             if let qrCodeImage = qRCodeGenerator.generate(with: "https://dev.classmethod.jp/articles/swift-generate-qr-code/") {
                 Image(uiImage: qrCodeImage)
                     .resizable()
                     .frame(width: 200, height: 200)
             }
-            Spacer()
         }
     }
 }

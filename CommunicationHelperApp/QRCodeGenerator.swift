@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// https://dev.classmethod.jp/articles/swift-generate-qr-code/
 struct QRCodeGenerator {
     func generate(with inputText: String) -> UIImage? {
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
@@ -19,8 +20,7 @@ struct QRCodeGenerator {
         let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
         let scaledCiImage = ciImage.transformed(by: sizeTransform)
         let context = CIContext()
-        guard let cgImage = context.createCGImage(scaledCiImage, from: scaledCiImage.extent) else { return nil }
-        
+        guard let cgImage = context.createCGImage(scaledCiImage, from: scaledCiImage.extent) else { return nil }        
         return UIImage(cgImage: cgImage)
     }
 }
