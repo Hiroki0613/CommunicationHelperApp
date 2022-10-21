@@ -18,6 +18,7 @@
 		7F29D56528F3F3F000F93A87 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7F29D56428F3F3F000F93A87 /* FirebaseCrashlytics */; };
 		7F29D56728F3F3F000F93A87 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7F29D56628F3F3F000F93A87 /* FirebaseFirestore */; };
 		7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56828FEECE900F93A87 /* TopCore.swift */; };
+		7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		7F29D55328F3D44700F93A87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F29D56828FEECE900F93A87 /* TopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCore.swift; sourceTree = "<group>"; };
+		7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				7F29D54C28F3D44600F93A87 /* CommunicationHelperAppApp.swift */,
 				7F29D54E28F3D44600F93A87 /* TopView.swift */,
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
+				7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */,
 				7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */,
 				7F29D55028F3D44700F93A87 /* Assets.xcassets */,
 				7F29D55228F3D44700F93A87 /* Preview Content */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
+				7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */,
 				7F29D54D28F3D44600F93A87 /* CommunicationHelperAppApp.swift in Sources */,
 				7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */,
 			);
