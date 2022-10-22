@@ -58,7 +58,37 @@ extension AVCaptureDevice {
         }
         var selectedFormat: AVCaptureDevice.Format?
         if let prefferedSize = preferredSpec.size {
-            
+            selectedFormat = formatFor(preferredSize: prefferedSize, availaleFormats: availableFormats)
+        } else {
+            selectedFormat = formatWithHighestResolution(availableFormats)
+        }
+        print("selected format: \(String(describing: selectedFormat))")
+        if let selectedFormat = selectedFormat {
+            do {
+                try lockForConfiguration()
+            } catch let error {
+                fatalError(error.localizedDescription)
+            }
+            activeFormat = selectedFormat
+            if let preferredFps = preferredSpec.fps {
+                activeVideoMinFrameDuration = CMTimeMake(value: 1, timescale: preferredFps)
+                activeVideoMaxFrameDuration = CMTimeMake(value: 1, timescale: preferredFps)
+                unlockForConfiguration()
+            }
+        }
+    }
+
+    func toggleTorch(onTorch: Bool) {
+        guard hasTorch, isTorchActive else {
+            print("Torch is not available")
+            return
+        }
+        do {
+            try lockForConfiguration()
+            torchMode = onTorch ? .on : .off
+            unlockForConfiguration()
+        } catch {
+            print("Torch could not be used \(error)")
         }
     }
 }

@@ -31,6 +31,9 @@
 		7F29D58429042B2000F93A87 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58329042B2000F93A87 /* ColorUtils.swift */; };
 		7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5852904348D00F93A87 /* AVCaptureDevice+Ext.swift */; };
 		7F29D5892904390100F93A87 /* HeartRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5882904390100F93A87 /* HeartRateManager.swift */; };
+		7F29D58C290448C300F93A87 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58B290448C200F93A87 /* Filter.swift */; };
+		7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58D290449D300F93A87 /* PulseDetector.swift */; };
+		7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58F2904521E00F93A87 /* PulseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		7F29D58329042B2000F93A87 /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		7F29D5852904348D00F93A87 /* AVCaptureDevice+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Ext.swift"; sourceTree = "<group>"; };
 		7F29D5882904390100F93A87 /* HeartRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateManager.swift; sourceTree = "<group>"; };
+		7F29D58B290448C200F93A87 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		7F29D58D290449D300F93A87 /* PulseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseDetector.swift; sourceTree = "<group>"; };
+		7F29D58F2904521E00F93A87 /* PulseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +138,10 @@
 		7F29D58129042AFB00F93A87 /* Pulse */ = {
 			isa = PBXGroup;
 			children = (
+				7F29D58A290448B300F93A87 /* Pulse Detectoer Helpers */,
 				7F29D587290438F200F93A87 /* Managers */,
 				7F29D58229042B0B00F93A87 /* Utilities */,
+				7F29D58F2904521E00F93A87 /* PulseViewController.swift */,
 			);
 			path = Pulse;
 			sourceTree = "<group>";
@@ -152,6 +160,15 @@
 				7F29D5882904390100F93A87 /* HeartRateManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		7F29D58A290448B300F93A87 /* Pulse Detectoer Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D58B290448C200F93A87 /* Filter.swift */,
+				7F29D58D290449D300F93A87 /* PulseDetector.swift */,
+			);
+			path = "Pulse Detectoer Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,9 +281,11 @@
 				7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */,
 				7F29D57D2904253F00F93A87 /* CameraPreiew.swift in Sources */,
 				7F29D57B290424FA00F93A87 /* ScannerViewModel.swift in Sources */,
+				7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */,
 				7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */,
 				7F29D5792904232100F93A87 /* QrCodeCameraDelegate.swift in Sources */,
 				7F29D54D28F3D44600F93A87 /* CommunicationHelperAppApp.swift in Sources */,
+				7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */,
 				7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */,
 				7F29D576290416AA00F93A87 /* WorkerPulseView.swift in Sources */,
 				7F29D57F2904259400F93A87 /* QrCodeScannerView.swift in Sources */,
@@ -274,6 +293,7 @@
 				7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */,
 				7F29D5732902F37C00F93A87 /* WorkerTopView.swift in Sources */,
 				7F29D56F2902E63300F93A87 /* Constants.swift in Sources */,
+				7F29D58C290448C300F93A87 /* Filter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
