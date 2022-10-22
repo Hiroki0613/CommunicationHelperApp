@@ -12,22 +12,22 @@ import SwiftUI
 struct QrCodeScannerView: UIViewRepresentable {
     var supportedBarcodeTypes: [AVMetadataObject.ObjectType] = [.qr]
     typealias UIViewType = CameraPreiew
-    
+
     private let session = AVCaptureSession()
     private let delegate = QrCodeCameraDelegate()
     private let metadataOutput = AVCaptureMetadataOutput()
-    
+
     func interval(delay: Double) -> QrCodeScannerView {
         delegate.scanInterval = delay
         return self
     }
-    
+
     func found(read: @escaping (String) -> Void) -> QrCodeScannerView {
         print("found")
         delegate.onResult = read
         return self
     }
-    
+
     func setupCamera(_ uiView: CameraPreiew) {
         if let backCamera = AVCaptureDevice.default(for: AVMediaType.video) {
             if let input = try? AVCaptureDeviceInput(device: backCamera) {
@@ -49,30 +49,30 @@ struct QrCodeScannerView: UIViewRepresentable {
             }
         }
     }
-    
+
     func makeUIView(context: Context) -> CameraPreiew {
         let cameraView = CameraPreiew(session: session)
         checkCameraAuthorizationStatus(cameraView)
         return cameraView
     }
-    
+
     static func dismantleUIView(_ uiView: CameraPreiew, coordinator: ()) {
         uiView.session.stopRunning()
     }
-    
+
     private func checkCameraAuthorizationStatus(_ uiView: CameraPreiew) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         if cameraAuthorizationStatus == .authorized {
             setupCamera(uiView)
         } else {
-            AVCaptureDevice.requestAccess(for: .video) { granted in
+            AVCaptureDevice.requestAccess(for: .video) { _ in
                 DispatchQueue.main.sync {
                     self.setupCamera(uiView)
                 }
             }
         }
     }
-    
+
     func updateUIView(_ uiView: CameraPreiew, context: Context) {
         uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)

@@ -8,7 +8,7 @@
 import ComposableArchitecture
 
 struct TopState: Equatable {
-    
+
 }
 
 enum TopAction {
@@ -16,11 +16,11 @@ enum TopAction {
 }
 
 struct TopEnvironment {
-    
+
 }
 
 let topReducer = Reducer<TopState, TopAction, TopEnvironment> { state, action, _ in
     switch action {
-        
+
     }
 }

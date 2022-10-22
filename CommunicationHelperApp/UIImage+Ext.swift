@@ -14,7 +14,7 @@ extension UIImage {
             let imageHeight = context.format.bounds.height
             let centerImageLength = imageWidth < imageHeight ? imageWidth / 5 : imageHeight / 5
             let centerImageRadius = centerImageLength * 0.2
-            
+
             draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: context.format.bounds.size))
             let centerImageRect = CGRect(
                 x: (imageWidth - centerImageLength) / 2,

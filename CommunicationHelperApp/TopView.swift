@@ -29,14 +29,12 @@
  staff、workerはアニノマスログインを行う。
  */
 
-
 import SwiftUI
 
 struct TopView: View {
     // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
     // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
 
-        
     var body: some View {
         NavigationView {
             VStack {
@@ -44,7 +42,6 @@ struct TopView: View {
                 // TODO: まず、worker側の作成、パルスリーダを実装する
                 // TODO: 設定した時間ごとに画面が変わるようにする。 とりあえず、時間はXcodeで手打ちで設定する。
                 // TODO: ここの段階では心拍数の結果がわかるだけで良い。保存は次のステップにする。
-                
                 Spacer()
                 NavigationLink(
                     destination: {

@@ -5,6 +5,7 @@
 //  Created by 近藤宏輝 on 2022/10/22.
 //
 
+// https://github.com/athanasiospap/Pulse
 import SwiftUI
 
 struct WorkerPulseView: View {

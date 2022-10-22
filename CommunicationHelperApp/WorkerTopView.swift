@@ -24,15 +24,13 @@ struct WorkerTopView_Previews: PreviewProvider {
 
 struct FirstView: View {
     @ObservedObject var viewModel = ScannerViewModel()
-    
+
     var body: some View {
         VStack {
             Text("QR Code Reader")
                 .padding()
-            
             // 読み取ったQRコード表示位置
             Text("URL = [ " + viewModel.lastQrCode + " ]")
-            
             Button(action: {
                 viewModel.isShowing = true
             }){
@@ -48,7 +46,7 @@ struct FirstView: View {
 
 struct SecondView: View {
     @ObservedObject var viewModel: ScannerViewModel
-    
+
     var body: some View {
         ZStack {
             QrCodeScannerView()
@@ -58,12 +56,10 @@ struct SecondView: View {
                 VStack {
                     Text("Keep scanning for QR-codes")
                         .font(.subheadline)
-                    
                     Text("QRコード読み取り結果 = [ " + self.viewModel.lastQrCode + " ]")
                         .bold()
                         .lineLimit(5)
                         .padding()
-                    
                     Button("Close") {
                         self.viewModel.isShowing = false
                     }
