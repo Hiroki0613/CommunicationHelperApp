@@ -6,6 +6,7 @@
 //
 
 // https://github.com/athanasiospap/Pulse
+import Foundation
 import AVFoundation
 
 extension AVCaptureDevice {
@@ -62,7 +63,7 @@ extension AVCaptureDevice {
         } else {
             selectedFormat = formatWithHighestResolution(availableFormats)
         }
-        print("selected format: \(String(describing: selectedFormat))")
+        print("hirohiro_selected format: \(String(describing: selectedFormat))")
         if let selectedFormat = selectedFormat {
             do {
                 try lockForConfiguration()
@@ -78,17 +79,17 @@ extension AVCaptureDevice {
         }
     }
 
-    func toggleTorch(onTorch: Bool) {
+    func toggleTorch(on: Bool) {
         guard hasTorch, isTorchActive else {
-            print("Torch is not available")
+            print("hirohiro_Torch is not available")
             return
         }
         do {
             try lockForConfiguration()
-            torchMode = onTorch ? .on : .off
+            torchMode = on ? .on : .off
             unlockForConfiguration()
         } catch {
-            print("Torch could not be used \(error)")
+            print("hirohiro_Torch could not be used \(error)")
         }
     }
 }

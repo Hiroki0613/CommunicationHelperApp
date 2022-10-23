@@ -6,6 +6,7 @@
 //
 
 // https://github.com/athanasiospap/Pulse
+import Foundation
 import AVFoundation
 
 enum CameraType: Int {
@@ -20,7 +21,7 @@ enum CameraType: Int {
                 mediaType: AVMediaType.video,
                 position: .front
             ).devices
-            print("devices:\(devices)")
+            print("hirohiro_devices:\(devices)")
             for device in devices where device.position == .front {
                 return device
             }
@@ -89,6 +90,7 @@ class HeartRateManager: NSObject {
         videoDataOutput.setSampleBufferDelegate(self, queue: queue)
         guard captureSession.canAddOutput(videoDataOutput) else { fatalError() }
         captureSession.addOutput(videoDataOutput)
+        videoConnection = videoDataOutput.connection(with: .video)
     }
 
     func startCapture() {

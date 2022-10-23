@@ -6,7 +6,7 @@
 //
 
 // https://github.com/athanasiospap/Pulse
-import Foundation
+import UIKit
 
 // Typealias for RGB color values
 typealias RGB = (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)

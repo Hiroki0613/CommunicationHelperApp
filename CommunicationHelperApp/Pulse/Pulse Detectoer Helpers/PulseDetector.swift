@@ -117,7 +117,7 @@ class PulseDetector: NSObject {
         }
         return Float(invalidPulsePeriod)
     }
-    
+
     func reset() {
         for i in 0..<maxPeriodsToStore {
             periods[i] = invalidEntry
