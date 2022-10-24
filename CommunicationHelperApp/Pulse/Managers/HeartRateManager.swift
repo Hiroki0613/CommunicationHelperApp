@@ -81,7 +81,7 @@ class HeartRateManager: NSObject {
         // MARK: - Setup video output
         let videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.videoSettings = [
-            kCVPixelBufferPixelFormatTypeKey: NSNumber(value: kCVPixelFormatType_32RGBA)
+            kCVPixelBufferPixelFormatTypeKey: NSNumber(value: kCVPixelFormatType_32BGRA)
         ]
         as
         [String: Any]
@@ -112,7 +112,7 @@ extension HeartRateManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: - Export buffer from video frame
     func captureOutput(
         _ output: AVCaptureOutput,
-        didDrop sampleBuffer: CMSampleBuffer,
+        didOutput sampleBuffer: CMSampleBuffer,
         from connection: AVCaptureConnection
     ) {
         if connection.videoOrientation != .portrait {
