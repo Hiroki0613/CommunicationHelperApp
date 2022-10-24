@@ -80,7 +80,7 @@ extension AVCaptureDevice {
     }
 
     func toggleTorch(on: Bool) {
-        guard hasTorch, isTorchActive else {
+        guard hasTorch, isTorchAvailable else {
             print("hirohiro_Torch is not available")
             return
         }
