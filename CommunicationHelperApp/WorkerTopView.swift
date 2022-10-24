@@ -11,7 +11,7 @@ struct WorkerTopView: View {
     var body: some View {
         ZStack {
             PrimaryColor.background
-            FirstView()
+            PulseView()
         }
     }
 }
