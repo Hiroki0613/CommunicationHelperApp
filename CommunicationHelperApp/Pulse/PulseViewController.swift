@@ -56,45 +56,14 @@ class PulseViewController: UIViewController {
     private func setupPreviewView() {
         previewLayer.layer.cornerRadius = 12.0
         previewLayer.layer.masksToBounds = true
-//        previewLayer.backgroundColor = .red
+        previewLayer.backgroundColor = .red
         previewLayerShadowView.backgroundColor = .clear
         previewLayerShadowView.layer.shadowColor = UIColor.black.cgColor
         previewLayerShadowView.layer.shadowOpacity = 0.25
         previewLayerShadowView.layer.shadowOffset = CGSize(width: 0, height: 3)
         previewLayerShadowView.layer.shadowRadius = 3
         previewLayerShadowView.clipsToBounds = false
-
-
-
-        view.backgroundColor = .blue
-        previewLayer.translatesAutoresizingMaskIntoConstraints = false
-        previewLayerShadowView.translatesAutoresizingMaskIntoConstraints = false
-        pulseLabel.translatesAutoresizingMaskIntoConstraints = false
-        thresholdLabel.translatesAutoresizingMaskIntoConstraints = false
-//        previewLayer.backgroundColor = .red
-        view.addSubview(previewLayerShadowView)
-        previewLayerShadowView.addSubview(previewLayer)
-//        previewLayerShadowView.addSubview(previewLayer)
-        view.addSubview(pulseLabel)
-        view.addSubview(thresholdLabel)
-        NSLayoutConstraint.activate([
-            previewLayer.widthAnchor.constraint(equalToConstant: 120),
-            previewLayer.heightAnchor.constraint(equalToConstant: 120),
-            previewLayer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            previewLayer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            previewLayerShadowView.widthAnchor.constraint(equalToConstant: 120),
-            previewLayerShadowView.heightAnchor.constraint(equalToConstant: 120),
-            previewLayerShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            previewLayerShadowView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            pulseLabel.topAnchor.constraint(equalTo: previewLayer.bottomAnchor, constant: 20),
-            pulseLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            pulseLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            pulseLabel.heightAnchor.constraint(equalToConstant: 50),
-            thresholdLabel.topAnchor.constraint(equalTo: pulseLabel.bottomAnchor, constant: 20),
-            thresholdLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            thresholdLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            thresholdLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        view.backgroundColor = PrimaryUIColor.background
     }
 
     // MARK: - Frames Capture Methods

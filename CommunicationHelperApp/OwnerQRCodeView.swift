@@ -18,9 +18,15 @@ struct OwnerQRCodeView: View {
             if let qrCodeImage = qRCodeGenerator.generate(
                 with: "https://dev.classmethod.jp/articles/swift-generate-qr-code/"
             ) {
-                Image(uiImage: qrCodeImage)
-                    .resizable()
-                    .frame(width: 200, height: 200)
+                VStack {
+                    Text("新規登録")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.black)
+                    Image(uiImage: qrCodeImage)
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                }
             }
         }
     }

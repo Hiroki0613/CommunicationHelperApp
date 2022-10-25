@@ -34,7 +34,6 @@ import SwiftUI
 struct TopView: View {
     // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
     // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
-
     var body: some View {
         NavigationView {
             VStack {
@@ -76,6 +75,7 @@ struct TopView: View {
                 Spacer()
             }
             .background(PrimaryColor.background)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
         }
     }
