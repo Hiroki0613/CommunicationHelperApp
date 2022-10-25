@@ -35,6 +35,7 @@
 		7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58D290449D300F93A87 /* PulseDetector.swift */; };
 		7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58F2904521E00F93A87 /* PulseViewController.swift */; };
 		7F29D59229058C1300F93A87 /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D59129058C1300F93A87 /* PulseView.swift */; };
+		7F29D5C02906F33000F93A87 /* PulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F29D5BF2906F33000F93A87 /* PulseViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		7F29D58D290449D300F93A87 /* PulseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseDetector.swift; sourceTree = "<group>"; };
 		7F29D58F2904521E00F93A87 /* PulseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseViewController.swift; sourceTree = "<group>"; };
 		7F29D59129058C1300F93A87 /* PulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
+		7F29D5BF2906F33000F93A87 /* PulseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PulseViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				7F29D587290438F200F93A87 /* Managers */,
 				7F29D58229042B0B00F93A87 /* Utilities */,
 				7F29D58F2904521E00F93A87 /* PulseViewController.swift */,
+				7F29D5BF2906F33000F93A87 /* PulseViewController.xib */,
 				7F29D59129058C1300F93A87 /* PulseView.swift */,
 			);
 			path = Pulse;
@@ -244,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F29D5C02906F33000F93A87 /* PulseViewController.xib in Resources */,
 				7F29D55428F3D44700F93A87 /* Preview Assets.xcassets in Resources */,
 				7F29D55128F3D44700F93A87 /* Assets.xcassets in Resources */,
 				7F29D55E28F3F27900F93A87 /* GoogleService-Info.plist in Resources */,
@@ -429,7 +433,7 @@
 				DEVELOPMENT_TEAM = K6FA22KGKX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "To Read QR Code of worker";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To Read QR Code and Pulse";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,7 +464,7 @@
 				DEVELOPMENT_TEAM = K6FA22KGKX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "To Read QR Code of worker";
+				INFOPLIST_KEY_NSCameraUsageDescription = "To Read QR Code and Pulse";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

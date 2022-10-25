@@ -63,7 +63,7 @@ extension AVCaptureDevice {
         } else {
             selectedFormat = formatWithHighestResolution(availableFormats)
         }
-        print("hirohiro_selected format: \(String(describing: selectedFormat))")
+        print("selected format: \(String(describing: selectedFormat))")
         if let selectedFormat = selectedFormat {
             do {
                 try lockForConfiguration()
@@ -81,7 +81,6 @@ extension AVCaptureDevice {
 
     func toggleTorch(on: Bool) {
         guard hasTorch, isTorchAvailable else {
-            print("hirohiro_Torch is not available")
             return
         }
         do {
@@ -89,7 +88,7 @@ extension AVCaptureDevice {
             torchMode = on ? .on : .off
             unlockForConfiguration()
         } catch {
-            print("hirohiro_Torch could not be used \(error)")
+            print("Torch could not be used \(error)")
         }
     }
 }

@@ -21,7 +21,7 @@ enum CameraType: Int {
                 mediaType: AVMediaType.video,
                 position: .front
             ).devices
-            print("hirohiro_devices:\(devices)")
+            print("devices:\(devices)")
             for device in devices where device.position == .front {
                 return device
             }

@@ -10,9 +10,10 @@ import AVFoundation
 import UIKit
 
 class PulseViewController: UIViewController {
-    var previewLayer = UIView()
-    var pulseLabel = UILabel()
-    var thresholdLabel = UILabel()
+    @IBOutlet weak var previewLayerShadowView: UIView!
+    @IBOutlet weak var previewLayer: UIView!
+    @IBOutlet weak var pulseLabel: UILabel!
+    @IBOutlet weak var thresholdLabel: UILabel!
     private var validFrameCounter = 0
     // TODO: 暫定対応で強制アンラップをしています
     private var heartRateManager: HeartRateManager!
@@ -22,39 +23,58 @@ class PulseViewController: UIViewController {
     private var measurementStartedFlag = false
     private var timer = Timer()
 
+    init() {
+        super.init(nibName: "PulseViewController", bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hirohiro_viewDidLoadスタート")
         initVideoCapture()
         thresholdLabel.text = "バックカメラに赤色 🟥　になるまで指をあててください"
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        print("hirohiro_viewWillLayoutSubviews")
         setupPreviewView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("hirohiro_viewWillAppearスタート")
         initCaptureSession()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("hirohiro_viewWillDisappear")
         deinitCaptureSession()
     }
 
     // MARK: - Setup Views
     private func setupPreviewView() {
+        previewLayer.layer.cornerRadius = 12.0
+        previewLayer.layer.masksToBounds = true
+//        previewLayer.backgroundColor = .red
+        previewLayerShadowView.backgroundColor = .clear
+        previewLayerShadowView.layer.shadowColor = UIColor.black.cgColor
+        previewLayerShadowView.layer.shadowOpacity = 0.25
+        previewLayerShadowView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        previewLayerShadowView.layer.shadowRadius = 3
+        previewLayerShadowView.clipsToBounds = false
+
+
+
         view.backgroundColor = .blue
         previewLayer.translatesAutoresizingMaskIntoConstraints = false
+        previewLayerShadowView.translatesAutoresizingMaskIntoConstraints = false
         pulseLabel.translatesAutoresizingMaskIntoConstraints = false
         thresholdLabel.translatesAutoresizingMaskIntoConstraints = false
-        previewLayer.backgroundColor = .red
-        view.addSubview(previewLayer)
+//        previewLayer.backgroundColor = .red
+        view.addSubview(previewLayerShadowView)
+        previewLayerShadowView.addSubview(previewLayer)
+//        previewLayerShadowView.addSubview(previewLayer)
         view.addSubview(pulseLabel)
         view.addSubview(thresholdLabel)
         NSLayoutConstraint.activate([
@@ -62,6 +82,10 @@ class PulseViewController: UIViewController {
             previewLayer.heightAnchor.constraint(equalToConstant: 120),
             previewLayer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             previewLayer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            previewLayerShadowView.widthAnchor.constraint(equalToConstant: 120),
+            previewLayerShadowView.heightAnchor.constraint(equalToConstant: 120),
+            previewLayerShadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            previewLayerShadowView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             pulseLabel.topAnchor.constraint(equalTo: previewLayer.bottomAnchor, constant: 20),
             pulseLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             pulseLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -82,10 +106,9 @@ class PulseViewController: UIViewController {
             previewContainer: previewLayer.layer
         )
         heartRateManager.imageBufferHandler = { [unowned self] imageBuffer in
-            print("hirohiro_imageBuffer: ", imageBuffer)
+            print("imageBuffer: ", imageBuffer)
             self.handle(buffer: imageBuffer)
         }
-        print("hirohiro_viewDidLoadエンドエンド")
     }
 
     // MARK: - AVCaptureSession Helpers
@@ -99,7 +122,6 @@ class PulseViewController: UIViewController {
     }
 
     private func toggleTorch(status: Bool) {
-        print("hirohiro_toggleTorchです")
         guard let device = AVCaptureDevice.default(for: .video) else { return }
         device.toggleTorch(on: status)
     }
@@ -157,7 +179,6 @@ extension PulseViewController {
         let pixels = rawData.bytes.assumingMemoryBound(to: UInt8.self)
         let bytes = UnsafeBufferPointer<UInt8>(start: pixels, count: rawData.length)
         var bgraIndex = 0
-        print("hirohiro_viewWillAppearスタート1")
         for pixel in UnsafeBufferPointer(start: bytes.baseAddress, count: bytes.count) {
             switch bgraIndex {
             case 0:
@@ -173,12 +194,9 @@ extension PulseViewController {
             }
             bgraIndex += 1
         }
-        print("hirohiro_viewWillAppearスタート2")
         let hsv = rgb2hsv((red: redMean, green: greenMean, blue: blueMean, alpha: 1.0))
         // Do a sanity check to see if a finger is placed over the camera
-        print("hirohiro_viewDidLoadエンド__")
         if hsv.1 > 0.5 && hsv.2 > 0.5 {
-            print("hirohiro_viewDidLoadエンド1")
             DispatchQueue.main.async {
                 self.thresholdLabel.text = "人差し指 ☝️ をカメラに当てたまま待ってください"
                 self.toggleTorch(status: true)
@@ -195,7 +213,6 @@ extension PulseViewController {
                 self.pulseDetector.addNewValue(newVal: filtered, atTime: CACurrentMediaTime())
             }
         } else {
-            print("hirohiro_viewDidLoadエンド2")
             validFrameCounter = 0
             measurementStartedFlag = false
             pulseDetector.reset()
