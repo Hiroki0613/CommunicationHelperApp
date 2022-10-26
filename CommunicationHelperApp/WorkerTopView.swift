@@ -183,14 +183,24 @@ struct WorkerPulseTopView: View {
                     .background(PrimaryColor.buttonColor)
                     .padding(.horizontal, 19)
                 Spacer().frame(height: 33)
-                Text("心拍\n\n\n\n70")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 20))
-                    .foregroundColor(Color.black)
-                    .frame(maxWidth: .infinity, minHeight: 232)
-                    .background(PrimaryColor.buttonColor)
-                    .padding(.horizontal, 19)
-                Spacer().frame(height: 33)
+                ZStack {
+                    Rectangle()
+                        .fill(PrimaryColor.buttonColor)
+                        .frame(width: 282, height: 232)
+                    VStack {
+                        Spacer().frame(height: 13)
+                        Text("心拍")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.black)
+                        Spacer().frame(height: 80)
+                        Text("70")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 40))
+                            .foregroundColor(Color.black)
+                    }
+                }
+                Spacer().frame(height: 46)
                 NavigationLink(
                     destination: {
                         PulseView()
@@ -223,14 +233,24 @@ struct WorkerEndOfWorkTopView: View {
                     .background(PrimaryColor.buttonColor)
                     .padding(.horizontal, 19)
                 Spacer().frame(height: 33)
-                Text("心拍\n\n\n\n70")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 20))
-                    .foregroundColor(Color.black)
-                    .frame(maxWidth: .infinity, minHeight: 232)
-                    .background(PrimaryColor.buttonColor)
-                    .padding(.horizontal, 19)
-                Spacer().frame(height: 33)
+                ZStack {
+                    Rectangle()
+                        .fill(PrimaryColor.buttonColor)
+                        .frame(width: 282, height: 232)
+                    VStack {
+                        Spacer().frame(height: 13)
+                        Text("心拍")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.black)
+                        Spacer().frame(height: 80)
+                        Text("70")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 40))
+                            .foregroundColor(Color.black)
+                    }
+                }
+                Spacer().frame(height: 46)
                 NavigationLink(
                     destination: {
                         WorkerEndOfWorkQRCodeView()
@@ -263,21 +283,37 @@ struct WorkerEndOfWorkView: View {
                     .background(PrimaryColor.buttonColor)
                     .padding(.horizontal, 19)
                 Spacer().frame(height: 33)
-                Text("心拍\n\n\n\n70")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 20))
-                    .foregroundColor(Color.black)
-                    .frame(maxWidth: .infinity, minHeight: 232)
-                    .background(PrimaryColor.buttonColor)
-                    .padding(.horizontal, 19)
+                ZStack {
+                    Rectangle()
+                        .fill(PrimaryColor.buttonColor)
+                        .frame(width: 282, height: 232)
+                    VStack {
+                        Spacer().frame(height: 13)
+                        Text("心拍")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.black)
+                        Spacer().frame(height: 80)
+                        Text("70")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 40))
+                            .foregroundColor(Color.black)
+                    }
+                }
                 Spacer().frame(height: 24)
-                Text("今日の振り返り\n \n ")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 20))
-                    .foregroundColor(Color.black)
-                    .frame(maxWidth: .infinity, minHeight: 143)
-                    .background(PrimaryColor.buttonColor)
-                    .padding(.horizontal, 19)
+                ZStack {
+                    Rectangle()
+                        .fill(PrimaryColor.buttonColor)
+                        .frame(width: 282, height: 143)
+                    VStack {
+                        Spacer().frame(height: 9)
+                        Text("今日の振り返り")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.black)
+                        Spacer().frame(height: 100)
+                    }
+                }
             }
         }
     }
