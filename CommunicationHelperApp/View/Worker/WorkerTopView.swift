@@ -19,7 +19,7 @@ struct WorkerTopView: View {
                 NavigationLink(
                     destination: {
                         // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
-                        FirstView()
+                        WorkerNewSignUpView()
                     },
                     label: {
                         Text("新規登録時\n(QRリーダー起動)")
@@ -90,7 +90,7 @@ struct WorkerTopView_Previews: PreviewProvider {
     }
 }
 
-struct FirstView: View {
+struct WorkerNewSignUpView: View {
     @ObservedObject var viewModel = ScannerViewModel()
 
     var body: some View {

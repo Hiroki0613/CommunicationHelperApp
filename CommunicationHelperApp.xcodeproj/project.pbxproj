@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F29D54D28F3D44600F93A87 /* CommunicationHelperAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D54C28F3D44600F93A87 /* CommunicationHelperAppApp.swift */; };
+		7F29D54D28F3D44600F93A87 /* CommunicationHelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */; };
 		7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D54E28F3D44600F93A87 /* TopView.swift */; };
 		7F29D55128F3D44700F93A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F29D55028F3D44700F93A87 /* Assets.xcassets */; };
 		7F29D55428F3D44700F93A87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F29D55328F3D44700F93A87 /* Preview Assets.xcassets */; };
@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		7F29D54928F3D44600F93A87 /* CommunicationHelperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommunicationHelperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F29D54C28F3D44600F93A87 /* CommunicationHelperAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationHelperAppApp.swift; sourceTree = "<group>"; };
+		7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationHelperApp.swift; sourceTree = "<group>"; };
 		7F29D54E28F3D44600F93A87 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		7F29D55028F3D44700F93A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F29D55328F3D44700F93A87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -101,18 +101,12 @@
 		7F29D54B28F3D44600F93A87 /* CommunicationHelperApp */ = {
 			isa = PBXGroup;
 			children = (
-				7F29D54C28F3D44600F93A87 /* CommunicationHelperAppApp.swift */,
-				7F29D56E2902E63300F93A87 /* Constants.swift */,
-				7F29D54E28F3D44600F93A87 /* TopView.swift */,
-				7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */,
-				7F29D5722902F37C00F93A87 /* WorkerTopView.swift */,
-				7F29D577290420C200F93A87 /* QRScanner */,
-				7F29D575290416AA00F93A87 /* WorkerPulseView.swift */,
-				7F29D58129042AFB00F93A87 /* Pulse */,
-				7F29D56828FEECE900F93A87 /* TopCore.swift */,
-				7F29D5702902EB3300F93A87 /* UIImage+Ext.swift */,
-				7F29D5852904348D00F93A87 /* AVCaptureDevice+Ext.swift */,
-				7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */,
+				7F29D5C6290C09A500F93A87 /* Util */,
+				7F29D5C3290C08F100F93A87 /* View */,
+				7F29D5C4290C090D00F93A87 /* Owner */,
+				7F29D5C1290C089C00F93A87 /* FunctionalParts */,
+				7F29D5C7290C09C200F93A87 /* Core */,
+				7F29D5C5290C095E00F93A87 /* Extension */,
 				7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */,
 				7F29D55028F3D44700F93A87 /* Assets.xcassets */,
 				7F29D55228F3D44700F93A87 /* Preview Content */,
@@ -131,6 +125,7 @@
 		7F29D577290420C200F93A87 /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
+				7F29D56A2902D91000F93A87 /* QRCodeGenerator.swift */,
 				7F29D57C2904253F00F93A87 /* CameraPreiew.swift */,
 				7F29D5782904232100F93A87 /* QrCodeCameraDelegate.swift */,
 				7F29D57E2904259400F93A87 /* QrCodeScannerView.swift */,
@@ -175,6 +170,67 @@
 				7F29D58D290449D300F93A87 /* PulseDetector.swift */,
 			);
 			path = "Pulse Detectoer Helpers";
+			sourceTree = "<group>";
+		};
+		7F29D5C1290C089C00F93A87 /* FunctionalParts */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D58129042AFB00F93A87 /* Pulse */,
+				7F29D577290420C200F93A87 /* QRScanner */,
+			);
+			path = FunctionalParts;
+			sourceTree = "<group>";
+		};
+		7F29D5C2290C08DB00F93A87 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D5722902F37C00F93A87 /* WorkerTopView.swift */,
+				7F29D575290416AA00F93A87 /* WorkerPulseView.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		7F29D5C3290C08F100F93A87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */,
+				7F29D54E28F3D44600F93A87 /* TopView.swift */,
+				7F29D5C2290C08DB00F93A87 /* Worker */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F29D5C4290C090D00F93A87 /* Owner */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D56C2902DB4700F93A87 /* OwnerQRCodeView.swift */,
+			);
+			path = Owner;
+			sourceTree = "<group>";
+		};
+		7F29D5C5290C095E00F93A87 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D5852904348D00F93A87 /* AVCaptureDevice+Ext.swift */,
+				7F29D5702902EB3300F93A87 /* UIImage+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		7F29D5C6290C09A500F93A87 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D56E2902E63300F93A87 /* Constants.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7F29D5C7290C09C200F93A87 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D56828FEECE900F93A87 /* TopCore.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +347,7 @@
 				7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */,
 				7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */,
 				7F29D5792904232100F93A87 /* QrCodeCameraDelegate.swift in Sources */,
-				7F29D54D28F3D44600F93A87 /* CommunicationHelperAppApp.swift in Sources */,
+				7F29D54D28F3D44600F93A87 /* CommunicationHelperApp.swift in Sources */,
 				7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */,
 				7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */,
 				7F29D576290416AA00F93A87 /* WorkerPulseView.swift in Sources */,
