@@ -36,6 +36,7 @@
 		7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58F2904521E00F93A87 /* PulseViewController.swift */; };
 		7F29D59229058C1300F93A87 /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D59129058C1300F93A87 /* PulseView.swift */; };
 		7F29D5C02906F33000F93A87 /* PulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F29D5BF2906F33000F93A87 /* PulseViewController.xib */; };
+		7F29D5C9290D64B400F93A87 /* WorkerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5C8290D64B400F93A87 /* WorkerCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		7F29D58F2904521E00F93A87 /* PulseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseViewController.swift; sourceTree = "<group>"; };
 		7F29D59129058C1300F93A87 /* PulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
 		7F29D5BF2906F33000F93A87 /* PulseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PulseViewController.xib; sourceTree = "<group>"; };
+		7F29D5C8290D64B400F93A87 /* WorkerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
+				7F29D5C8290D64B400F93A87 /* WorkerCore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
 				7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */,
 				7F29D57D2904253F00F93A87 /* CameraPreiew.swift in Sources */,
+				7F29D5C9290D64B400F93A87 /* WorkerCore.swift in Sources */,
 				7F29D57B290424FA00F93A87 /* ScannerViewModel.swift in Sources */,
 				7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */,
 				7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */,
