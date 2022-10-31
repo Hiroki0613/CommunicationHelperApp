@@ -7,79 +7,32 @@
 import AVFoundation
 import SwiftUI
 
+enum Mode {
+    case startOfWork
+    case working
+    case endOfTheWork
+}
+
 struct WorkerTopView: View {
+    var isLogedIn = true
+    var mode: Mode = .endOfTheWork
+
     var body: some View {
-        ZStack {
-            PrimaryColor.background
-            VStack {
-                Text("デバッグ画面")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 20))
-                    .foregroundColor(Color.black)
-                NavigationLink(
-                    destination: {
-                        // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
-                        WorkerNewSignUpView()
-                    },
-                    label: {
-                        Text("新規登録時\n(QRリーダー起動)")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity, minHeight: 96)
-                            .background(PrimaryColor.buttonColor)
-                            .padding(.horizontal, 22)
-                    }
-                )
-                Spacer().frame(height: 30)
-                NavigationLink(
-                    destination: {
-                        // TODO: プロモーションのために暫定でQRコードを表示させている。
-                        WorkerQRCodeView()
-                    },
-                    label: {
-                        Text("朝の出勤時\nQRコードリーダーが出ます")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity, minHeight: 96)
-                            .background(PrimaryColor.buttonColor)
-                            .padding(.horizontal, 22)
-                    }
-                )
-                Spacer().frame(height: 30)
-                NavigationLink(
-                    destination: {
-                        // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
-                        WorkerPulseTopView()
-                    },
-                    label: {
-                        Text("心拍測定時\nパルスリーダー")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity, minHeight: 96)
-                            .background(PrimaryColor.buttonColor)
-                            .padding(.horizontal, 22)
-                    }
-                )
-                Spacer().frame(height: 30)
-                NavigationLink(
-                    destination: {
-                        // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
-                        WorkerEndOfWorkTopView()
-                    },
-                    label: {
-                        Text("退勤時")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(maxWidth: .infinity, minHeight: 96)
-                            .background(PrimaryColor.buttonColor)
-                            .padding(.horizontal, 22)
-                    }
-                )
+        if isLogedIn {
+            switch mode {
+            case .startOfWork:
+                // TODO: プロモーションのために暫定でQRコードを表示させている。
+                WorkerQRCodeView()
+            case .working:
+                // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
+                WorkerPulseTopView()
+            case .endOfTheWork:
+                // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
+                WorkerEndOfWorkTopView()
             }
+        } else {
+            // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
+                WorkerNewSignUpView()
         }
     }
 }
