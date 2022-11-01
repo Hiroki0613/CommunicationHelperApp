@@ -104,24 +104,32 @@ class PulseViewController: UIViewController {
                 let average = self.pulseDetector.getAverage()
                 let pulse = 60.0 / average
                 if pulse == -60 {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.pulseLabel.alpha = 0
-                    }) { finished in
+                    UIView.animate(
+                        withDuration: 0.2,
+                        animations: {
+                            self.pulseLabel.alpha = 0
+                        },
+                    completion: { finished in
                         self.pulseLabel.isHidden = finished
-                    }
+                    })
                 } else {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.pulseLabel.alpha = 1.0
-                    }) { _ in
-                        self.pulseLabel.isHidden = false
-                        self.pulseLabel.text = "\(lroundf(pulse)) BPM"
-                    }
+                    UIView.animate(
+                        withDuration: 0.2,
+                        animations: {
+                            self.pulseLabel.alpha = 1.0
+                        },
+                        completion: { _ in
+                            self.pulseLabel.isHidden = false
+                            self.pulseLabel.text = "\(lroundf(pulse)) BPM"
+                        }
+                    )
                 }
             })
         }
     }
 }
 
+// swiftlint:disable function_body_length
 extension PulseViewController {
     fileprivate func handle(buffer: CMSampleBuffer) {
         var redMean: CGFloat = 0.0
@@ -176,7 +184,11 @@ extension PulseViewController {
             }
             validFrameCounter += 1
             inputs.append(hsv.0)
-            // Filter the hue value - the filter is a simple BAND PASS FILTER that removes any DC component and any high frequency noise
+            /* Filter the hue value
+                - the filter is a simple BAND PASS FILTER
+                  that removes any DC component and any high
+                  frequency noise
+             */
             let filtered = hueFilter.processValue(value: Double(hsv.0))
             if validFrameCounter > 60 {
                 self.pulseDetector.addNewValue(newVal: filtered, atTime: CACurrentMediaTime())
@@ -191,3 +203,4 @@ extension PulseViewController {
         }
     }
 }
+// swiftlint:enable function_body_length

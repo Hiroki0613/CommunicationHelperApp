@@ -14,7 +14,6 @@ private let gain: Double = 1.894427025e+01
 
 // swiftlint:disable identifier_name
 // swiftlint:disable line_length
-// TODO: こちらの処理の意味は現時点では不明なので、要調査
 class Filter: NSObject {
     var xv = [Double](repeating: 0.0, count: numberOfZeros + 1)
     var yv = [Double](repeating: 0.0, count: numberOfPoles + 1)

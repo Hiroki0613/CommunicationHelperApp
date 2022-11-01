@@ -37,14 +37,9 @@ struct TopView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // TODO: 一番最初の画面でオーナー、スタッフ、作業者を分ける。 初期設定はオーナーが設定するので、少し難し目の作業でもOK
-                // TODO: まず、worker側の作成、パルスリーダを実装する
-                // TODO: 設定した時間ごとに画面が変わるようにする。 とりあえず、時間はXcodeで手打ちで設定する。
-                // TODO: ここの段階では心拍数の結果がわかるだけで良い。保存は次のステップにする。
                 Spacer()
                 NavigationLink(
                     destination: {
-                        // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
                         WorkerTopView()
                     },
                     label: {

@@ -15,24 +15,25 @@ enum Mode {
 
 struct WorkerTopView: View {
     var isLogedIn = true
-    var mode: Mode = .endOfTheWork
+    var mode: Mode = .working
 
+    // TODO: 設定した時間ごとに画面が変わるようにする。 とりあえず、時間はXcodeで手打ちで設定する。
     var body: some View {
         if isLogedIn {
             switch mode {
             case .startOfWork:
-                // TODO: プロモーションのために暫定でQRコードを表示させている。
+                // TODO: QRコードは端末固有のID。
                 WorkerQRCodeView()
             case .working:
-                // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
+                // TODO: EmptyViewを使って、隠れナビゲーションViewを作る。
                 WorkerPulseTopView()
             case .endOfTheWork:
-                // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
+                // TODO: EmptyViewを使って、隠れナビゲーションViewを作る。
                 WorkerEndOfWorkTopView()
             }
         } else {
-            // TODO: staff、worker側はカメラが起動して、QRコードリーダーを使えるようにする。
-                WorkerNewSignUpView()
+            // TODO: QRコードを読み取り、UserDefaultsで保存。
+            WorkerNewSignUpView()
         }
     }
 }

@@ -79,6 +79,7 @@ extension AVCaptureDevice {
         }
     }
 
+    // swiftlint:disable identifier_name
     func toggleTorch(on: Bool) {
         guard hasTorch, isTorchAvailable else {
             return
@@ -91,4 +92,5 @@ extension AVCaptureDevice {
             print("Torch could not be used \(error)")
         }
     }
+    // swiftlint:enable identifier_name
 }

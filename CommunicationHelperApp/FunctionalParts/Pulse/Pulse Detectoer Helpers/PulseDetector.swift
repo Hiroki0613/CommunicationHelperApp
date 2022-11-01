@@ -17,6 +17,8 @@ private let minPeriod = 0.1
 private let invalidEntry: Double = -100
 
 // swiftlint:disable identifier_name
+// swiftlint:disable cyclomatic_complexity
+// swiftlint:disable for_where
 class PulseDetector: NSObject {
     private var upVals = [Double](repeating: 0.0, count: averageSize)
     private var downVals = [Double](repeating: 0.0, count: averageSize)
@@ -38,7 +40,7 @@ class PulseDetector: NSObject {
         reset()
     }
 
-    func addNewValue(newVal: Double, atTime time: Double)-> Float {
+    func addNewValue(newVal: Double, atTime time: Double) -> Float {
         if newVal > 0 {
             upVals[upValIndex] = newVal
             upValIndex += 1
@@ -133,3 +135,5 @@ class PulseDetector: NSObject {
     }
 }
 // swiftlint:enable identifier_name
+// swiftlint:enable cyclomatic_complexity
+// swiftlint:enable for_where

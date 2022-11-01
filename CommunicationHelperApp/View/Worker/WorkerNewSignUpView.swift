@@ -18,12 +18,13 @@ struct WorkerNewSignUpView: View {
                     .padding()
                 // 読み取ったQRコード表示位置
                 Text("URL = [ " + viewModel.lastQrCode + " ]")
-                Button(action: {
-                    viewModel.isShowing = true
-                }){
+                Button(
+                    action: {
+                        viewModel.isShowing = true
+                }, label: {
                     Text("カメラ起動")
                     Image(systemName: "camera")
-                }
+                })
                 .fullScreenCover(isPresented: $viewModel.isShowing) {
                     SecondView(viewModel: viewModel)
                 }

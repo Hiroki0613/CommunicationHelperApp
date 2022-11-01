@@ -16,7 +16,6 @@ struct QRCodeGenerator {
         qrFilter.setValue(inputData, forKey: "inputMessage")
         qrFilter.setValue("H", forKey: "inputCorrectionLevel")
         guard let ciImage = qrFilter.outputImage else { return nil }
-
         let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
         let scaledCiImage = ciImage.transformed(by: sizeTransform)
         let context = CIContext()
