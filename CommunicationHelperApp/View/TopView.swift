@@ -49,6 +49,7 @@ struct TopView: View {
                             .foregroundColor(Color.black)
                             .frame(maxWidth: .infinity, minHeight: 96)
                             .background(PrimaryColor.buttonColor)
+                            .cornerRadius(20)
                             .padding(.horizontal, 22)
                     }
                 )
@@ -64,6 +65,7 @@ struct TopView: View {
                             .foregroundColor(Color.black)
                             .frame(maxWidth: .infinity, minHeight: 96)
                             .background(PrimaryColor.buttonColor)
+                            .cornerRadius(20)
                             .padding(.horizontal, 22)
                     }
                 )
