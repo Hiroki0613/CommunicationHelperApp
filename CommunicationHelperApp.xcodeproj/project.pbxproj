@@ -121,11 +121,11 @@
 		7F29D54B28F3D44600F93A87 /* CommunicationHelperApp */ = {
 			isa = PBXGroup;
 			children = (
+				7F29D5C7290C09C200F93A87 /* Core */,
 				7F29D5C6290C09A500F93A87 /* Util */,
 				7F29D5C3290C08F100F93A87 /* View */,
 				7F29D5C4290C090D00F93A87 /* Owner */,
 				7F29D5C1290C089C00F93A87 /* FunctionalParts */,
-				7F29D5C7290C09C200F93A87 /* Core */,
 				7F29D5C5290C095E00F93A87 /* Extension */,
 				7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */,
 				7F29D55028F3D44700F93A87 /* Assets.xcassets */,
