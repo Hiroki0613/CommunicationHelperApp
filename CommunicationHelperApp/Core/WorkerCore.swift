@@ -8,11 +8,13 @@
 import ComposableArchitecture
 
 struct WorkerState: Equatable {
-
+    var isActivePulseView = false
+    var isActiveEndOfWorkView = false
 }
 
 enum WorkerAction {
-    // TODO: 理想はFirebaseの処理はenvironmentから行うのが良いが、今回はaction+別modelでfuncを用意する方向にする。
+    case setNavigationToPulseView(Bool)
+    case setNavigationToEndOfWorkView(Bool)
 }
 
 struct WorkerEnvironment {
@@ -21,6 +23,12 @@ struct WorkerEnvironment {
 
 let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment> { state, action, _ in
     switch action {
+    case .setNavigationToPulseView(let isActive):
+        state.isActivePulseView = isActive
+        return .none
 
+    case .setNavigationToEndOfWorkView(let isActive):
+        state.isActiveEndOfWorkView = isActive
+        return .none
     }
 }
