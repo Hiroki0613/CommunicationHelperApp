@@ -4,6 +4,7 @@
 //
 //  Created by 近藤宏輝 on 2022/10/22.
 //
+import ComposableArchitecture
 import AVFoundation
 import SwiftUI
 
@@ -14,32 +15,70 @@ enum Mode {
 }
 
 struct WorkerTopView: View {
-    var isLogedIn = true
-    var mode: Mode = .working
+    let store: Store<WorkerState, WorkerAction>
+    // TODO: 設定した時間によるFirebaseでの変更
+    var mode: Mode = .endOfTheWork
 
-    // TODO: 設定した時間ごとに画面が変わるようにする。 とりあえず、時間はXcodeで手打ちで設定する。
     var body: some View {
-        if isLogedIn {
-            switch mode {
-            case .startOfWork:
-                // TODO: QRコードは端末固有のID。
-                WorkerQRCodeView()
-            case .working:
-                // TODO: EmptyViewを使って、隠れナビゲーションViewを作る。
-                WorkerPulseTopView()
-            case .endOfTheWork:
-                // TODO: EmptyViewを使って、隠れナビゲーションViewを作る。
-                WorkerEndOfWorkTopView()
+        WithViewStore(store) { viewStore in
+            NavigationLink(
+                isActive: viewStore.binding(
+                    get: \.isActivePulseView,
+                    send: WorkerAction.setNavigationToPulseView
+                ),
+                destination: {
+                    PulseView()
+                },
+                label: {
+                 EmptyView()
+                }
+            )
+            NavigationLink(
+                isActive: viewStore.binding(
+                    get: \.isActiveEndOfWorkView,
+                    send: WorkerAction.setNavigationToEndOfWorkView
+                ),
+                destination: {
+                    WorkerEndOfWorkQRCodeView()
+                },
+                label: {
+                 EmptyView()
+                }
+            )
+            if viewStore.isLogedIn {
+                switch mode {
+                case .startOfWork:
+                    // TODO: QRコードは端末固有のID。
+                    WorkerQRCodeView()
+                case .working:
+                    WorkerPulseTopView(
+                        action: {
+                            viewStore.send(.setNavigationToPulseView(true))
+                        }
+                    )
+                case .endOfTheWork:
+                    WorkerEndOfWorkTopView(
+                        action: {
+                            viewStore.send(.setNavigationToEndOfWorkView(true))
+                        }
+                    )
+                }
+            } else {
+                // TODO: QRコードを読み取り、UserDefaultsで保存。
+                WorkerNewSignUpView()
             }
-        } else {
-            // TODO: QRコードを読み取り、UserDefaultsで保存。
-            WorkerNewSignUpView()
         }
     }
 }
 
 struct WorkerTopView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerTopView()
+        WorkerTopView(
+            store: Store(
+                initialState: WorkerState(),
+                reducer: workerReducer,
+                environment: WorkerEnvironment()
+            )
+        )
     }
 }

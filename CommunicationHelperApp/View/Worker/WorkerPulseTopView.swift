@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkerPulseTopView: View {
+    var action: () -> Void
+
     var body: some View {
         ZStack {
             PrimaryColor.background
@@ -30,21 +32,18 @@ struct WorkerPulseTopView: View {
                     .cornerRadius(20)
                     .padding(.horizontal, 22)
                 Spacer().frame(height: 46)
-                NavigationLink(
-                    destination: {
-                        PulseView()
-                    },
-                    label: {
-                        Text("パルス測定")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, minHeight: 91)
-                            .background(PrimaryColor.buttonRedColor)
-                            .cornerRadius(20)
-                            .padding(.horizontal, 22)
-                    }
-                )
+                Button(action: {
+                    action()
+                }, label: {
+                    Text("パルス測定")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, minHeight: 91)
+                        .background(PrimaryColor.buttonRedColor)
+                        .cornerRadius(20)
+                        .padding(.horizontal, 22)
+                })
             }
         }
     }
@@ -52,6 +51,6 @@ struct WorkerPulseTopView: View {
 
 struct WorkerPulseTopView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerPulseTopView()
+        WorkerPulseTopView(action: {})
     }
 }

@@ -29,6 +29,7 @@
  staff、workerはアニノマスログインを行う。
  */
 
+import ComposableArchitecture
 import SwiftUI
 
 struct TopView: View {
@@ -41,7 +42,13 @@ struct TopView: View {
                     Spacer()
                     NavigationLink(
                         destination: {
-                            WorkerTopView()
+                            WorkerTopView(
+                                store: Store(
+                                    initialState: WorkerState(),
+                                    reducer: workerReducer,
+                                    environment: WorkerEnvironment()
+                                )
+                            )
                         },
                         label: {
                             Text("利用者さん")
@@ -79,7 +86,13 @@ struct TopView: View {
                         NavigationLink(
                             destination: {
                                 // TODO: 現時点では、オーナー側はダミーQRコードが出るようにする。
-                                TestView()
+                                TestView(
+                                    store: Store(
+                                        initialState: WorkerState(),
+                                        reducer: workerReducer,
+                                        environment: WorkerEnvironment()
+                                    )
+                                )
                             }, label: {
                                 Text("test")
                                     .fontWeight(.semibold)

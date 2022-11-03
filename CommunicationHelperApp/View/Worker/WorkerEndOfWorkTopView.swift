@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WorkerEndOfWorkTopView: View {
+    var action: () -> Void
+
     var body: some View {
         ZStack {
             PrimaryColor.background
@@ -30,21 +32,18 @@ struct WorkerEndOfWorkTopView: View {
                     .cornerRadius(20)
                     .padding(.horizontal, 22)
                 Spacer().frame(height: 46)
-                NavigationLink(
-                    destination: {
-                        WorkerEndOfWorkQRCodeView()
-                    },
-                    label: {
-                        Text("報告")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.white)
-                            .frame(maxWidth: .infinity, minHeight: 91)
-                            .background(PrimaryColor.buttonRedColor)
-                            .cornerRadius(20)
-                            .padding(.horizontal, 22)
-                    }
-                )
+                Button(action: {
+                    action()
+                }, label: {
+                    Text("報告")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.white)
+                        .frame(maxWidth: .infinity, minHeight: 91)
+                        .background(PrimaryColor.buttonRedColor)
+                        .cornerRadius(20)
+                        .padding(.horizontal, 22)
+                })
             }
         }
     }
@@ -52,6 +51,6 @@ struct WorkerEndOfWorkTopView: View {
 
 struct WorkerEndOfWorkTopView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerEndOfWorkTopView()
+        WorkerEndOfWorkTopView(action: {})
     }
 }

@@ -195,6 +195,7 @@
 		7F29D5C1290C089C00F93A87 /* FunctionalParts */ = {
 			isa = PBXGroup;
 			children = (
+				7F29D5DD2913F3C500F93A87 /* Chats */,
 				7F29D5D82912C31500F93A87 /* AirPressure */,
 				7F29D58129042AFB00F93A87 /* Pulse */,
 				7F29D577290420C200F93A87 /* QRScanner */,
@@ -269,6 +270,13 @@
 				7F29D5DB2912C38900F93A87 /* AltimatorManager.swift */,
 			);
 			path = AirPressure;
+			sourceTree = "<group>";
+		};
+		7F29D5DD2913F3C500F93A87 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chats;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
