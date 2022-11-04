@@ -76,6 +76,8 @@ struct TestView: View {
                                         .padding(.horizontal, 22)
                                 }
                             )
+                        }
+                        Group {
                             Spacer().frame(height: 20)
                             NavigationLink(
                                 destination: {
@@ -110,22 +112,37 @@ struct TestView: View {
                                         .padding(.horizontal, 22)
                                 }
                             )
-                            Spacer().frame(height: 20)
-                            NavigationLink(
-                                destination: {
-                                    PressureView()
-                                },
-                                label: {
-                                    Text("気圧計")
-                                        .fontWeight(.semibold)
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.black)
-                                        .frame(maxWidth: .infinity, minHeight: 50)
-                                        .background(PrimaryColor.buttonColor)
-                                        .padding(.horizontal, 22)
-                                }
-                            )
                         }
+                        Spacer().frame(height: 20)
+                        NavigationLink(
+                            destination: {
+                                PressureView()
+                            },
+                            label: {
+                                Text("気圧計")
+                                    .fontWeight(.semibold)
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color.black)
+                                    .frame(maxWidth: .infinity, minHeight: 50)
+                                    .background(PrimaryColor.buttonColor)
+                                    .padding(.horizontal, 22)
+                            }
+                        )
+                        Spacer().frame(height: 20)
+                        NavigationLink(
+                            destination: {
+                                ChatTopView()
+                            },
+                            label: {
+                                Text("Chat")
+                                    .fontWeight(.semibold)
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color.black)
+                                    .frame(maxWidth: .infinity, minHeight: 50)
+                                    .background(PrimaryColor.buttonColor)
+                                    .padding(.horizontal, 22)
+                            }
+                        )
                     }
                 }
             }

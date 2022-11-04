@@ -46,6 +46,12 @@
 		7F29D5D72912C28500F93A87 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D62912C28500F93A87 /* TestView.swift */; };
 		7F29D5DA2912C32C00F93A87 /* PressureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D92912C32C00F93A87 /* PressureView.swift */; };
 		7F29D5DC2912C38900F93A87 /* AltimatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5DB2912C38900F93A87 /* AltimatorManager.swift */; };
+		7F29D5DF2913F48F00F93A87 /* ChatTitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */; };
+		7F29D5E12913F53200F93A87 /* ChatTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E02913F53200F93A87 /* ChatTopView.swift */; };
+		7F29D5E52913F6FC00F93A87 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E42913F6FC00F93A87 /* ChatMessage.swift */; };
+		7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */; };
+		7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */; };
+		7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5EA2913FF4000F93A87 /* View+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +90,12 @@
 		7F29D5D62912C28500F93A87 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		7F29D5D92912C32C00F93A87 /* PressureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressureView.swift; sourceTree = "<group>"; };
 		7F29D5DB2912C38900F93A87 /* AltimatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltimatorManager.swift; sourceTree = "<group>"; };
+		7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleRow.swift; sourceTree = "<group>"; };
+		7F29D5E02913F53200F93A87 /* ChatTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTopView.swift; sourceTree = "<group>"; };
+		7F29D5E42913F6FC00F93A87 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageBubble.swift; sourceTree = "<group>"; };
+		7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageField.swift; sourceTree = "<group>"; };
+		7F29D5EA2913FF4000F93A87 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 		7F29D54B28F3D44600F93A87 /* CommunicationHelperApp */ = {
 			isa = PBXGroup;
 			children = (
+				7F29D5E22913F6D500F93A87 /* Model */,
 				7F29D5C7290C09C200F93A87 /* Core */,
 				7F29D5C6290C09A500F93A87 /* Util */,
 				7F29D5C3290C08F100F93A87 /* View */,
@@ -242,6 +255,7 @@
 			children = (
 				7F29D5852904348D00F93A87 /* AVCaptureDevice+Ext.swift */,
 				7F29D5702902EB3300F93A87 /* UIImage+Ext.swift */,
+				7F29D5EA2913FF4000F93A87 /* View+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -275,6 +289,26 @@
 		7F29D5DD2913F3C500F93A87 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */,
+				7F29D5E02913F53200F93A87 /* ChatTopView.swift */,
+				7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */,
+				7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		7F29D5E22913F6D500F93A87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D5E32913F6E100F93A87 /* Chats */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7F29D5E32913F6E100F93A87 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D5E42913F6FC00F93A87 /* ChatMessage.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -402,18 +436,24 @@
 				7F29D5792904232100F93A87 /* QrCodeCameraDelegate.swift in Sources */,
 				7F29D54D28F3D44600F93A87 /* CommunicationHelperApp.swift in Sources */,
 				7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */,
+				7F29D5DF2913F48F00F93A87 /* ChatTitleRow.swift in Sources */,
 				7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */,
+				7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */,
 				7F29D576290416AA00F93A87 /* WorkerPulseView.swift in Sources */,
 				7F29D57F2904259400F93A87 /* QrCodeScannerView.swift in Sources */,
 				7F29D59229058C1300F93A87 /* PulseView.swift in Sources */,
 				7F29D5CD290E9BA400F93A87 /* WorkerQRCodeView.swift in Sources */,
 				7F29D5DA2912C32C00F93A87 /* PressureView.swift in Sources */,
 				7F29D5892904390100F93A87 /* HeartRateManager.swift in Sources */,
+				7F29D5E12913F53200F93A87 /* ChatTopView.swift in Sources */,
+				7F29D5E52913F6FC00F93A87 /* ChatMessage.swift in Sources */,
 				7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */,
 				7F29D5732902F37C00F93A87 /* WorkerTopView.swift in Sources */,
 				7F29D5D5290E9D2A00F93A87 /* WorkerEndOfWorkQRCodeView.swift in Sources */,
 				7F29D56F2902E63300F93A87 /* Constants.swift in Sources */,
 				7F29D58C290448C300F93A87 /* Filter.swift in Sources */,
+				7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */,
+				7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CommunicationHelperApp/Preview Content\"";
 				DEVELOPMENT_TEAM = K6FA22KGKX;
 				ENABLE_PREVIEWS = YES;
@@ -549,14 +589,14 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.withios.CommunicationHelperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -571,7 +611,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CommunicationHelperApp/Preview Content\"";
 				DEVELOPMENT_TEAM = K6FA22KGKX;
 				ENABLE_PREVIEWS = YES;
@@ -580,14 +620,14 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.withios.CommunicationHelperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
