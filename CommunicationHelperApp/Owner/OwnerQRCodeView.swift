@@ -16,7 +16,7 @@ struct OwnerQRCodeView: View {
         ZStack {
             PrimaryColor.background
             if let qrCodeImage = qRCodeGenerator.generate(
-                with: "https://dev.classmethod.jp/articles/swift-generate-qr-code/"
+                with: "workerRegistration"
             ) {
                 VStack {
                     Text("新規登録")

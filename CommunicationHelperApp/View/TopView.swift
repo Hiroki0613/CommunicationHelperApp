@@ -85,7 +85,6 @@ struct TopView: View {
                         Spacer()
                         NavigationLink(
                             destination: {
-                                // TODO: 現時点では、オーナー側はダミーQRコードが出るようにする。
                                 TestView(
                                     store: Store(
                                         initialState: WorkerState(),

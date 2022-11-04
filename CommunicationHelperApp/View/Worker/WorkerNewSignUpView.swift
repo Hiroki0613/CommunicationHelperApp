@@ -14,19 +14,25 @@ struct WorkerNewSignUpView: View {
         ZStack {
             PrimaryColor.background
             VStack {
-                Text("QR Code Reader")
-                    .padding()
+                Text("新規登録")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.black)
                 // 読み取ったQRコード表示位置
-                Text("URL = [ " + viewModel.lastQrCode + " ]")
                 Button(
                     action: {
                         viewModel.isShowing = true
                 }, label: {
-                    Text("カメラ起動")
-                    Image(systemName: "camera")
+                    VStack {
+                        Text("カメラ起動")
+                        Image(systemName: "camera")
+                    }
+                    .foregroundColor(Color.black)
+                    .frame(width: 164, height: 155)
+                    .background(PrimaryColor.buttonColor)
+                    .cornerRadius(20)
                 })
                 .fullScreenCover(isPresented: $viewModel.isShowing) {
-                    SecondView(viewModel: viewModel)
+                    QRCameraView(viewModel: viewModel)
                 }
             }
 
@@ -34,7 +40,7 @@ struct WorkerNewSignUpView: View {
     }
 }
 
-struct SecondView: View {
+struct QRCameraView: View {
     @ObservedObject var viewModel: ScannerViewModel
 
     var body: some View {
@@ -44,15 +50,28 @@ struct SecondView: View {
                 .interval(delay: self.viewModel.scanInterval)
             VStack {
                 VStack {
-                    Text("Keep scanning for QR-codes")
-                        .font(.subheadline)
-                    Text("QRコード読み取り結果 = [ " + self.viewModel.lastQrCode + " ]")
-                        .bold()
-                        .lineLimit(5)
-                        .padding()
-                    Button("Close") {
+                    Spacer().frame(height: 40)
+                    Text("QRコードを読み込んでください")
+                        .font(.system(size: 18))
+                        .foregroundColor(Color.black)
+                        .frame(maxWidth: .infinity, minHeight: 60)
+                        .background(PrimaryColor.buttonColor)
+                        .cornerRadius(20)
+                        .padding(.horizontal, 22)
+                    Spacer()
+                    Button(action: {
                         self.viewModel.isShowing = false
-                    }
+                    }, label: {
+                        Text("閉じる")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.black)
+                            .frame(maxWidth: .infinity, minHeight: 92)
+                            .background(PrimaryColor.buttonColor)
+                            .cornerRadius(20)
+                            .padding(.horizontal, 22)
+                    })
+                    Spacer().frame(height: 30)
                 }
                 .padding(.vertical, 20)
                 Spacer()
