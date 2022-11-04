@@ -20,14 +20,10 @@ class AltimatorManager: NSObject, ObservableObject {
         startUpdate()
     }
 
-    func doReset() {
-        altimeter?.stopRelativeAltitudeUpdates()
-        startUpdate()
-    }
-
     func startUpdate() {
         if CMAltimeter.isRelativeAltitudeAvailable() {
-            altimeter!.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: { data, error in
+            guard let altimeter = altimeter else { return }
+            altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: { data, error in
                     if error == nil {
                         let pressure: Double = data!.pressure.doubleValue
                         self.pressureString = String(format: "気圧:%.1f hPa", pressure * 10)
