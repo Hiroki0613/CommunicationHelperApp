@@ -34,7 +34,6 @@ import SwiftUI
 
 struct TopView: View {
     // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
-    // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
     var body: some View {
         NavigationView {
             ZStack {
@@ -64,7 +63,6 @@ struct TopView: View {
                     Spacer().frame(height: 66)
                     NavigationLink(
                         destination: {
-                            // TODO: 現時点では、オーナー側はダミーQRコードが出るようにする。
                             OwnerQRCodeView()
                         }, label: {
                             Text("支援者さん")

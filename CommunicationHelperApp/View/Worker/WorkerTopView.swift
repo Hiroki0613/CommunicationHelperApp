@@ -16,15 +16,13 @@ enum Mode {
 
 struct WorkerTopView: View {
     let store: Store<WorkerState, WorkerAction>
-    // TODO: 設定した時間によるFirebaseでの変更
-    var mode: Mode = .endOfTheWork
 
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationLink(
                 isActive: viewStore.binding(
                     get: \.isActivePulseView,
-                    send: WorkerAction.setNavigationToPulseView
+                    send: WorkerAction.goToPulseView
                 ),
                 destination: {
                     PulseView()
@@ -36,7 +34,7 @@ struct WorkerTopView: View {
             NavigationLink(
                 isActive: viewStore.binding(
                     get: \.isActiveEndOfWorkView,
-                    send: WorkerAction.setNavigationToEndOfWorkView
+                    send: WorkerAction.goToEndOfWorkView
                 ),
                 destination: {
                     WorkerEndOfWorkQRCodeView()
@@ -46,25 +44,23 @@ struct WorkerTopView: View {
                 }
             )
             if viewStore.isLogedIn {
-                switch mode {
+                switch viewStore.mode {
                 case .startOfWork:
-                    // TODO: QRコードは端末固有のID。
                     WorkerQRCodeView()
                 case .working:
                     WorkerPulseTopView(
                         action: {
-                            viewStore.send(.setNavigationToPulseView(true))
+                            viewStore.send(.goToPulseView(true))
                         }
                     )
                 case .endOfTheWork:
                     WorkerEndOfWorkTopView(
                         action: {
-                            viewStore.send(.setNavigationToEndOfWorkView(true))
+                            viewStore.send(.goToEndOfWorkView(true))
                         }
                     )
                 }
             } else {
-                // TODO: QRコードを読み取り、UserDefaultsで保存。
                 WorkerNewSignUpView()
             }
         }

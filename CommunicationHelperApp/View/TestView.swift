@@ -16,7 +16,7 @@ struct TestView: View {
             NavigationLink(
                 isActive: viewStore.binding(
                     get: \.isActivePulseView,
-                    send: WorkerAction.setNavigationToPulseView
+                    send: WorkerAction.goToPulseView
                 ),
                 destination: {
                     PulseView()
@@ -28,7 +28,7 @@ struct TestView: View {
             NavigationLink(
                 isActive: viewStore.binding(
                     get: \.isActiveEndOfWorkView,
-                    send: WorkerAction.setNavigationToEndOfWorkView
+                    send: WorkerAction.goToEndOfWorkView
                 ),
                 destination: {
                     WorkerEndOfWorkQRCodeView()
@@ -82,7 +82,7 @@ struct TestView: View {
                             NavigationLink(
                                 destination: {
                                     WorkerPulseTopView(action: {
-                                        viewStore.send(.setNavigationToPulseView(true))
+                                        viewStore.send(.goToPulseView(true))
                                     })
                                 },
                                 label: {
@@ -99,7 +99,7 @@ struct TestView: View {
                             NavigationLink(
                                 destination: {
                                     WorkerEndOfWorkTopView(action: {
-                                        viewStore.send(.setNavigationToEndOfWorkView(true))
+                                        viewStore.send(.goToEndOfWorkView(true))
                                     })
                                 },
                                 label: {

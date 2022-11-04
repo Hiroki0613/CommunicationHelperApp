@@ -13,9 +13,9 @@ struct TopState: Equatable {
 
 enum TopAction {
     case workerAction(WorkerAction)
-    // TODO: 理想はFirebaseの処理はenvironmentから行うのが良いが、今回はaction+別modelでfuncを用意する方向にする。
 }
 
+// TCAの観点から、理想はFirebaseの処理はenvironmentから行う。しかし、今回はaction+別modelでfuncを用意する方向にする。
 struct TopEnvironment {
     var workerEnvironment: WorkerEnvironment {
         .init()

@@ -24,6 +24,7 @@ struct QrCodeScannerView: UIViewRepresentable {
 
     func found(read: @escaping (String) -> Void) -> QrCodeScannerView {
         print("found")
+        // TODO: QRコードを読み取り、UserDefaultsで保存。
         delegate.onResult = read
         return self
     }

@@ -50,6 +50,8 @@ struct QRCameraView: View {
                 .interval(delay: self.viewModel.scanInterval)
             VStack {
                 VStack {
+                    // TODO: QRコードの値をUserDefaultで保存
+                    let _ = print("hirohiro_qrCode: ", viewModel.lastQrCode)
                     Spacer().frame(height: 40)
                     Text("QRコードを読み込んでください")
                         .font(.system(size: 18))
