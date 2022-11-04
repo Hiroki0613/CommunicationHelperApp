@@ -176,8 +176,8 @@ extension PulseViewController {
         if hsv.1 > 0.5 && hsv.2 > 0.5 {
             DispatchQueue.main.async {
                 self.thresholdLabel.text = "人差し指 ☝️ をカメラに当てたまま待ってください"
-                self.toggleTorch(status: true)
                 if !self.measurementStartedFlag {
+                    self.toggleTorch(status: true)
                     self.startMeasurement()
                     self.measurementStartedFlag = true
                 }
@@ -198,6 +198,7 @@ extension PulseViewController {
             measurementStartedFlag = false
             pulseDetector.reset()
             DispatchQueue.main.async {
+                self.toggleTorch(status: false)
                 self.thresholdLabel.text = "バックカメラに赤色 🟥　になるまで指をあててください"
             }
         }
