@@ -12,8 +12,9 @@ class ScannerViewModel: ObservableObject {
     @Published var lastQrCode: String = "QRコード"
     @Published var isShowing: Bool = false
 
-    func onFoundQrCode(_ code: String) {
-        self.lastQrCode = code
-        isShowing = false
-    }
+    // TODO: ScannerViewModelはTCA化して廃止する
+//    func onFoundQrCode(_ code: String) {
+//        self.lastQrCode = code
+//        isShowing = false
+//    }
 }

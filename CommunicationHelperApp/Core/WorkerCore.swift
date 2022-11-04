@@ -10,6 +10,8 @@ import Foundation
 
 struct WorkerState: Equatable {
     var isLogedIn = false
+    var hasReadOwnerAuthId = false
+    var hasReadWorkerId = false
     var mode: Mode = .startOfWork
     var isActivePulseView = false
     var isActiveEndOfWorkView = false
@@ -25,6 +27,8 @@ enum WorkerAction {
     case goToEndOfWorkView(Bool)
     case onAppear
     case checkAccount
+    case readOwnerAuthUid
+    case readWorkerId
     case login
     case logout
     case setWorkerData
@@ -53,6 +57,14 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment> { stat
 
     case .checkAccount:
         // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
+        return .none
+
+    case .readOwnerAuthUid:
+        // TODO: ownerはQRコードの前にownerなどをつけて、string切り離しをおこなって登録
+        return .none
+
+    case .readWorkerId:
+        // TODO: workerIDはworker + ランダム生成を使って用意する。
         return .none
 
     case .login:

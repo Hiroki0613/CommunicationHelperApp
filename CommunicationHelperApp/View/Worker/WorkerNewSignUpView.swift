@@ -46,12 +46,15 @@ struct QRCameraView: View {
     var body: some View {
         ZStack {
             QrCodeScannerView()
-                .found(read: self.viewModel.onFoundQrCode)
+//                .found(read: self.viewModel.onFoundQrCode)
+                .found(read: { result in
+                    // TODO: ここでOwnerのAuthUidとWorkerのUidを読み取る。
+                    // TODO: QRコードを読み取り、UserDefaultsで保存。
+                    print("hirohiro_result: ", result)
+                })
                 .interval(delay: self.viewModel.scanInterval)
             VStack {
                 VStack {
-                    // TODO: QRコードの値をUserDefaultで保存
-                    let _ = print("hirohiro_qrCode: ", viewModel.lastQrCode)
                     Spacer().frame(height: 40)
                     Text("QRコードを読み込んでください")
                         .font(.system(size: 18))
@@ -60,6 +63,7 @@ struct QRCameraView: View {
                         .background(PrimaryColor.buttonColor)
                         .cornerRadius(20)
                         .padding(.horizontal, 22)
+                    // TODO: Owner + workerを読み込んだら、つどつどUIに表示させる。
                     Spacer()
                     Button(action: {
                         self.viewModel.isShowing = false

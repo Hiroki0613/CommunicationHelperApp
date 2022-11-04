@@ -7,7 +7,9 @@
 
 import UIKit
 
+// https://dev.classmethod.jp/articles/swift-generate-qr-code/
 extension UIImage {
+    // TODO: このコードは使われているのかを確認する
     func composited(withSmallCenterImage centerImage: UIImage) -> UIImage {
         return UIGraphicsImageRenderer(size: self.size).image { context in
             let imageWidth = context.format.bounds.width
