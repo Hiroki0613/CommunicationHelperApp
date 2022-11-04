@@ -8,19 +8,30 @@
 import ComposableArchitecture
 
 struct TopState: Equatable {
-
+    var workerState: WorkerState
 }
 
 enum TopAction {
+    case workerAction(WorkerAction)
     // TODO: 理想はFirebaseの処理はenvironmentから行うのが良いが、今回はaction+別modelでfuncを用意する方向にする。
 }
 
 struct TopEnvironment {
-
-}
-
-let topReducer = Reducer<TopState, TopAction, TopEnvironment> { state, action, _ in
-    switch action {
-
+    var workerEnvironment: WorkerEnvironment {
+        .init()
     }
 }
+
+let topReducer = Reducer<TopState, TopAction, TopEnvironment>.combine(
+    workerReducer.pullback(
+        state: \.workerState,
+        action: /TopAction.workerAction,
+        environment: \.workerEnvironment
+    ),
+    Reducer<TopState, TopAction, TopEnvironment> { _, action, _ in
+        switch action {
+        case .workerAction:
+            return .none
+        }
+    }
+)
