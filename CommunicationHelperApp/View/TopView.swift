@@ -33,110 +33,133 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TopView: View {
+//    let store: Store<TopState, TopAction>
+
     // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
     var body: some View {
-        NavigationView {
-            ZStack {
-                VStack {
-                    Spacer()
-                    NavigationLink(
-                        destination: {
-                            WorkerTopView(
-                                store: Store(
-                                    initialState: WorkerState(),
-                                    reducer: workerReducer,
-                                    environment: WorkerEnvironment()
-                                )
-                            )
-                        },
-                        label: {
-                            Text("利用者さん")
-                                .fontWeight(.semibold)
-                                .font(.system(size: 20))
-                                .foregroundColor(Color.black)
-                                .frame(maxWidth: .infinity, minHeight: 96)
-                                .background(PrimaryColor.buttonColor)
-                                .cornerRadius(20)
-                                .padding(.horizontal, 22)
-                        }
-                    )
-                    Spacer().frame(height: 66)
-                    NavigationLink(
-                        destination: {
-                            OwnerQRCodeView()
-                        }, label: {
-                            Text("支援者さん")
-                                .fontWeight(.semibold)
-                                .font(.system(size: 20))
-                                .foregroundColor(Color.black)
-                                .frame(maxWidth: .infinity, minHeight: 96)
-                                .background(PrimaryColor.buttonColor)
-                                .cornerRadius(20)
-                                .padding(.horizontal, 22)
-                        }
-                    )
-                    Spacer()
-                }
-                VStack {
-                    Spacer()
-                    HStack {
+//        WithViewStore(store) { viewStore in
+            NavigationView {
+                ZStack {
+                    VStack {
                         Spacer()
                         NavigationLink(
+//                            isActive: viewStore.binding(
+//                                get: \.isShowingNewSignIn,
+//                                send: TopAction.goToNewSignInView
+//                            ),
                             destination: {
-                                TestOwnerView(
-                                    store: Store(
-                                        initialState: OwnerState(),
-                                        reducer: ownerReducer,
-                                        environment: OwnerEnvironment()
-                                    )
-                                )
-                            }, label: {
-                                Text("owner\ntest")
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color.black)
-                                    .frame(maxWidth: 70, minHeight: 70)
-                                    .background(PrimaryColor.buttonColor)
-                                    .cornerRadius(35)
-                            }
-                        )
-                        Spacer().frame(width: 40)
-                    }
-                    HStack {
-                        Spacer()
-                        NavigationLink(
-                            destination: {
-                                TestWorkerView(
+//                                WorkerTopView(
+//                                    store: store.scope(
+//                                        state: \.workerState,
+//                                        action: TopAction.workerAction
+//                                    )
+//                                )
+                                WorkerTopView(
                                     store: Store(
                                         initialState: WorkerState(),
                                         reducer: workerReducer,
                                         environment: WorkerEnvironment()
                                     )
                                 )
-                            }, label: {
-                                Text("worker\ntest")
+                            },
+                            label: {
+                                Text("利用者さん")
                                     .fontWeight(.semibold)
-                                    .font(.system(size: 12))
+                                    .font(.system(size: 20))
                                     .foregroundColor(Color.black)
-                                    .frame(maxWidth: 70, minHeight: 70)
+                                    .frame(maxWidth: .infinity, minHeight: 96)
                                     .background(PrimaryColor.buttonColor)
-                                    .cornerRadius(35)
+                                    .cornerRadius(20)
+                                    .padding(.horizontal, 22)
                             }
                         )
-                        Spacer().frame(width: 40)
+                        Spacer().frame(height: 66)
+                        NavigationLink(
+                            destination: {
+                                OwnerQRCodeView()
+                            }, label: {
+                                Text("支援者さん")
+                                    .fontWeight(.semibold)
+                                    .font(.system(size: 20))
+                                    .foregroundColor(Color.black)
+                                    .frame(maxWidth: .infinity, minHeight: 96)
+                                    .background(PrimaryColor.buttonColor)
+                                    .cornerRadius(20)
+                                    .padding(.horizontal, 22)
+                            }
+                        )
+                        Spacer()
                     }
-                    Spacer().frame(height: 20)
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            NavigationLink(
+                                destination: {
+                                    TestOwnerView(
+                                        store: Store(
+                                            initialState: OwnerState(),
+                                            reducer: ownerReducer,
+                                            environment: OwnerEnvironment()
+                                        )
+                                    )
+                                }, label: {
+                                    Text("owner\ntest")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.black)
+                                        .frame(maxWidth: 70, minHeight: 70)
+                                        .background(PrimaryColor.buttonColor)
+                                        .cornerRadius(35)
+                                }
+                            )
+                            Spacer().frame(width: 40)
+                        }
+                        HStack {
+                            Spacer()
+                            NavigationLink(
+                                destination: {
+                                    TestWorkerView(
+                                        store: Store(
+                                            initialState: WorkerState(),
+                                            reducer: workerReducer,
+                                            environment: WorkerEnvironment()
+                                        )
+                                    )
+                                }, label: {
+                                    Text("worker\ntest")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.black)
+                                        .frame(maxWidth: 70, minHeight: 70)
+                                        .background(PrimaryColor.buttonColor)
+                                        .cornerRadius(35)
+                                }
+                            )
+                            Spacer().frame(width: 40)
+                        }
+                        Spacer().frame(height: 20)
+                    }
                 }
+                .background(PrimaryColor.background)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
             }
-            .background(PrimaryColor.background)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(true)
-        }
+//        }
     }
 }
 
 struct TopView_Previews: PreviewProvider {
     static var previews: some View {
+//        TopView(
+//            store: Store(
+//                initialState: TopState(
+//                    ownerState: OwnerState(),
+//                    workerState: WorkerState()
+//                ), reducer: topReducer,
+//                environment: TopEnvironment()
+//            )
+//        )
         TopView()
     }
 }

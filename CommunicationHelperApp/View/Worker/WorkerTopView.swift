@@ -68,6 +68,8 @@ struct WorkerTopView: View {
                 }
             } else {
                 WorkerNewSignUpView(viewStore: viewStore)
+//                .navigationBarTitleDisplayMode(.inline)
+//                .navigationBarHidden(true)
             }
         }
     }
