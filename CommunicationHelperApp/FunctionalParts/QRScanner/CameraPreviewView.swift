@@ -1,5 +1,5 @@
 //
-//  CameraPreiew.swift
+//  CameraPreviewView.swift
 //  CommunicationHelperApp
 //
 //  Created by 近藤宏輝 on 2022/10/22.
@@ -8,8 +8,7 @@
 import AVFoundation
 import UIKit
 
-// TODO: 要名前修正
-class CameraPreiew: UIView {
+class CameraPreviewView: UIView {
     private var label: UILabel?
     var previewLayer: AVCaptureVideoPreviewLayer?
     var session = AVCaptureSession()

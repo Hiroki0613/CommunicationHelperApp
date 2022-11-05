@@ -47,18 +47,24 @@ struct WorkerTopView: View {
                 switch viewStore.mode {
                 case .startOfWork:
                     WorkerQRCodeView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarHidden(true)
                 case .working:
                     WorkerPulseTopView(
                         action: {
                             viewStore.send(.goToPulseView(true))
                         }
                     )
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarHidden(true)
                 case .endOfTheWork:
                     WorkerEndOfWorkTopView(
                         action: {
                             viewStore.send(.goToEndOfWorkView(true))
                         }
                     )
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarHidden(true)
                 }
             } else {
                 WorkerNewSignUpView(viewStore: viewStore)

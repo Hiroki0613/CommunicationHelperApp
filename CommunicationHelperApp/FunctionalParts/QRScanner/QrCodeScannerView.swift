@@ -11,7 +11,7 @@ import SwiftUI
 // https://qiita.com/ikaasamay/items/58d1a401e98673a96fd2
 struct QrCodeScannerView: UIViewRepresentable {
     var supportedBarcodeTypes: [AVMetadataObject.ObjectType] = [.qr]
-    typealias UIViewType = CameraPreiew
+    typealias UIViewType = CameraPreviewView
 
     private let session = AVCaptureSession()
     private let delegate = QrCodeCameraDelegate()
@@ -28,7 +28,7 @@ struct QrCodeScannerView: UIViewRepresentable {
         return self
     }
 
-    func setupCamera(_ uiView: CameraPreiew) {
+    func setupCamera(_ uiView: CameraPreviewView) {
         if let backCamera = AVCaptureDevice.default(for: AVMediaType.video) {
             if let input = try? AVCaptureDeviceInput(device: backCamera) {
                 session.sessionPreset = .photo
@@ -50,17 +50,17 @@ struct QrCodeScannerView: UIViewRepresentable {
         }
     }
 
-    func makeUIView(context: Context) -> CameraPreiew {
-        let cameraView = CameraPreiew(session: session)
+    func makeUIView(context: Context) -> CameraPreviewView {
+        let cameraView = CameraPreviewView(session: session)
         checkCameraAuthorizationStatus(cameraView)
         return cameraView
     }
 
-    static func dismantleUIView(_ uiView: CameraPreiew, coordinator: ()) {
+    static func dismantleUIView(_ uiView: CameraPreviewView, coordinator: ()) {
         uiView.session.stopRunning()
     }
 
-    private func checkCameraAuthorizationStatus(_ uiView: CameraPreiew) {
+    private func checkCameraAuthorizationStatus(_ uiView: CameraPreviewView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         if cameraAuthorizationStatus == .authorized {
             setupCamera(uiView)
@@ -73,7 +73,7 @@ struct QrCodeScannerView: UIViewRepresentable {
         }
     }
 
-    func updateUIView(_ uiView: CameraPreiew, context: Context) {
+    func updateUIView(_ uiView: CameraPreviewView, context: Context) {
         uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }
