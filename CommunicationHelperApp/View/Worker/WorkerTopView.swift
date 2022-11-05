@@ -61,7 +61,7 @@ struct WorkerTopView: View {
                     )
                 }
             } else {
-                WorkerNewSignUpView()
+                WorkerNewSignUpView(viewStore: viewStore)
             }
         }
     }

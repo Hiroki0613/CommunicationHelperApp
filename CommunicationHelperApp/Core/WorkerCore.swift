@@ -9,7 +9,9 @@ import ComposableArchitecture
 import Foundation
 
 struct WorkerState: Equatable {
+    let scanInterval = 1.0
     var isLogedIn = false
+    var isShowingQrReader = false
     var hasReadOwnerAuthId = false
     var hasReadWorkerId = false
     var mode: Mode = .startOfWork
@@ -26,13 +28,14 @@ enum WorkerAction {
     case goToPulseView(Bool)
     case goToEndOfWorkView(Bool)
     case onAppear
-    case checkAccount
+    case goToQrCodeView(Bool)
+    case scanQrCodeResult(result: String)
     case readOwnerAuthUid
     case readWorkerId
+    case checkAccount
     case login
     case logout
     case setWorkerData
-    case getTerminalIdFromUserDefaults
 }
 
 struct WorkerEnvironment {
@@ -51,20 +54,34 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment> { stat
     case .onAppear:
         return .concatenate(
             Effect(value: .checkAccount),
-            Effect(value: .setWorkerData),
-            Effect(value: .getTerminalIdFromUserDefaults)
+            Effect(value: .setWorkerData)
         )
 
-    case .checkAccount:
-        // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
+    case .goToQrCodeView(let isActive):
+        state.isShowingQrReader = isActive
+        return .none
+
+    case .scanQrCodeResult(let result):
+        print("hirohiro_resultAA: ", result)
+        // ownerと同じならば
+        // workerと同じならば
         return .none
 
     case .readOwnerAuthUid:
         // TODO: ownerはQRコードの前にownerなどをつけて、string切り離しをおこなって登録
+        // hasReadOwnerAuthIdを更新
+        state.hasReadOwnerAuthId = true
+        // userdefalutsで保存
         return .none
 
     case .readWorkerId:
         // TODO: workerIDはworker + ランダム生成を使って用意する。
+        state.hasReadWorkerId = true
+        // userdefalutsで保存
+        return .none
+
+    case .checkAccount:
+        // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
         return .none
 
     case .login:
@@ -75,9 +92,6 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment> { stat
 
         // workerのデータを設定。mode、terminalIdなど
     case .setWorkerData:
-        return .none
-
-    case .getTerminalIdFromUserDefaults:
         return .none
     }
 }

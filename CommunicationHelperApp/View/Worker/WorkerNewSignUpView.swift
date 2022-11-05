@@ -5,10 +5,11 @@
 //  Created by 近藤宏輝 on 2022/10/30.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct WorkerNewSignUpView: View {
-    @ObservedObject var viewModel = ScannerViewModel()
+    let viewStore: ViewStore<WorkerState, WorkerAction>
 
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct WorkerNewSignUpView: View {
                 // 読み取ったQRコード表示位置
                 Button(
                     action: {
-                        viewModel.isShowing = true
+                        viewStore.send(.goToQrCodeView(true))
                 }, label: {
                     VStack {
                         Text("カメラ起動")
@@ -31,28 +32,31 @@ struct WorkerNewSignUpView: View {
                     .background(PrimaryColor.buttonColor)
                     .cornerRadius(20)
                 })
-                .fullScreenCover(isPresented: $viewModel.isShowing) {
-                    QRCameraView(viewModel: viewModel)
+                .fullScreenCover(
+                    isPresented: viewStore.binding(
+                        get: \.isShowingQrReader,
+                        send: WorkerAction.goToQrCodeView
+                    )
+                ) {
+                    QRCameraView(viewStore: viewStore)
                 }
             }
-
         }
     }
 }
 
 struct QRCameraView: View {
-    @ObservedObject var viewModel: ScannerViewModel
+    let viewStore: ViewStore<WorkerState, WorkerAction>
 
     var body: some View {
         ZStack {
             QrCodeScannerView()
-//                .found(read: self.viewModel.onFoundQrCode)
                 .found(read: { result in
                     // TODO: ここでOwnerのAuthUidとWorkerのUidを読み取る。
                     // TODO: QRコードを読み取り、UserDefaultsで保存。
-                    print("hirohiro_result: ", result)
+                    viewStore.send(.scanQrCodeResult(result: result))
                 })
-                .interval(delay: self.viewModel.scanInterval)
+                .interval(delay: viewStore.scanInterval)
             VStack {
                 VStack {
                     Spacer().frame(height: 40)
@@ -66,7 +70,7 @@ struct QRCameraView: View {
                     // TODO: Owner + workerを読み込んだら、つどつどUIに表示させる。
                     Spacer()
                     Button(action: {
-                        self.viewModel.isShowing = false
+                        viewStore.send(.goToQrCodeView(false))
                     }, label: {
                         Text("閉じる")
                             .fontWeight(.semibold)
@@ -89,6 +93,14 @@ struct QRCameraView: View {
 
 struct WorkerNewSignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerNewSignUpView()
+        WorkerNewSignUpView(
+            viewStore: ViewStore(
+                Store(
+                    initialState: WorkerState(),
+                    reducer: workerReducer,
+                    environment: WorkerEnvironment()
+                )
+            )
+        )
     }
 }

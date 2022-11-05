@@ -15,15 +15,26 @@ struct OwnerQRCodeView: View {
     var body: some View {
         ZStack {
             PrimaryColor.background
-            if let qrCodeImage = qRCodeGenerator.generate(
-                with: "workerRegistration"
-            ) {
+            if let qrCodeOwnerImage = qRCodeGenerator.generate(
+                with: "ownerFirebaseUid"
+            ),
+               let qrCodeWorkerImage = qRCodeGenerator.generate(
+                with: "workerUUID"
+               ) {
                 VStack {
-                    Text("新規登録")
+                    Text("OwnerID")
                         .fontWeight(.semibold)
                         .font(.system(size: 20))
                         .foregroundColor(Color.black)
-                    Image(uiImage: qrCodeImage)
+                    Image(uiImage: qrCodeOwnerImage)
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                    Spacer().frame(height: 70)
+                    Text("WorkerID")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.black)
+                    Image(uiImage: qrCodeWorkerImage)
                         .resizable()
                         .frame(width: 200, height: 200)
                 }
