@@ -21,45 +21,74 @@ struct WorkerNewSignUpView: View {
                 // 読み取ったQRコード表示位置
                 Button(
                     action: {
-                        viewStore.send(.goToQrCodeView(true))
+                        viewStore.send(.goToOwnerQrCodeView(true))
                 }, label: {
                     VStack {
-                        Text("カメラ起動")
+                        Text("カメラ起動\nオーナー側")
                         Image(systemName: "camera")
                     }
                     .foregroundColor(Color.black)
-                    .frame(width: 164, height: 155)
+                    .frame(width: 200, height: 200)
                     .background(PrimaryColor.buttonColor)
                     .cornerRadius(20)
+                    .opacity(viewStore.hasReadOwnerAuthId ? 0.2 : 1.0)
+                })
+                Spacer().frame(height: 40)
+                Button(
+                    action: {
+                        viewStore.send(.goToWorkerQrCodeView(true))
+                }, label: {
+                    VStack {
+                        Text("カメラ起動\n作業者側")
+                        Image(systemName: "camera")
+                    }
+                    .foregroundColor(Color.black)
+                    .frame(width: 200, height: 200)
+                    .background(PrimaryColor.buttonColor)
+                    .cornerRadius(20)
+                    .opacity(viewStore.hasReadWorkerId ? 0.2 : 1.0)
                 })
                 .fullScreenCover(
                     isPresented: viewStore.binding(
-                        get: \.isShowingQrReader,
-                        send: WorkerAction.goToQrCodeView
+                        get: \.isShowingOwnerQrReader,
+                        send: WorkerAction.goToOwnerQrCodeView
                     )
                 ) {
-                    QRCameraView(viewStore: viewStore)
+                    QRCameraView(readType: .owner, viewStore: viewStore)
+                }
+                .fullScreenCover(
+                    isPresented: viewStore.binding(
+                        get: \.isShowingWorkerQrReader,
+                        send: WorkerAction.goToWorkerQrCodeView
+                    )
+                ) {
+                    QRCameraView(readType: .worker, viewStore: viewStore)
                 }
             }
         }
     }
 }
 
+enum ReadType {
+    case owner
+    case worker
+}
+
 struct QRCameraView: View {
+    let readType: ReadType
     let viewStore: ViewStore<WorkerState, WorkerAction>
 
     var body: some View {
         ZStack {
             QrCodeScannerView()
                 .found(read: { result in
-                    // TODO: ここでOwnerのAuthUidとWorkerのUidを読み取る。
-                    // TODO: QRコードを読み取り、UserDefaultsで保存。
-                    viewStore.send(.scanQrCodeResult(result: result))
+                    viewStore.send(.scanQrCodeResult(type: readType, result: result))
                 })
                 .interval(delay: viewStore.scanInterval)
             VStack {
                 VStack {
                     Spacer().frame(height: 40)
+                    // TODO: オーナー側と作業者側で表示文字を変更する
                     Text("QRコードを読み込んでください")
                         .font(.system(size: 18))
                         .foregroundColor(Color.black)
@@ -67,10 +96,14 @@ struct QRCameraView: View {
                         .background(PrimaryColor.buttonColor)
                         .cornerRadius(20)
                         .padding(.horizontal, 22)
-                    // TODO: Owner + workerを読み込んだら、つどつどUIに表示させる。
                     Spacer()
                     Button(action: {
-                        viewStore.send(.goToQrCodeView(false))
+                        switch readType {
+                        case .owner:
+                            viewStore.send(.goToOwnerQrCodeView(false))
+                        case .worker:
+                            viewStore.send(.goToWorkerQrCodeView(false))
+                        }
                     }, label: {
                         Text("閉じる")
                             .fontWeight(.semibold)
