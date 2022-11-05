@@ -53,6 +53,8 @@
 		7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5EA2913FF4000F93A87 /* View+Ext.swift */; };
 		7F84C76729162C5400F11B01 /* OwnerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76629162C5400F11B01 /* OwnerCore.swift */; };
 		7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C7692916416300F11B01 /* TestOwnerView.swift */; };
+		7F84C76E29165FF600F11B01 /* QRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76D29165FF600F11B01 /* QRCameraView.swift */; };
+		7F84C770291660D900F11B01 /* WorkerQrScanCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +100,8 @@
 		7F29D5EA2913FF4000F93A87 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		7F84C76629162C5400F11B01 /* OwnerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerCore.swift; sourceTree = "<group>"; };
 		7F84C7692916416300F11B01 /* TestOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOwnerView.swift; sourceTree = "<group>"; };
+		7F84C76D29165FF600F11B01 /* QRCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraView.swift; sourceTree = "<group>"; };
+		7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerQrScanCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 				7F29D57C2904253F00F93A87 /* CameraPreiew.swift */,
 				7F29D5782904232100F93A87 /* QrCodeCameraDelegate.swift */,
 				7F29D57E2904259400F93A87 /* QrCodeScannerView.swift */,
+				7F84C76D29165FF600F11B01 /* QRCameraView.swift */,
 			);
 			path = QRScanner;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 		7F29D5C1290C089C00F93A87 /* FunctionalParts */ = {
 			isa = PBXGroup;
 			children = (
+				7F84C76C29165F3600F11B01 /* QRGenerator */,
 				7F29D5DD2913F3C500F93A87 /* Chats */,
 				7F29D5D82912C31500F93A87 /* AirPressure */,
 				7F29D58129042AFB00F93A87 /* Pulse */,
@@ -219,9 +225,9 @@
 		7F29D5C2290C08DB00F93A87 /* Worker */ = {
 			isa = PBXGroup;
 			children = (
+				7F84C76B29165EFD00F11B01 /* NewRegistration */,
 				7F29D5722902F37C00F93A87 /* WorkerTopView.swift */,
 				7F29D5D2290E9CC300F93A87 /* WorkerEndOfWorkView.swift */,
-				7F29D5CA290E9AE800F93A87 /* WorkerNewSignUpView.swift */,
 				7F29D575290416AA00F93A87 /* WorkerPulseView.swift */,
 				7F29D5CC290E9BA400F93A87 /* WorkerQRCodeView.swift */,
 				7F29D5CE290E9C0F00F93A87 /* WorkerPulseTopView.swift */,
@@ -274,6 +280,7 @@
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5C8290D64B400F93A87 /* WorkerCore.swift */,
+				7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */,
 				7F84C76629162C5400F11B01 /* OwnerCore.swift */,
 			);
 			path = Core;
@@ -322,6 +329,21 @@
 				7F84C7692916416300F11B01 /* TestOwnerView.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		7F84C76B29165EFD00F11B01 /* NewRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D5CA290E9AE800F93A87 /* WorkerNewSignUpView.swift */,
+			);
+			path = NewRegistration;
+			sourceTree = "<group>";
+		};
+		7F84C76C29165F3600F11B01 /* QRGenerator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = QRGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,10 +477,12 @@
 				7F29D59229058C1300F93A87 /* PulseView.swift in Sources */,
 				7F29D5CD290E9BA400F93A87 /* WorkerQRCodeView.swift in Sources */,
 				7F29D5DA2912C32C00F93A87 /* PressureView.swift in Sources */,
+				7F84C770291660D900F11B01 /* WorkerQrScanCore.swift in Sources */,
 				7F29D5892904390100F93A87 /* HeartRateManager.swift in Sources */,
 				7F29D5E12913F53200F93A87 /* ChatTopView.swift in Sources */,
 				7F29D5E52913F6FC00F93A87 /* ChatMessage.swift in Sources */,
 				7F29D56928FEECE900F93A87 /* TopCore.swift in Sources */,
+				7F84C76E29165FF600F11B01 /* QRCameraView.swift in Sources */,
 				7F29D5732902F37C00F93A87 /* WorkerTopView.swift in Sources */,
 				7F29D5D5290E9D2A00F93A87 /* WorkerEndOfWorkQRCodeView.swift in Sources */,
 				7F29D56F2902E63300F93A87 /* Constants.swift in Sources */,

@@ -8,6 +8,7 @@
 import AVFoundation
 import UIKit
 
+// TODO: 要名前修正
 class CameraPreiew: UIView {
     private var label: UILabel?
     var previewLayer: AVCaptureVideoPreviewLayer?
