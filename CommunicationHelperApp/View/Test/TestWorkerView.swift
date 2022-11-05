@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct TestView: View {
+struct TestWorkerView: View {
     let store: Store<WorkerState, WorkerAction>
 
     var body: some View {
@@ -114,21 +114,21 @@ struct TestView: View {
                             )
                         }
                         Spacer().frame(height: 20)
-                        NavigationLink(
-                            destination: {
-                                PressureView()
-                            },
-                            label: {
-                                Text("気圧計")
-                                    .fontWeight(.semibold)
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color.black)
-                                    .frame(maxWidth: .infinity, minHeight: 50)
-                                    .background(PrimaryColor.buttonColor)
-                                    .padding(.horizontal, 22)
-                            }
-                        )
-                        Spacer().frame(height: 20)
+//                        NavigationLink(
+//                            destination: {
+//                                PressureView()
+//                            },
+//                            label: {
+//                                Text("気圧計")
+//                                    .fontWeight(.semibold)
+//                                    .font(.system(size: 12))
+//                                    .foregroundColor(Color.black)
+//                                    .frame(maxWidth: .infinity, minHeight: 50)
+//                                    .background(PrimaryColor.buttonColor)
+//                                    .padding(.horizontal, 22)
+//                            }
+//                        )
+//                        Spacer().frame(height: 20)
                         NavigationLink(
                             destination: {
                                 ChatTopView()
@@ -150,9 +150,9 @@ struct TestView: View {
     }
 }
 
-struct TestView_Previews: PreviewProvider {
+struct TestWorkerView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView(
+        TestWorkerView(
             store: Store(
                 initialState: WorkerState(),
                 reducer: workerReducer,

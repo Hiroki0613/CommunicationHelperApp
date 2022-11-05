@@ -83,7 +83,30 @@ struct TopView: View {
                         Spacer()
                         NavigationLink(
                             destination: {
-                                TestView(
+                                TestOwnerView(
+                                    store: Store(
+                                        initialState: OwnerState(),
+                                        reducer: ownerReducer,
+                                        environment: OwnerEnvironment()
+                                    )
+                                )
+                            }, label: {
+                                Text("owner\ntest")
+                                    .fontWeight(.semibold)
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color.black)
+                                    .frame(maxWidth: 70, minHeight: 70)
+                                    .background(PrimaryColor.buttonColor)
+                                    .cornerRadius(35)
+                            }
+                        )
+                        Spacer().frame(width: 40)
+                    }
+                    HStack {
+                        Spacer()
+                        NavigationLink(
+                            destination: {
+                                TestWorkerView(
                                     store: Store(
                                         initialState: WorkerState(),
                                         reducer: workerReducer,
@@ -91,18 +114,18 @@ struct TopView: View {
                                     )
                                 )
                             }, label: {
-                                Text("test")
+                                Text("worker\ntest")
                                     .fontWeight(.semibold)
                                     .font(.system(size: 12))
                                     .foregroundColor(Color.black)
-                                    .frame(maxWidth: 50, minHeight: 50)
+                                    .frame(maxWidth: 70, minHeight: 70)
                                     .background(PrimaryColor.buttonColor)
-                                    .cornerRadius(25)
+                                    .cornerRadius(35)
                             }
                         )
                         Spacer().frame(width: 40)
                     }
-                    Spacer().frame(height: 40)
+                    Spacer().frame(height: 20)
                 }
             }
             .background(PrimaryColor.background)

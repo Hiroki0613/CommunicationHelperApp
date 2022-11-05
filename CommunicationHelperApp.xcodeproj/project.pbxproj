@@ -42,7 +42,7 @@
 		7F29D5D1290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D0290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift */; };
 		7F29D5D3290E9CC300F93A87 /* WorkerEndOfWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D2290E9CC300F93A87 /* WorkerEndOfWorkView.swift */; };
 		7F29D5D5290E9D2A00F93A87 /* WorkerEndOfWorkQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D4290E9D2A00F93A87 /* WorkerEndOfWorkQRCodeView.swift */; };
-		7F29D5D72912C28500F93A87 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D62912C28500F93A87 /* TestView.swift */; };
+		7F29D5D72912C28500F93A87 /* TestWorkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D62912C28500F93A87 /* TestWorkerView.swift */; };
 		7F29D5DA2912C32C00F93A87 /* PressureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5D92912C32C00F93A87 /* PressureView.swift */; };
 		7F29D5DC2912C38900F93A87 /* AltimatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5DB2912C38900F93A87 /* AltimatorManager.swift */; };
 		7F29D5DF2913F48F00F93A87 /* ChatTitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */; };
@@ -51,6 +51,8 @@
 		7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */; };
 		7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */; };
 		7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5EA2913FF4000F93A87 /* View+Ext.swift */; };
+		7F84C76729162C5400F11B01 /* OwnerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76629162C5400F11B01 /* OwnerCore.swift */; };
+		7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C7692916416300F11B01 /* TestOwnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,7 +87,7 @@
 		7F29D5D0290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerEndOfWorkTopView.swift; sourceTree = "<group>"; };
 		7F29D5D2290E9CC300F93A87 /* WorkerEndOfWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerEndOfWorkView.swift; sourceTree = "<group>"; };
 		7F29D5D4290E9D2A00F93A87 /* WorkerEndOfWorkQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerEndOfWorkQRCodeView.swift; sourceTree = "<group>"; };
-		7F29D5D62912C28500F93A87 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		7F29D5D62912C28500F93A87 /* TestWorkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWorkerView.swift; sourceTree = "<group>"; };
 		7F29D5D92912C32C00F93A87 /* PressureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressureView.swift; sourceTree = "<group>"; };
 		7F29D5DB2912C38900F93A87 /* AltimatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltimatorManager.swift; sourceTree = "<group>"; };
 		7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleRow.swift; sourceTree = "<group>"; };
@@ -94,6 +96,8 @@
 		7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageBubble.swift; sourceTree = "<group>"; };
 		7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageField.swift; sourceTree = "<group>"; };
 		7F29D5EA2913FF4000F93A87 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		7F84C76629162C5400F11B01 /* OwnerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerCore.swift; sourceTree = "<group>"; };
+		7F84C7692916416300F11B01 /* TestOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOwnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,10 +234,10 @@
 		7F29D5C3290C08F100F93A87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7F84C7682916414C00F11B01 /* Test */,
 				7F29D5C4290C090D00F93A87 /* Owner */,
 				7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */,
 				7F29D54E28F3D44600F93A87 /* TopView.swift */,
-				7F29D5D62912C28500F93A87 /* TestView.swift */,
 				7F29D5C2290C08DB00F93A87 /* Worker */,
 			);
 			path = View;
@@ -270,6 +274,7 @@
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5C8290D64B400F93A87 /* WorkerCore.swift */,
+				7F84C76629162C5400F11B01 /* OwnerCore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -308,6 +313,15 @@
 				7F29D5E42913F6FC00F93A87 /* ChatMessage.swift */,
 			);
 			path = Chats;
+			sourceTree = "<group>";
+		};
+		7F84C7682916414C00F11B01 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				7F29D5D62912C28500F93A87 /* TestWorkerView.swift */,
+				7F84C7692916416300F11B01 /* TestOwnerView.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,8 +429,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F29D5D72912C28500F93A87 /* TestView.swift in Sources */,
+				7F29D5D72912C28500F93A87 /* TestWorkerView.swift in Sources */,
 				7F29D5712902EB3300F93A87 /* UIImage+Ext.swift in Sources */,
+				7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */,
 				7F29D58429042B2000F93A87 /* ColorUtils.swift in Sources */,
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
 				7F29D5D1290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift in Sources */,
@@ -449,6 +464,7 @@
 				7F29D56F2902E63300F93A87 /* Constants.swift in Sources */,
 				7F29D58C290448C300F93A87 /* Filter.swift in Sources */,
 				7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */,
+				7F84C76729162C5400F11B01 /* OwnerCore.swift in Sources */,
 				7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
