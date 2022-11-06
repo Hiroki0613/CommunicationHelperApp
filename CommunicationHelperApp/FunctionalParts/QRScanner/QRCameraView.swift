@@ -19,6 +19,7 @@ struct QRCameraView: View {
 
     var body: some View {
         ZStack {
+            // TODO: ここは魔改造になっている可能性があるから要修正
             QrCodeScannerView()
                 .found(read: { result in
                     viewStore.send(.scanQrCodeResult(type: readType, result: result))
