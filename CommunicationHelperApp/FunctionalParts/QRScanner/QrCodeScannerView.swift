@@ -7,6 +7,7 @@
 
 import AVFoundation
 import SwiftUI
+import UIKit
 
 // https://qiita.com/ikaasamay/items/58d1a401e98673a96fd2
 struct QrCodeScannerView: UIViewRepresentable {
@@ -76,5 +77,140 @@ struct QrCodeScannerView: UIViewRepresentable {
     func updateUIView(_ uiView: CameraPreviewView, context: Context) {
         uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+    }
+}
+
+
+
+
+
+struct QrCodeScannerViewSecond: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> QrCodeScannerVC {
+        QrCodeScannerVC()
+    }
+
+    func updateUIViewController(_ uiViewController: QrCodeScannerVC, context: Context) {
+    }
+}
+
+final class QrCodeScannerVC: UIViewController {
+    var preview = UIView()
+    private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
+        let layer = AVCaptureVideoPreviewLayer(session: self.session)
+        layer.frame = preview.bounds
+        layer.videoGravity = .resizeAspectFill
+        layer.connection?.videoOrientation = .portrait
+        return layer
+    }()
+    private var boundingBox = CAShapeLayer()
+    private var allowDuplicateReading: Bool = false
+    private var makeHapticFeedback: Bool = false
+    private var showBoundingBox: Bool = false
+    private var scannedQRs = Set<String>()
+    private let session = AVCaptureSession()
+    private let sessionQueue = DispatchQueue(label: "sessionQueue")
+    private var videoDevice: AVCaptureDevice?
+    private var videoDeviceInput: AVCaptureDeviceInput?
+    private let metadataOutput = AVCaptureMetadataOutput()
+    private let metadataObjectQueue = DispatchQueue(label: "metadataObjectQueue")
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        preview.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self.preview)
+        
+        
+        NSLayoutConstraint.activate([
+            preview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            preview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            preview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            preview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            break
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                if !granted {
+                    // 😭
+                }
+            }
+        default:
+            print("The user has previously denied access.")
+        }
+//        DispatchQueue.main.async {
+//            self.setupBoundingBox()
+//        }
+        
+        sessionQueue.async {
+            self.configureSession()
+        }
+        preview.layer.addSublayer(previewLayer)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.session.startRunning()
+    }
+
+    // MARK: configureSession
+    private func configureSession() {
+        session.beginConfiguration()
+        let defaultVideoDevice = AVCaptureDevice.default(
+            .builtInWideAngleCamera,
+            for: .video,
+            position: .back
+        )
+        guard let videoDevice = defaultVideoDevice else {
+            session.commitConfiguration()
+            return
+        }
+        do {
+            let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
+            if session.canAddInput(videoDeviceInput) {
+                session.addInput(videoDeviceInput)
+                self.videoDeviceInput = videoDeviceInput
+            }
+        } catch {
+            session.commitConfiguration()
+            return
+        }
+        if session.canAddOutput(metadataOutput) {
+            session.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue: metadataObjectQueue)
+            metadataOutput.metadataObjectTypes = [.qr]
+        } else {
+            session.commitConfiguration()
+        }
+        session.commitConfiguration()
+    }
+
+//    private func setupBoundingBox() {
+//        boundingBox.frame = preview.layer.bounds
+//        boundingBox.strokeColor = UIColor.green.cgColor
+//        boundingBox.lineWidth = 4.0
+//        boundingBox.fillColor = UIColor.clear.cgColor
+//        preview.layer.addSublayer(boundingBox)
+//    }
+//
+//    // MARK: Haptic feedback
+//    private func hapticSuccessNotification() {
+//        if makeHapticFeedback == true {
+//            let generator = UINotificationFeedbackGenerator()
+//            generator.prepare()
+//            generator.notificationOccurred(.success)
+//        }
+//    }
+}
+
+extension QrCodeScannerVC: AVCaptureMetadataOutputObjectsDelegate {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        for metadataObject in metadataObjects {
+            guard let machineReadableCode = metadataObject as? AVMetadataMachineReadableCodeObject,
+                  machineReadableCode.type == .qr,
+                  let stringValue = machineReadableCode.stringValue
+            else { return }
+            print("hirohiro_new_stringValue: ", stringValue)
+        }
     }
 }
