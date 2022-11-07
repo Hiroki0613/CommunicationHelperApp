@@ -94,7 +94,7 @@ struct QrCodeScannerViewSecond: UIViewControllerRepresentable {
 }
 
 final class QrCodeScannerVC: UIViewController {
-    var preview = UIView()
+    var preview: UIView!
     private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         let layer = AVCaptureVideoPreviewLayer(session: self.session)
         layer.frame = preview.bounds
@@ -116,16 +116,22 @@ final class QrCodeScannerVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        preview.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(self.preview)
-        
-        
-        NSLayoutConstraint.activate([
-            preview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            preview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            preview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            preview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+//        preview.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(self.preview)
+//
+//
+//        NSLayoutConstraint.activate([
+//            preview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            preview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            preview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            preview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        ])
+        preview = UIView(frame: CGRect(x: 0,
+                                                   y: 0,
+                                                   width: UIScreen.main.bounds.size.width,
+                                                   height: UIScreen.main.bounds.size.height))
+                preview.contentMode = UIView.ContentMode.scaleAspectFit
+                view.addSubview(preview)
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             break
@@ -151,6 +157,10 @@ final class QrCodeScannerVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        self.session.startRunning()
+        sessionQueue.async {
+            
+            self.session.startRunning()
+        }
     }
 
     // MARK: configureSession
