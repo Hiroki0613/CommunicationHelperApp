@@ -5,88 +5,93 @@
 //  Created by 近藤宏輝 on 2022/10/22.
 //
 
+import ComposableArchitecture
 import AVFoundation
 import SwiftUI
 import UIKit
 
 // https://qiita.com/ikaasamay/items/58d1a401e98673a96fd2
-struct QrCodeScannerView: UIViewRepresentable {
-    var supportedBarcodeTypes: [AVMetadataObject.ObjectType] = [.qr]
-    typealias UIViewType = CameraPreviewView
-
-    private let session = AVCaptureSession()
-    private let delegate = QrCodeCameraDelegate()
-    private let metadataOutput = AVCaptureMetadataOutput()
-
-    func interval(delay: Double) -> QrCodeScannerView {
-        delegate.scanInterval = delay
-        return self
-    }
-
-    func found(read: @escaping (String) -> Void) -> QrCodeScannerView {
-        print("found")
-        delegate.onResult = read
-        return self
-    }
-
-    func setupCamera(_ uiView: CameraPreviewView) {
-        if let backCamera = AVCaptureDevice.default(for: AVMediaType.video) {
-            if let input = try? AVCaptureDeviceInput(device: backCamera) {
-                session.sessionPreset = .photo
-                if session.canAddInput(input) {
-                    session.addInput(input)
-                }
-                if session.canAddOutput(metadataOutput) {
-                    session.addOutput(metadataOutput)
-                    metadataOutput.metadataObjectTypes = supportedBarcodeTypes
-                    metadataOutput.setMetadataObjectsDelegate(delegate, queue: DispatchQueue.main)
-                }
-                let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-                uiView.backgroundColor = UIColor.gray
-                previewLayer.videoGravity = .resizeAspectFill
-                uiView.layer.addSublayer(previewLayer)
-                uiView.previewLayer = previewLayer
-                session.startRunning()
-            }
-        }
-    }
-
-    func makeUIView(context: Context) -> CameraPreviewView {
-        let cameraView = CameraPreviewView(session: session)
-        checkCameraAuthorizationStatus(cameraView)
-        return cameraView
-    }
-
-    static func dismantleUIView(_ uiView: CameraPreviewView, coordinator: ()) {
-        uiView.session.stopRunning()
-    }
-
-    private func checkCameraAuthorizationStatus(_ uiView: CameraPreviewView) {
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        if cameraAuthorizationStatus == .authorized {
-            setupCamera(uiView)
-        } else {
-            AVCaptureDevice.requestAccess(for: .video) { _ in
-                DispatchQueue.main.sync {
-                    self.setupCamera(uiView)
-                }
-            }
-        }
-    }
-
-    func updateUIView(_ uiView: CameraPreviewView, context: Context) {
-        uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-    }
-}
-
-
+//struct QrCodeScannerView: UIViewRepresentable {
+//    var supportedBarcodeTypes: [AVMetadataObject.ObjectType] = [.qr]
+//    typealias UIViewType = CameraPreviewView
+//
+//    private let session = AVCaptureSession()
+//    private let delegate = QrCodeCameraDelegate()
+//    private let metadataOutput = AVCaptureMetadataOutput()
+//
+//    func interval(delay: Double) -> QrCodeScannerView {
+//        delegate.scanInterval = delay
+//        return self
+//    }
+//
+//    func found(read: @escaping (String) -> Void) -> QrCodeScannerView {
+//        print("found")
+//        delegate.onResult = read
+//        return self
+//    }
+//
+//    func setupCamera(_ uiView: CameraPreviewView) {
+//        if let backCamera = AVCaptureDevice.default(for: AVMediaType.video) {
+//            if let input = try? AVCaptureDeviceInput(device: backCamera) {
+//                session.sessionPreset = .photo
+//                if session.canAddInput(input) {
+//                    session.addInput(input)
+//                }
+//                if session.canAddOutput(metadataOutput) {
+//                    session.addOutput(metadataOutput)
+//                    metadataOutput.metadataObjectTypes = supportedBarcodeTypes
+//                    metadataOutput.setMetadataObjectsDelegate(delegate, queue: DispatchQueue.main)
+//                }
+//                let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+//                uiView.backgroundColor = UIColor.gray
+//                previewLayer.videoGravity = .resizeAspectFill
+//                uiView.layer.addSublayer(previewLayer)
+//                uiView.previewLayer = previewLayer
+//                session.startRunning()
+//            }
+//        }
+//    }
+//
+//    func makeUIView(context: Context) -> CameraPreviewView {
+//        let cameraView = CameraPreviewView(session: session)
+//        checkCameraAuthorizationStatus(cameraView)
+//        return cameraView
+//    }
+//
+//    static func dismantleUIView(_ uiView: CameraPreviewView, coordinator: ()) {
+//        uiView.session.stopRunning()
+//    }
+//
+//    private func checkCameraAuthorizationStatus(_ uiView: CameraPreviewView) {
+//        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+//        if cameraAuthorizationStatus == .authorized {
+//            setupCamera(uiView)
+//        } else {
+//            AVCaptureDevice.requestAccess(for: .video) { _ in
+//                DispatchQueue.main.sync {
+//                    self.setupCamera(uiView)
+//                }
+//            }
+//        }
+//    }
+//
+//    func updateUIView(_ uiView: CameraPreviewView, context: Context) {
+//        uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+//    }
+//}
 
 
 
-struct QrCodeScannerViewSecond: UIViewControllerRepresentable {
+
+
+struct QrCodeScannerView: UIViewControllerRepresentable {
+    let viewStore: ViewStore<WorkerState, WorkerAction>
+
     func makeUIViewController(context: Context) -> QrCodeScannerVC {
-        QrCodeScannerVC()
+        QrCodeScannerVC(
+            viewStore: viewStore
+        )
     }
 
     func updateUIViewController(_ uiViewController: QrCodeScannerVC, context: Context) {
@@ -94,7 +99,8 @@ struct QrCodeScannerViewSecond: UIViewControllerRepresentable {
 }
 
 final class QrCodeScannerVC: UIViewController {
-    var preview: UIView!
+    let viewStore: ViewStore<WorkerState, WorkerAction>
+    var preview = UIView()
     private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         let layer = AVCaptureVideoPreviewLayer(session: self.session)
         layer.frame = preview.bounds
@@ -102,10 +108,16 @@ final class QrCodeScannerVC: UIViewController {
         layer.connection?.videoOrientation = .portrait
         return layer
     }()
+    var detectArea = UIView() {
+        didSet {
+            detectArea.layer.borderWidth = 3.0
+            detectArea.layer.borderColor = UIColor.red.cgColor
+        }
+    }
     private var boundingBox = CAShapeLayer()
-    private var allowDuplicateReading: Bool = false
-    private var makeHapticFeedback: Bool = false
-    private var showBoundingBox: Bool = false
+//    private var allowDuplicateReading: Bool = false
+//    private var makeHapticFeedback: Bool = false
+//    private var showBoundingBox: Bool = false
     private var scannedQRs = Set<String>()
     private let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "sessionQueue")
@@ -114,24 +126,36 @@ final class QrCodeScannerVC: UIViewController {
     private let metadataOutput = AVCaptureMetadataOutput()
     private let metadataObjectQueue = DispatchQueue(label: "metadataObjectQueue")
 
+    init(viewStore: ViewStore<WorkerState, WorkerAction>) {
+        self.viewStore = viewStore
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        preview.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(self.preview)
-//
-//
-//        NSLayoutConstraint.activate([
-//            preview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            preview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            preview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            preview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
-        preview = UIView(frame: CGRect(x: 0,
-                                                   y: 0,
-                                                   width: UIScreen.main.bounds.size.width,
-                                                   height: UIScreen.main.bounds.size.height))
-                preview.contentMode = UIView.ContentMode.scaleAspectFit
-                view.addSubview(preview)
+        preview = UIView(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: UIScreen.main.bounds.size.width,
+                height: UIScreen.main.bounds.size.height
+            )
+        )
+        preview.contentMode = UIView.ContentMode.scaleAspectFit
+        view.addSubview(preview)
+        detectArea = UIView(
+            frame: CGRect(
+                x: view.frame.width / 4,
+                y: view.frame.height / 4,
+                width: view.frame.width / 2,
+                height: view.frame.width / 2
+            )
+        )
+        view.addSubview(detectArea)
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             break
@@ -144,10 +168,9 @@ final class QrCodeScannerVC: UIViewController {
         default:
             print("The user has previously denied access.")
         }
-//        DispatchQueue.main.async {
-//            self.setupBoundingBox()
-//        }
-        
+        DispatchQueue.main.async {
+            self.setupBoundingBox()
+        }
         sessionQueue.async {
             self.configureSession()
         }
@@ -156,9 +179,16 @@ final class QrCodeScannerVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.session.startRunning()
         sessionQueue.async {
-            
+            DispatchQueue.main.async {
+                let metadataOutputRectOfInterest =
+                self.previewLayer.metadataOutputRectConverted(
+                    fromLayerRect: self.detectArea.frame
+                )
+                self.sessionQueue.async {
+                    self.metadataOutput.rectOfInterest = metadataOutputRectOfInterest
+                }
+            }
             self.session.startRunning()
         }
     }
@@ -195,32 +225,71 @@ final class QrCodeScannerVC: UIViewController {
         session.commitConfiguration()
     }
 
-//    private func setupBoundingBox() {
-//        boundingBox.frame = preview.layer.bounds
-//        boundingBox.strokeColor = UIColor.green.cgColor
-//        boundingBox.lineWidth = 4.0
-//        boundingBox.fillColor = UIColor.clear.cgColor
-//        preview.layer.addSublayer(boundingBox)
-//    }
-//
-//    // MARK: Haptic feedback
-//    private func hapticSuccessNotification() {
-//        if makeHapticFeedback == true {
-//            let generator = UINotificationFeedbackGenerator()
-//            generator.prepare()
-//            generator.notificationOccurred(.success)
-//        }
-//    }
+    // Draw bounding box
+    private func updateBoundingBox(_ points: [CGPoint]) {
+        guard let firstPoint = points.first else {
+            return
+        }
+        let path = UIBezierPath()
+        path.move(to: firstPoint)
+        var newPoints = points
+        newPoints.removeFirst()
+        newPoints.append(firstPoint)
+        newPoints.forEach { path.addLine(to: $0) }
+        boundingBox.path = path.cgPath
+        boundingBox.isHidden = false
+    }
+
+    private var resetTimer: Timer?
+    fileprivate func hideBoundingBox(after: Double) {
+        resetTimer?.invalidate()
+        resetTimer = Timer.scheduledTimer(
+            withTimeInterval: TimeInterval() + after,
+            repeats: false) { [weak self] _ in
+                self?.boundingBox.isHidden = true
+            }
+    }
+
+    private func setupBoundingBox() {
+        boundingBox.frame = preview.layer.bounds
+        boundingBox.strokeColor = UIColor.green.cgColor
+        boundingBox.lineWidth = 4.0
+        boundingBox.fillColor = UIColor.clear.cgColor
+        preview.layer.addSublayer(boundingBox)
+    }
+
+    // MARK: Haptic feedback
+    private func hapticSuccessNotification() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(.success)
+    }
 }
 
 extension QrCodeScannerVC: AVCaptureMetadataOutputObjectsDelegate {
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    func metadataOutput(
+        _ output: AVCaptureMetadataOutput,
+        didOutput metadataObjects: [AVMetadataObject],
+        from connection: AVCaptureConnection
+    ) {
         for metadataObject in metadataObjects {
             guard let machineReadableCode = metadataObject as? AVMetadataMachineReadableCodeObject,
                   machineReadableCode.type == .qr,
                   let stringValue = machineReadableCode.stringValue
             else { return }
             print("hirohiro_new_stringValue: ", stringValue)
+            guard let transformedObject = previewLayer.transformedMetadataObject(for: machineReadableCode) as? AVMetadataMachineReadableCodeObject else { return }
+            DispatchQueue.main.async {
+                self.updateBoundingBox(transformedObject.corners)
+                if !self.scannedQRs.contains(stringValue) {
+                    self.scannedQRs.insert(stringValue)
+                    self.hapticSuccessNotification()
+                }
+                self.hideBoundingBox(after: 0.1)
+                self.viewStore.send(.scanQrCodeResult(type: .owner, result: stringValue))
+            }
+            DispatchQueue.main.async {
+            }
         }
     }
 }

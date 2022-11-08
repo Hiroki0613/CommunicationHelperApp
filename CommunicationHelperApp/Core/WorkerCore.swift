@@ -86,22 +86,39 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
 
         case .scanQrCodeResult(let readType, let result):
             print("hirohiro_resultAA: ", result)
-            switch readType {
-            case .owner:
+//            switch readType {
+//            case .owner:
+//                if result.contains("ownerFirebaseUid") {
+//                    return .concatenate(
+////                        Effect(value: .goToOwnerQrCodeView(false)),
+//                        Effect(value: .readOwnerAuthUid)
+//                    )
+//                }
+//            case .worker:
+//                if result.contains("workerUUID") {
+//                    return .concatenate(
+////                        Effect(value: .goToWorkerQrCodeView(false)),
+//                        Effect(value: .readWorkerId)
+//                    )
+//                }
+//            }
+            
+//            switch readType {
+//            case .owner:
                 if result.contains("ownerFirebaseUid") {
                     return .concatenate(
-                        Effect(value: .goToOwnerQrCodeView(false)),
+//                        Effect(value: .goToOwnerQrCodeView(false)),
                         Effect(value: .readOwnerAuthUid)
                     )
                 }
-            case .worker:
+//            case .worker:
                 if result.contains("workerUUID") {
                     return .concatenate(
-                        Effect(value: .goToWorkerQrCodeView(false)),
+//                        Effect(value: .goToWorkerQrCodeView(false)),
                         Effect(value: .readWorkerId)
                     )
                 }
-            }
+//            }
             return .none
 
         case .readOwnerAuthUid:
