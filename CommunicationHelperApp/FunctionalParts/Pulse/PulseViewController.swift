@@ -10,12 +10,12 @@ import AVFoundation
 import UIKit
 
 class PulseViewController: UIViewController {
-    @IBOutlet weak var previewLayerShadowView: UIView!
-    @IBOutlet weak var previewLayer: UIView!
-    @IBOutlet weak var pulseLabel: UILabel!
-    @IBOutlet weak var thresholdLabel: UILabel!
     private var validFrameCounter = 0
     // TODO: 暫定対応で強制アンラップをしています
+    var previewLayerShadowView = UIView()
+    var previewLayer = UIView()
+    var pulseLabel = UILabel()
+    var thresholdLabel = UILabel()
     private var heartRateManager: HeartRateManager!
     private var hueFilter = Filter()
     private var pulseDetector = PulseDetector()
@@ -23,18 +23,30 @@ class PulseViewController: UIViewController {
     private var measurementStartedFlag = false
     private var timer = Timer()
 
-    init() {
-        super.init(nibName: "PulseViewController", bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        previewLayerShadowView = UIView(
+            frame: CGRect(
+                x: view.frame.width / 2 - 30,
+                y: view.frame.height / 2 - 30,
+                width: 60,
+                height: 60
+            )
+        )
+        previewLayer = UIView(
+            frame: CGRect(
+                x: view.frame.width / 2 - 30,
+                y: view.frame.height / 2 - 30,
+                width: 60,
+                height: 60
+            )
+        )
+        view.addSubview(previewLayerShadowView)
+        view.addSubview(previewLayer)
+        configureLabel()
         initVideoCapture()
-        thresholdLabel.text = "バックカメラに赤色 🟥　になるまで指をあててください"
+        thresholdLabel.numberOfLines = 0
+        thresholdLabel.text = "バックカメラに\n赤色 🟥　になるまで\n指をあててください"
     }
 
     override func viewWillLayoutSubviews() {
@@ -64,6 +76,23 @@ class PulseViewController: UIViewController {
         previewLayerShadowView.layer.shadowRadius = 3
         previewLayerShadowView.clipsToBounds = false
         view.backgroundColor = PrimaryUIColor.background
+    }
+
+    private func configureLabel() {
+        pulseLabel.translatesAutoresizingMaskIntoConstraints = false
+        thresholdLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pulseLabel)
+        view.addSubview(thresholdLabel)
+        NSLayoutConstraint.activate([
+            pulseLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            pulseLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            pulseLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+            pulseLabel.heightAnchor.constraint(equalToConstant: 100),
+            thresholdLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
+            thresholdLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            thresholdLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+            thresholdLabel.heightAnchor.constraint(equalToConstant: 100)
+        ])
     }
 
     // MARK: - Frames Capture Methods
@@ -175,7 +204,7 @@ extension PulseViewController {
         // Do a sanity check to see if a finger is placed over the camera
         if hsv.1 > 0.5 && hsv.2 > 0.5 {
             DispatchQueue.main.async {
-                self.thresholdLabel.text = "人差し指 ☝️ をカメラに当てたまま待ってください"
+                self.thresholdLabel.text = "人差し指 ☝️ を\nカメラに当てたまま待ってください"
                 if !self.measurementStartedFlag {
                     self.toggleTorch(status: true)
                     self.startMeasurement()
