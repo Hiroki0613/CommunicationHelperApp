@@ -36,6 +36,20 @@ struct QRCameraView: View {
                         .background(PrimaryColor.buttonColor)
                         .cornerRadius(20)
                         .padding(.horizontal, 22)
+                    if viewStore.hasReadWorkerId {
+                        Spacer().frame(height: 20)
+                        Text("作業者を読みました")
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.black)
+                            .background(PrimaryColor.buttonColor)
+                    }
+                    if viewStore.hasReadOwnerAuthId {
+                        Spacer().frame(height: 20)
+                        Text("オーナーを読みました")
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.black)
+                            .background(PrimaryColor.buttonColor)
+                    }
                     Spacer()
                     Button(action: {
                         switch readType {
