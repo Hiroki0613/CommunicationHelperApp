@@ -51,7 +51,7 @@ struct WorkerNewSignUpView: View {
                         send: WorkerAction.goToOwnerQrCodeView
                     )
                 ) {
-                    QRCameraView(readType: .owner, viewStore: viewStore)
+                    QRCameraView(viewStore: viewStore)
                 }
                 .fullScreenCover(
                     isPresented: viewStore.binding(
@@ -59,7 +59,7 @@ struct WorkerNewSignUpView: View {
                         send: WorkerAction.goToWorkerQrCodeView
                     )
                 ) {
-                    QRCameraView(readType: .worker, viewStore: viewStore)
+                    QRCameraView(viewStore: viewStore)
                 }
             }
         }

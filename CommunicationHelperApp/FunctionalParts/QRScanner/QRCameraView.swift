@@ -8,13 +8,13 @@
 import ComposableArchitecture
 import SwiftUI
 
-enum ReadType {
-    case owner
-    case worker
-}
+//enum ReadType {
+//    case owner
+//    case worker
+//}
 
 struct QRCameraView: View {
-    let readType: ReadType
+//    let readType: ReadType
     let viewStore: ViewStore<WorkerState, WorkerAction>
 
     var body: some View {
@@ -52,12 +52,12 @@ struct QRCameraView: View {
                     }
                     Spacer()
                     Button(action: {
-                        switch readType {
-                        case .owner:
+//                        switch readType {
+//                        case .owner:
                             viewStore.send(.goToOwnerQrCodeView(false))
-                        case .worker:
+//                        case .worker:
                             viewStore.send(.goToWorkerQrCodeView(false))
-                        }
+//                        }
                     }, label: {
                         Text("閉じる")
                             .fontWeight(.semibold)
@@ -81,7 +81,7 @@ struct QRCameraView: View {
 struct QRCameraView_Previews: PreviewProvider {
     static var previews: some View {
         QRCameraView(
-            readType: .owner,
+//            readType: .owner,
             viewStore: ViewStore(
                 Store(
                     initialState: WorkerState(),

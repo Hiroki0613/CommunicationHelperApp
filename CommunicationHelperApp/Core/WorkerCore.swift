@@ -34,7 +34,7 @@ enum WorkerAction {
 //    case goToNewSignInView(Bool)
     case goToOwnerQrCodeView(Bool)
     case goToWorkerQrCodeView(Bool)
-    case scanQrCodeResult(type: ReadType, result: String)
+    case scanQrCodeResult(result: String)
     case readOwnerAuthUid
     case readWorkerId
     case finishReadQrCode
@@ -84,7 +84,7 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
             state.isShowingWorkerQrReader = isActive
             return .none
 
-        case .scanQrCodeResult(let readType, let result):
+        case .scanQrCodeResult(let result):
             print("hirohiro_resultAA: ", result)
 //            switch readType {
 //            case .owner:

@@ -84,7 +84,7 @@ import UIKit
 
 
 
-
+// https://github.com/jollyjoester/QRReaderSample
 struct QrCodeScannerView: UIViewControllerRepresentable {
     let viewStore: ViewStore<WorkerState, WorkerAction>
 
@@ -286,7 +286,7 @@ extension QrCodeScannerVC: AVCaptureMetadataOutputObjectsDelegate {
                     self.hapticSuccessNotification()
                 }
                 self.hideBoundingBox(after: 0.1)
-                self.viewStore.send(.scanQrCodeResult(type: .owner, result: stringValue))
+                self.viewStore.send(.scanQrCodeResult(result: stringValue))
             }
             DispatchQueue.main.async {
             }
