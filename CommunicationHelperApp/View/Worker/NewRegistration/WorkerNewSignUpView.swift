@@ -47,16 +47,8 @@ struct WorkerNewSignUpView: View {
 //                    })
                 .fullScreenCover(
                     isPresented: viewStore.binding(
-                        get: \.isShowingOwnerQrReader,
+                        get: \.isShowingQrReader,
                         send: WorkerAction.goToQrCodeView
-                    )
-                ) {
-                    QRCameraView(viewStore: viewStore)
-                }
-                .fullScreenCover(
-                    isPresented: viewStore.binding(
-                        get: \.isShowingWorkerQrReader,
-                        send: WorkerAction.goToWorkerQrCodeView
                     )
                 ) {
                     QRCameraView(viewStore: viewStore)

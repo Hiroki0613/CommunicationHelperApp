@@ -42,7 +42,6 @@ struct QRCameraView: View {
                     Spacer()
                     Button(action: {
                         viewStore.send(.goToQrCodeView(false))
-                        viewStore.send(.goToWorkerQrCodeView(false))
                     }, label: {
                         Text("閉じる")
                             .fontWeight(.semibold)
@@ -66,7 +65,6 @@ struct QRCameraView: View {
 struct QRCameraView_Previews: PreviewProvider {
     static var previews: some View {
         QRCameraView(
-//            readType: .owner,
             viewStore: ViewStore(
                 Store(
                     initialState: WorkerState(),

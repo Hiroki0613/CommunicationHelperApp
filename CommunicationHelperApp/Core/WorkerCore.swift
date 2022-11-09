@@ -12,8 +12,7 @@ struct WorkerState: Equatable {
     let scanInterval = 1.0
     var workerQrScanState = WorkerQrScanState()
     var isLogedIn = false
-    var isShowingOwnerQrReader = false
-    var isShowingWorkerQrReader = false
+    var isShowingQrReader = false
     var hasReadOwnerAuthId = false
     var hasReadWorkerId = false
     var mode: Mode = .startOfWork
@@ -33,7 +32,6 @@ enum WorkerAction {
     case onAppear
 //    case goToNewSignInView(Bool)
     case goToQrCodeView(Bool)
-    case goToWorkerQrCodeView(Bool)
     case scanQrCodeResult(result: String)
     case readOwnerAuthUid
     case readWorkerId
@@ -77,32 +75,25 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
 //            return .none
 
         case .goToQrCodeView(let isActive):
-            state.isShowingOwnerQrReader = isActive
-            return .none
-
-        case .goToWorkerQrCodeView(let isActive):
-            state.isShowingWorkerQrReader = isActive
+            state.isShowingQrReader = isActive
             return .none
 
         case .scanQrCodeResult(let result):
             print("hirohiro_resultAA: ", result)
-                if result.contains("ownerFirebaseUid") {
-                    return .concatenate(
-                        Effect(value: .readOwnerAuthUid)
-                    )
-                }
-                if result.contains("workerUUID") {
-                    return .concatenate(
-//                        Effect(value: .goToWorkerQrCodeView(false)),
-                        Effect(value: .readWorkerId)
-                    )
-                }
-//            }
+            if result.contains("ownerFirebaseUid") {
+                return .concatenate(
+                    Effect(value: .readOwnerAuthUid)
+                )
+            }
+            if result.contains("workerUUID") {
+                return .concatenate(
+                    Effect(value: .readWorkerId)
+                )
+            }
             return .none
 
         case .readOwnerAuthUid:
             // TODO: ownerはQRコードの前にownerなどをつけて、string切り離しをおこなって登録
-            // hasReadOwnerAuthIdを更新
             state.hasReadOwnerAuthId = true
             print("hirohiro_ownerID読んだ！")
             // userdefalutsで保存
@@ -122,7 +113,10 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
                 state.hasReadOwnerAuthId = false
                 state.hasReadWorkerId = false
                 state.mode = .startOfWork
-                return Effect(value: .login)
+                return .concatenate(
+                    Effect(value: .goToQrCodeView(false)),
+                    Effect(value: .login)
+                )
             }
             return .none
 
