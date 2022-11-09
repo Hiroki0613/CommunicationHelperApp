@@ -30,7 +30,7 @@ enum WorkerAction {
     case goToPulseView(Bool)
     case goToEndOfWorkView(Bool)
     case onAppear
-//    case goToNewSignInView(Bool)
+    case goToNewSignInView(Bool)
     case goToQrCodeView(Bool)
     case scanQrCodeResult(result: String)
     case readOwnerAuthUid
@@ -70,9 +70,9 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
                 Effect(value: .setWorkerData)
             )
 
-//        case .goToNewSignInView(let isActive):
-//            // TopCoreで処理
-//            return .none
+        case .goToNewSignInView:
+            // TopCoreで処理
+            return .none
 
         case .goToQrCodeView(let isActive):
             state.isShowingQrReader = isActive

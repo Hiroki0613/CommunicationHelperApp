@@ -13,17 +13,16 @@ struct CommunicationHelperApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            TopView(
-//                store: Store(
-//                    initialState: TopState(
-//                        ownerState: OwnerState(),
-//                        workerState: WorkerState()
-//                    ),
-//                    reducer: topReducer,
-//                    environment: TopEnvironment()
-//                )
-//            )
-            TopView()
+            TopView(
+                store: Store(
+                    initialState: TopState(
+                        ownerState: OwnerState(),
+                        workerState: WorkerState()
+                    ),
+                    reducer: topReducer,
+                    environment: TopEnvironment()
+                )
+            )
         }
     }
 }

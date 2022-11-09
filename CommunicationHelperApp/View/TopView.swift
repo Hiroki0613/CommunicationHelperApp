@@ -33,32 +33,25 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TopView: View {
-//    let store: Store<TopState, TopAction>
+    let store: Store<TopState, TopAction>
 
     // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
     var body: some View {
-//        WithViewStore(store) { viewStore in
+        WithViewStore(store) { viewStore in
             NavigationView {
                 ZStack {
                     VStack {
                         Spacer()
                         NavigationLink(
-//                            isActive: viewStore.binding(
-//                                get: \.isShowingNewSignIn,
-//                                send: TopAction.goToNewSignInView
-//                            ),
+                            isActive: viewStore.binding(
+                                get: \.isShowingNewSignIn,
+                                send: TopAction.goToNewSignInView
+                            ),
                             destination: {
-//                                WorkerTopView(
-//                                    store: store.scope(
-//                                        state: \.workerState,
-//                                        action: TopAction.workerAction
-//                                    )
-//                                )
                                 WorkerTopView(
-                                    store: Store(
-                                        initialState: WorkerState(),
-                                        reducer: workerReducer,
-                                        environment: WorkerEnvironment()
+                                    store: store.scope(
+                                        state: \.workerState,
+                                        action: TopAction.workerAction
                                     )
                                 )
                             },
@@ -145,21 +138,20 @@ struct TopView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarHidden(true)
             }
-//        }
+        }
     }
 }
 
 struct TopView_Previews: PreviewProvider {
     static var previews: some View {
-//        TopView(
-//            store: Store(
-//                initialState: TopState(
-//                    ownerState: OwnerState(),
-//                    workerState: WorkerState()
-//                ), reducer: topReducer,
-//                environment: TopEnvironment()
-//            )
-//        )
-        TopView()
+        TopView(
+            store: Store(
+                initialState: TopState(
+                    ownerState: OwnerState(),
+                    workerState: WorkerState()
+                ), reducer: topReducer,
+                environment: TopEnvironment()
+            )
+        )
     }
 }

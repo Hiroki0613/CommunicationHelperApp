@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WorkerNewSignUpView: View {
     let viewStore: ViewStore<WorkerState, WorkerAction>
-//    var buckToTopViewAction: () -> Void
+    var backToTopViewAction: () -> Void
 
     var body: some View {
         ZStack {
@@ -34,17 +34,17 @@ struct WorkerNewSignUpView: View {
                     .cornerRadius(20)
                     .opacity(viewStore.hasReadOwnerAuthId ? 0.2 : 1.0)
                 })
-                Spacer().frame(height: 40)
-//                Button(
-//                    action: {
-//                        viewStore.send(.goToNewSignInView(false))
-//                    }, label: {
-//                        Text("戻る")
-//                            .foregroundColor(Color.black)
-//                            .frame(width: 200, height: 50)
-//                            .background(PrimaryColor.buttonColor)
-//                            .cornerRadius(20)
-//                    })
+                Spacer().frame(height: 80)
+                Button(
+                    action: {
+                        backToTopViewAction()
+                    }, label: {
+                        Text("戻る")
+                            .foregroundColor(Color.black)
+                            .frame(width: 200, height: 50)
+                            .background(PrimaryColor.buttonColor)
+                            .cornerRadius(20)
+                    })
                 .fullScreenCover(
                     isPresented: viewStore.binding(
                         get: \.isShowingQrReader,
@@ -67,7 +67,8 @@ struct WorkerNewSignUpView_Previews: PreviewProvider {
                     reducer: workerReducer,
                     environment: WorkerEnvironment()
                 )
-            )
+            ),
+            backToTopViewAction: { }
         )
     }
 }

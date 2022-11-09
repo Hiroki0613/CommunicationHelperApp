@@ -67,9 +67,11 @@ struct WorkerTopView: View {
                     .navigationBarHidden(true)
                 }
             } else {
-                WorkerNewSignUpView(viewStore: viewStore)
-//                .navigationBarTitleDisplayMode(.inline)
-//                .navigationBarHidden(true)
+                WorkerNewSignUpView(viewStore: viewStore, backToTopViewAction: {
+                    viewStore.send(.goToNewSignInView(false))
+                })
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
             }
         }
     }

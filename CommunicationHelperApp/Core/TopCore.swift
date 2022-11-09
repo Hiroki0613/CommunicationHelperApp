@@ -10,13 +10,13 @@ import ComposableArchitecture
 struct TopState: Equatable {
     var ownerState: OwnerState
     var workerState: WorkerState
-//    var isShowingNewSignIn = false
+    var isShowingNewSignIn = false
 }
 
 enum TopAction {
     case ownerAction(OwnerAction)
     case workerAction(WorkerAction)
-//    case goToNewSignInView(Bool)
+    case goToNewSignInView(Bool)
 }
 
 // TCAの観点から、理想はFirebaseの処理はenvironmentから行う。しかし、今回はaction+別modelでfuncを用意する方向にする。
@@ -45,16 +45,15 @@ let topReducer = Reducer<TopState, TopAction, TopEnvironment>.combine(
         case .ownerAction:
             return .none
 
-//        case .workerAction(.goToNewSignInView(let isActive)):
-//            state.isShowingNewSignIn = isActive
-//            return .none
+        case .workerAction(.goToNewSignInView(let isActive)):
+            return Effect(value: .goToNewSignInView(isActive))
 
         case .workerAction:
             return .none
 
-//        case .goToNewSignInView(let isActive):
-//            state.isShowingNewSignIn = isActive
-//            return .none
+        case .goToNewSignInView(let isActive):
+            state.isShowingNewSignIn = isActive
+            return .none
         }
     }
 )
