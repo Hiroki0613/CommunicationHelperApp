@@ -8,22 +8,11 @@
 import ComposableArchitecture
 import SwiftUI
 
-//enum ReadType {
-//    case owner
-//    case worker
-//}
-
 struct QRCameraView: View {
-//    let readType: ReadType
     let viewStore: ViewStore<WorkerState, WorkerAction>
 
     var body: some View {
         ZStack {
-//            QrCodeScannerView()
-//                .found(read: { result in
-//                    viewStore.send(.scanQrCodeResult(type: readType, result: result))
-//                })
-//                .interval(delay: viewStore.scanInterval)
             QrCodeScannerView(viewStore: viewStore)
             VStack {
                 VStack {
@@ -52,12 +41,8 @@ struct QRCameraView: View {
                     }
                     Spacer()
                     Button(action: {
-//                        switch readType {
-//                        case .owner:
-                            viewStore.send(.goToOwnerQrCodeView(false))
-//                        case .worker:
-                            viewStore.send(.goToWorkerQrCodeView(false))
-//                        }
+                        viewStore.send(.goToQrCodeView(false))
+                        viewStore.send(.goToWorkerQrCodeView(false))
                     }, label: {
                         Text("閉じる")
                             .fontWeight(.semibold)

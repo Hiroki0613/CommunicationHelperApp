@@ -22,7 +22,7 @@ struct WorkerNewSignUpView: View {
                 // 読み取ったQRコード表示位置
                 Button(
                     action: {
-                        viewStore.send(.goToOwnerQrCodeView(true))
+                        viewStore.send(.goToQrCodeView(true))
                 }, label: {
                     VStack {
                         Text("カメラ起動")
@@ -48,7 +48,7 @@ struct WorkerNewSignUpView: View {
                 .fullScreenCover(
                     isPresented: viewStore.binding(
                         get: \.isShowingOwnerQrReader,
-                        send: WorkerAction.goToOwnerQrCodeView
+                        send: WorkerAction.goToQrCodeView
                     )
                 ) {
                     QRCameraView(viewStore: viewStore)

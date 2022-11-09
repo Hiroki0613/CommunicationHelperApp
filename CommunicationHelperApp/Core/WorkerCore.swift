@@ -32,7 +32,7 @@ enum WorkerAction {
     case goToEndOfWorkView(Bool)
     case onAppear
 //    case goToNewSignInView(Bool)
-    case goToOwnerQrCodeView(Bool)
+    case goToQrCodeView(Bool)
     case goToWorkerQrCodeView(Bool)
     case scanQrCodeResult(result: String)
     case readOwnerAuthUid
@@ -76,7 +76,7 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
 //            // TopCoreで処理
 //            return .none
 
-        case .goToOwnerQrCodeView(let isActive):
+        case .goToQrCodeView(let isActive):
             state.isShowingOwnerQrReader = isActive
             return .none
 
@@ -86,32 +86,11 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
 
         case .scanQrCodeResult(let result):
             print("hirohiro_resultAA: ", result)
-//            switch readType {
-//            case .owner:
-//                if result.contains("ownerFirebaseUid") {
-//                    return .concatenate(
-////                        Effect(value: .goToOwnerQrCodeView(false)),
-//                        Effect(value: .readOwnerAuthUid)
-//                    )
-//                }
-//            case .worker:
-//                if result.contains("workerUUID") {
-//                    return .concatenate(
-////                        Effect(value: .goToWorkerQrCodeView(false)),
-//                        Effect(value: .readWorkerId)
-//                    )
-//                }
-//            }
-            
-//            switch readType {
-//            case .owner:
                 if result.contains("ownerFirebaseUid") {
                     return .concatenate(
-//                        Effect(value: .goToOwnerQrCodeView(false)),
                         Effect(value: .readOwnerAuthUid)
                     )
                 }
-//            case .worker:
                 if result.contains("workerUUID") {
                     return .concatenate(
 //                        Effect(value: .goToWorkerQrCodeView(false)),

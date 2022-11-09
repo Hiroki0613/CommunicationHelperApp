@@ -10,80 +10,6 @@ import AVFoundation
 import SwiftUI
 import UIKit
 
-// https://qiita.com/ikaasamay/items/58d1a401e98673a96fd2
-//struct QrCodeScannerView: UIViewRepresentable {
-//    var supportedBarcodeTypes: [AVMetadataObject.ObjectType] = [.qr]
-//    typealias UIViewType = CameraPreviewView
-//
-//    private let session = AVCaptureSession()
-//    private let delegate = QrCodeCameraDelegate()
-//    private let metadataOutput = AVCaptureMetadataOutput()
-//
-//    func interval(delay: Double) -> QrCodeScannerView {
-//        delegate.scanInterval = delay
-//        return self
-//    }
-//
-//    func found(read: @escaping (String) -> Void) -> QrCodeScannerView {
-//        print("found")
-//        delegate.onResult = read
-//        return self
-//    }
-//
-//    func setupCamera(_ uiView: CameraPreviewView) {
-//        if let backCamera = AVCaptureDevice.default(for: AVMediaType.video) {
-//            if let input = try? AVCaptureDeviceInput(device: backCamera) {
-//                session.sessionPreset = .photo
-//                if session.canAddInput(input) {
-//                    session.addInput(input)
-//                }
-//                if session.canAddOutput(metadataOutput) {
-//                    session.addOutput(metadataOutput)
-//                    metadataOutput.metadataObjectTypes = supportedBarcodeTypes
-//                    metadataOutput.setMetadataObjectsDelegate(delegate, queue: DispatchQueue.main)
-//                }
-//                let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-//                uiView.backgroundColor = UIColor.gray
-//                previewLayer.videoGravity = .resizeAspectFill
-//                uiView.layer.addSublayer(previewLayer)
-//                uiView.previewLayer = previewLayer
-//                session.startRunning()
-//            }
-//        }
-//    }
-//
-//    func makeUIView(context: Context) -> CameraPreviewView {
-//        let cameraView = CameraPreviewView(session: session)
-//        checkCameraAuthorizationStatus(cameraView)
-//        return cameraView
-//    }
-//
-//    static func dismantleUIView(_ uiView: CameraPreviewView, coordinator: ()) {
-//        uiView.session.stopRunning()
-//    }
-//
-//    private func checkCameraAuthorizationStatus(_ uiView: CameraPreviewView) {
-//        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-//        if cameraAuthorizationStatus == .authorized {
-//            setupCamera(uiView)
-//        } else {
-//            AVCaptureDevice.requestAccess(for: .video) { _ in
-//                DispatchQueue.main.sync {
-//                    self.setupCamera(uiView)
-//                }
-//            }
-//        }
-//    }
-//
-//    func updateUIView(_ uiView: CameraPreviewView, context: Context) {
-//        uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-//        uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//    }
-//}
-
-
-
-
 // https://github.com/jollyjoester/QRReaderSample
 struct QrCodeScannerView: UIViewControllerRepresentable {
     let viewStore: ViewStore<WorkerState, WorkerAction>
@@ -115,9 +41,6 @@ final class QrCodeScannerVC: UIViewController {
         }
     }
     private var boundingBox = CAShapeLayer()
-//    private var allowDuplicateReading: Bool = false
-//    private var makeHapticFeedback: Bool = false
-//    private var showBoundingBox: Bool = false
     private var scannedQRs = Set<String>()
     private let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "sessionQueue")
