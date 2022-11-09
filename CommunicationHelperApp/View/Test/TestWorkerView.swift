@@ -49,9 +49,10 @@ struct TestWorkerView: View {
                         Group {
                             NavigationLink(
                                 destination: {
-                                    WorkerNewSignUpView(viewStore: viewStore, backToTopViewAction: {
-                                        
-                                    })
+                                    WorkerNewSignUpView(
+                                        store: store,
+                                        backToTopViewAction: {}
+                                    )
                                 },
                                 label: {
                                     Text("新規登録時\n(QRリーダー起動)")

@@ -9,12 +9,9 @@ import ComposableArchitecture
 import Foundation
 
 struct WorkerState: Equatable {
-    let scanInterval = 1.0
     var workerQrScanState = WorkerQrScanState()
     var isLogedIn = false
     var isShowingQrReader = false
-    var hasReadOwnerAuthId = false
-    var hasReadWorkerId = false
     var mode: Mode = .startOfWork
     var isActivePulseView = false
     var isActiveEndOfWorkView = false
@@ -32,10 +29,6 @@ enum WorkerAction {
     case onAppear
     case goToNewSignInView(Bool)
     case goToQrCodeView(Bool)
-    case scanQrCodeResult(result: String)
-    case readOwnerAuthUid
-    case readWorkerId
-    case finishReadQrCode
     case checkAccount
     case login
     case logout
@@ -56,6 +49,16 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
     ),
     Reducer<WorkerState, WorkerAction, WorkerEnvironment> { state, action, _ in
         switch action {
+        case .workerQrScanAction(.finishReadQrCode):
+            state.mode = .startOfWork
+            return .concatenate(
+                Effect(value: .goToQrCodeView(false)),
+                Effect(value: .login)
+            )
+
+        case .workerQrScanAction:
+            return .none
+
         case .goToPulseView(let isActive):
             state.isActivePulseView = isActive
             return .none
@@ -76,48 +79,6 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
 
         case .goToQrCodeView(let isActive):
             state.isShowingQrReader = isActive
-            return .none
-
-        case .scanQrCodeResult(let result):
-            print("hirohiro_resultAA: ", result)
-            if result.contains("ownerFirebaseUid") {
-                return .concatenate(
-                    Effect(value: .readOwnerAuthUid)
-                )
-            }
-            if result.contains("workerUUID") {
-                return .concatenate(
-                    Effect(value: .readWorkerId)
-                )
-            }
-            return .none
-
-        case .readOwnerAuthUid:
-            // TODO: ownerはQRコードの前にownerなどをつけて、string切り離しをおこなって登録
-            state.hasReadOwnerAuthId = true
-            print("hirohiro_ownerID読んだ！")
-            // userdefalutsで保存
-            return Effect(value: .finishReadQrCode)
-
-        case .readWorkerId:
-            // TODO: workerIDはworker + ランダム生成を使って用意する。
-            state.hasReadWorkerId = true
-            print("hirohiro_workerID読んだ！")
-            // userdefalutsで保存
-            return Effect(value: .finishReadQrCode)
-
-        case .finishReadQrCode:
-            // TODO: ここでもUserDefaultsがきちんと読み込めているかも確認した方が良さそう
-            if state.hasReadOwnerAuthId && state.hasReadWorkerId {
-                print("hirohiro_完了した")
-                state.hasReadOwnerAuthId = false
-                state.hasReadWorkerId = false
-                state.mode = .startOfWork
-                return .concatenate(
-                    Effect(value: .goToQrCodeView(false)),
-                    Effect(value: .login)
-                )
-            }
             return .none
 
         case .checkAccount:

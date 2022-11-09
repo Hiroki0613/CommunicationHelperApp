@@ -9,49 +9,59 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerNewSignUpView: View {
-    let viewStore: ViewStore<WorkerState, WorkerAction>
+    let store: Store<WorkerState, WorkerAction>
     var backToTopViewAction: () -> Void
 
     var body: some View {
-        ZStack {
-            PrimaryColor.background
-            VStack {
-                Text("新規登録")
-                    .font(.system(size: 20))
-                    .foregroundColor(Color.black)
-                // 読み取ったQRコード表示位置
-                Button(
-                    action: {
-                        viewStore.send(.goToQrCodeView(true))
-                }, label: {
-                    VStack {
-                        Text("カメラ起動")
-                        Image(systemName: "camera")
-                    }
-                    .foregroundColor(Color.black)
-                    .frame(width: 200, height: 150)
-                    .background(PrimaryColor.buttonColor)
-                    .cornerRadius(20)
-                    .opacity(viewStore.hasReadOwnerAuthId ? 0.2 : 1.0)
-                })
-                Spacer().frame(height: 80)
-                Button(
-                    action: {
-                        backToTopViewAction()
-                    }, label: {
-                        Text("戻る")
+        WithViewStore(store) { viewStore in
+            ZStack {
+                PrimaryColor.background
+                VStack {
+                    Text("新規登録")
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.black)
+                    // 読み取ったQRコード表示位置
+                    Button(
+                        action: {
+                            viewStore.send(.goToQrCodeView(true))
+                        }, label: {
+                            VStack {
+                                Text("カメラ起動")
+                                Image(systemName: "camera")
+                            }
                             .foregroundColor(Color.black)
-                            .frame(width: 200, height: 50)
+                            .frame(width: 200, height: 150)
                             .background(PrimaryColor.buttonColor)
                             .cornerRadius(20)
-                    })
-                .fullScreenCover(
-                    isPresented: viewStore.binding(
-                        get: \.isShowingQrReader,
-                        send: WorkerAction.goToQrCodeView
+                        })
+                    Spacer().frame(height: 80)
+                    Button(
+                        action: {
+                            backToTopViewAction()
+                        }, label: {
+                            Text("戻る")
+                                .foregroundColor(Color.black)
+                                .frame(width: 200, height: 50)
+                                .background(PrimaryColor.buttonColor)
+                                .cornerRadius(20)
+                        }
                     )
-                ) {
-                    QRCameraView(viewStore: viewStore)
+                    .fullScreenCover(
+                        isPresented: viewStore.binding(
+                            get: \.isShowingQrReader,
+                            send: WorkerAction.goToQrCodeView
+                        )
+                    ) {
+                        QRCameraView(
+                            store: store.scope(
+                                state: \.workerQrScanState,
+                                action: WorkerAction.workerQrScanAction
+                            ),
+                            goBackAction: {
+                                viewStore.send(.goToQrCodeView(false))
+                            }
+                        )
+                    }
                 }
             }
         }
@@ -61,12 +71,10 @@ struct WorkerNewSignUpView: View {
 struct WorkerNewSignUpView_Previews: PreviewProvider {
     static var previews: some View {
         WorkerNewSignUpView(
-            viewStore: ViewStore(
-                Store(
-                    initialState: WorkerState(),
-                    reducer: workerReducer,
-                    environment: WorkerEnvironment()
-                )
+            store: Store(
+                initialState: WorkerState(),
+                reducer: workerReducer,
+                environment: WorkerEnvironment()
             ),
             backToTopViewAction: { }
         )
