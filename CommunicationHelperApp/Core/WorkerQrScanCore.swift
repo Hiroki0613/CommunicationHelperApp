@@ -18,6 +18,7 @@ enum WorkerQrScanAction {
     case readOwnerAuthUid
     case readWorkerId
     case finishReadQrCode
+    case firstLogin
 }
 
 struct WorkerQrScanEnvironment {
@@ -59,8 +60,12 @@ let workerQrScanReducer = Reducer<WorkerQrScanState, WorkerQrScanAction, WorkerQ
             print("hirohiro_完了した")
             state.hasReadOwnerAuthId = false
             state.hasReadWorkerId = false
-            return .none
+            return Effect(value: .firstLogin)
         }
+        return .none
+
+    case .firstLogin:
+        // WorkerCoreで処理
         return .none
     }
 }

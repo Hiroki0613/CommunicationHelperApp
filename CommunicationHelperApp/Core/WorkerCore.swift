@@ -49,7 +49,7 @@ let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combin
     ),
     Reducer<WorkerState, WorkerAction, WorkerEnvironment> { state, action, _ in
         switch action {
-        case .workerQrScanAction(.finishReadQrCode):
+        case .workerQrScanAction(.firstLogin):
             state.mode = .startOfWork
             return .concatenate(
                 Effect(value: .goToQrCodeView(false)),
