@@ -9,14 +9,14 @@ import ComposableArchitecture
 import Foundation
 
 struct WorkerQrScanState: Equatable {
-    var hasReadOwnerAuthId = false
-    var hasReadWorkerId = false
+    var hasReadOfficeAuthId = false
+    var hasReadTerminalId = false
 }
 
 enum WorkerQrScanAction {
     case scanQrCodeResult(result: String)
-    case readOwnerAuthUid
-    case readWorkerId
+    case readOfficeAuthUid(id: String)
+    case readTerminalId(id: String)
     case finishReadQrCode
     case firstLogin
 }
@@ -30,36 +30,40 @@ let workerQrScanReducer = Reducer<WorkerQrScanState, WorkerQrScanAction, WorkerQ
         print("hirohiro_resultAA: ", result)
         if result.contains("ownerFirebaseUid") {
             return .concatenate(
-                Effect(value: .readOwnerAuthUid)
+                Effect(value: .readOfficeAuthUid(id: result))
             )
         }
         if result.contains("workerUUID") {
             return .concatenate(
-                Effect(value: .readWorkerId)
+                Effect(value: .readTerminalId(id: result))
             )
         }
         return .none
 
-    case .readOwnerAuthUid:
+    case .readOfficeAuthUid(let id):
         // TODO: ownerはQRコードの前にownerなどをつけて、string切り離しをおこなって登録
-        state.hasReadOwnerAuthId = true
-        print("hirohiro_ownerID読んだ！")
+        state.hasReadOfficeAuthId = true
+        UserDefaults.standard.set(id, forKey: UserDefaultsString.officeId)
         // userdefalutsで保存
         return Effect(value: .finishReadQrCode)
 
-    case .readWorkerId:
+    case .readTerminalId(let id):
         // TODO: workerIDはworker + ランダム生成を使って用意する。
-        state.hasReadWorkerId = true
-        print("hirohiro_workerID読んだ！")
-        // userdefalutsで保存
+        state.hasReadTerminalId = true
+        UserDefaults.standard.set(id, forKey: UserDefaultsString.terminalId)
         return Effect(value: .finishReadQrCode)
 
     case .finishReadQrCode:
-        // TODO: ここでもUserDefaultsがきちんと読み込めているかも確認した方が良さそう
-        if state.hasReadOwnerAuthId && state.hasReadWorkerId {
+        if UserDefaults.standard.string(forKey: UserDefaultsString.terminalId) != nil
+            && UserDefaults.standard.string(forKey: UserDefaultsString.officeId) != nil
+            && state.hasReadOfficeAuthId
+            && state.hasReadTerminalId {
             print("hirohiro_完了した")
-            state.hasReadOwnerAuthId = false
-            state.hasReadWorkerId = false
+            UserDefaults.standard.set(true, forKey: UserDefaultsString.hasLogin)
+            print("hirohiro_user_officeId: ", UserDefaults.standard.string(forKey: UserDefaultsString.officeId))
+            print("hirohiro_user_terminalId: ", UserDefaults.standard.string(forKey: UserDefaultsString.terminalId))
+            state.hasReadOfficeAuthId = false
+            state.hasReadTerminalId = false
             return Effect(value: .firstLogin)
         }
         return .none

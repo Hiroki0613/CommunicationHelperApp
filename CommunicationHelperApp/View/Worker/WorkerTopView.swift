@@ -43,7 +43,8 @@ struct WorkerTopView: View {
                  EmptyView()
                 }
             )
-            if viewStore.isLogedIn {
+            if viewStore.isLogedIn
+                && UserDefaults.standard.string(forKey: UserDefaultsString.officeId) != nil {
                 switch viewStore.mode {
                 case .startOfWork:
                     WorkerQRCodeView()

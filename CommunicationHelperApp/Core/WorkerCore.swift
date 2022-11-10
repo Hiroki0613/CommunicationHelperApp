@@ -10,6 +10,7 @@ import Foundation
 
 struct WorkerState: Equatable {
     var workerQrScanState = WorkerQrScanState()
+    // firebaseAuthLogin
     var isLogedIn = false
     var isShowingQrReader = false
     var mode: Mode = .startOfWork

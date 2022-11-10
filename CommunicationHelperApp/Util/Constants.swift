@@ -16,3 +16,10 @@ enum PrimaryColor {
 enum PrimaryUIColor {
     static let background = UIColor.init(red: 0.424, green: 0.780, blue: 0.761, alpha: 1)
 }
+
+enum UserDefaultsString {
+    // officeIdから全てfirebaseで取得していく。
+    static let hasLogin = "hasLogin"
+    static let officeId = "officeId"
+    static let terminalId = "terminalId"
+}

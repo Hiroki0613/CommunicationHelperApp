@@ -19,7 +19,6 @@ struct QRCameraView: View {
                 VStack {
                     VStack {
                         Spacer().frame(height: 40)
-                        // TODO: オーナー側と作業者側で表示文字を変更する
                         Text("QRコードを読み込んでください")
                             .font(.system(size: 18))
                             .foregroundColor(Color.black)
@@ -27,14 +26,14 @@ struct QRCameraView: View {
                             .background(PrimaryColor.buttonColor)
                             .cornerRadius(20)
                             .padding(.horizontal, 22)
-                        if viewStore.hasReadWorkerId {
+                        if viewStore.hasReadTerminalId {
                             Spacer().frame(height: 20)
                             Text("作業者を読みました")
                                 .font(.system(size: 16))
                                 .foregroundColor(Color.black)
                                 .background(PrimaryColor.buttonColor)
                         }
-                        if viewStore.hasReadOwnerAuthId {
+                        if viewStore.hasReadOfficeAuthId {
                             Spacer().frame(height: 20)
                             Text("オーナーを読みました")
                                 .font(.system(size: 16))
