@@ -9,13 +9,13 @@ import ComposableArchitecture
 
 struct TopState: Equatable {
     var ownerState: OwnerState
-    var workerState: WorkerState
+    var workerState: WorkerTopState
     var isShowingNewSignIn = false
 }
 
 enum TopAction {
     case ownerAction(OwnerAction)
-    case workerAction(WorkerAction)
+    case workerAction(WorkerTopAction)
     case goToNewSignInView(Bool)
 }
 
@@ -24,7 +24,7 @@ struct TopEnvironment {
     var ownerEnvironment: OwnerEnvironment {
         .init()
     }
-    var workerEnvironment: WorkerEnvironment {
+    var workerEnvironment: WorkerTopEnvironment {
         .init()
     }
 }

@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerNewSignUpView: View {
-    let store: Store<WorkerState, WorkerAction>
+    let store: Store<WorkerTopState, WorkerTopAction>
     var backToTopViewAction: () -> Void
 
     var body: some View {
@@ -49,13 +49,13 @@ struct WorkerNewSignUpView: View {
                     .fullScreenCover(
                         isPresented: viewStore.binding(
                             get: \.isShowingQrReader,
-                            send: WorkerAction.goToQrCodeView
+                            send: WorkerTopAction.goToQrCodeView
                         )
                     ) {
                         QRCameraView(
                             store: store.scope(
                                 state: \.workerQrScanState,
-                                action: WorkerAction.workerQrScanAction
+                                action: WorkerTopAction.workerQrScanAction
                             ),
                             goBackAction: {
                                 viewStore.send(.goToQrCodeView(false))
@@ -72,9 +72,9 @@ struct WorkerNewSignUpView_Previews: PreviewProvider {
     static var previews: some View {
         WorkerNewSignUpView(
             store: Store(
-                initialState: WorkerState(),
+                initialState: WorkerTopState(),
                 reducer: workerReducer,
-                environment: WorkerEnvironment()
+                environment: WorkerTopEnvironment()
             ),
             backToTopViewAction: { }
         )

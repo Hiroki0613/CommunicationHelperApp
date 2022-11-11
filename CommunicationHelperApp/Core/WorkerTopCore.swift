@@ -8,7 +8,7 @@
 import ComposableArchitecture
 import Foundation
 
-struct WorkerState: Equatable {
+struct WorkerTopState: Equatable {
     var workerQrScanState = WorkerQrScanState()
     // firebaseAuthLogin
     var isLogedIn = false
@@ -23,7 +23,7 @@ struct WorkerState: Equatable {
     var terminalId = ""
 }
 
-enum WorkerAction {
+enum WorkerTopAction {
     case workerQrScanAction(WorkerQrScanAction)
     case goToPulseView(Bool)
     case goToEndOfWorkView(Bool)
@@ -36,19 +36,19 @@ enum WorkerAction {
     case setWorkerData
 }
 
-struct WorkerEnvironment {
+struct WorkerTopEnvironment {
     var workerQrScanEnvironment: WorkerQrScanEnvironment {
         .init()
     }
 }
 
-let workerReducer = Reducer<WorkerState, WorkerAction, WorkerEnvironment>.combine(
+let workerReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment>.combine(
     workerQrScanReducer.pullback(
         state: \.workerQrScanState,
-        action: /WorkerAction.workerQrScanAction,
+        action: /WorkerTopAction.workerQrScanAction,
         environment: \.workerQrScanEnvironment
     ),
-    Reducer<WorkerState, WorkerAction, WorkerEnvironment> { state, action, _ in
+    Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment> { state, action, _ in
         switch action {
         case .workerQrScanAction(.firstLogin):
             state.mode = .startOfWork

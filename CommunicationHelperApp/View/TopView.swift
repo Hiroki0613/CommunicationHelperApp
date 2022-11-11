@@ -114,9 +114,9 @@ struct TopView: View {
                                 destination: {
                                     TestWorkerView(
                                         store: Store(
-                                            initialState: WorkerState(),
+                                            initialState: WorkerTopState(),
                                             reducer: workerReducer,
-                                            environment: WorkerEnvironment()
+                                            environment: WorkerTopEnvironment()
                                         )
                                     )
                                 }, label: {
@@ -148,7 +148,7 @@ struct TopView_Previews: PreviewProvider {
             store: Store(
                 initialState: TopState(
                     ownerState: OwnerState(),
-                    workerState: WorkerState()
+                    workerState: WorkerTopState()
                 ), reducer: topReducer,
                 environment: TopEnvironment()
             )

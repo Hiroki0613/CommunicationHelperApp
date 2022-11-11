@@ -15,14 +15,14 @@ enum Mode {
 }
 
 struct WorkerTopView: View {
-    let store: Store<WorkerState, WorkerAction>
+    let store: Store<WorkerTopState, WorkerTopAction>
 
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationLink(
                 isActive: viewStore.binding(
                     get: \.isActivePulseView,
-                    send: WorkerAction.goToPulseView
+                    send: WorkerTopAction.goToPulseView
                 ),
                 destination: {
                     PulseView()
@@ -34,7 +34,7 @@ struct WorkerTopView: View {
             NavigationLink(
                 isActive: viewStore.binding(
                     get: \.isActiveEndOfWorkView,
-                    send: WorkerAction.goToEndOfWorkView
+                    send: WorkerTopAction.goToEndOfWorkView
                 ),
                 destination: {
                     WorkerEndOfWorkQRCodeView()
@@ -85,9 +85,9 @@ struct WorkerTopView_Previews: PreviewProvider {
     static var previews: some View {
         WorkerTopView(
             store: Store(
-                initialState: WorkerState(),
+                initialState: WorkerTopState(),
                 reducer: workerReducer,
-                environment: WorkerEnvironment()
+                environment: WorkerTopEnvironment()
             )
         )
     }

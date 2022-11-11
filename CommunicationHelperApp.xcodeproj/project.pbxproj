@@ -32,7 +32,7 @@
 		7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58D290449D300F93A87 /* PulseDetector.swift */; };
 		7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D58F2904521E00F93A87 /* PulseViewController.swift */; };
 		7F29D59229058C1300F93A87 /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D59129058C1300F93A87 /* PulseView.swift */; };
-		7F29D5C9290D64B400F93A87 /* WorkerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5C8290D64B400F93A87 /* WorkerCore.swift */; };
+		7F29D5C9290D64B400F93A87 /* WorkerTopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */; };
 		7F29D5CB290E9AE800F93A87 /* WorkerNewSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5CA290E9AE800F93A87 /* WorkerNewSignUpView.swift */; };
 		7F29D5CD290E9BA400F93A87 /* WorkerQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5CC290E9BA400F93A87 /* WorkerQRCodeView.swift */; };
 		7F29D5CF290E9C0F00F93A87 /* WorkerPulseTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5CE290E9C0F00F93A87 /* WorkerPulseTopView.swift */; };
@@ -76,7 +76,7 @@
 		7F29D58D290449D300F93A87 /* PulseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseDetector.swift; sourceTree = "<group>"; };
 		7F29D58F2904521E00F93A87 /* PulseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseViewController.swift; sourceTree = "<group>"; };
 		7F29D59129058C1300F93A87 /* PulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
-		7F29D5C8290D64B400F93A87 /* WorkerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCore.swift; sourceTree = "<group>"; };
+		7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTopCore.swift; sourceTree = "<group>"; };
 		7F29D5CA290E9AE800F93A87 /* WorkerNewSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerNewSignUpView.swift; sourceTree = "<group>"; };
 		7F29D5CC290E9BA400F93A87 /* WorkerQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerQRCodeView.swift; sourceTree = "<group>"; };
 		7F29D5CE290E9C0F00F93A87 /* WorkerPulseTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerPulseTopView.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
-				7F29D5C8290D64B400F93A87 /* WorkerCore.swift */,
+				7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */,
 				7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */,
 				7F84C76629162C5400F11B01 /* OwnerCore.swift */,
 			);
@@ -451,7 +451,7 @@
 				7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */,
 				7F29D5CF290E9C0F00F93A87 /* WorkerPulseTopView.swift in Sources */,
 				7F29D5CB290E9AE800F93A87 /* WorkerNewSignUpView.swift in Sources */,
-				7F29D5C9290D64B400F93A87 /* WorkerCore.swift in Sources */,
+				7F29D5C9290D64B400F93A87 /* WorkerTopCore.swift in Sources */,
 				7F29D5902904521E00F93A87 /* PulseViewController.swift in Sources */,
 				7F29D5DC2912C38900F93A87 /* AltimatorManager.swift in Sources */,
 				7F29D56B2902D91000F93A87 /* QRCodeGenerator.swift in Sources */,

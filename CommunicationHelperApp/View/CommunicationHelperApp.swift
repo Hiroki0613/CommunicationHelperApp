@@ -17,7 +17,7 @@ struct CommunicationHelperApp: App {
                 store: Store(
                     initialState: TopState(
                         ownerState: OwnerState(),
-                        workerState: WorkerState()
+                        workerState: WorkerTopState()
                     ),
                     reducer: topReducer,
                     environment: TopEnvironment()
