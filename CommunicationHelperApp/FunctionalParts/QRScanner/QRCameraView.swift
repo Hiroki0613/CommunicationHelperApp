@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct QRCameraView: View {
-    let store: Store<WorkerQrScanState, WorkerQrScanAction>
+    let store: Store<WorkerNewRegistrationQrScanState, WorkerNewRegistrationQrScanAction>
     var goBackAction: () -> Void
 
     var body: some View {
@@ -68,9 +68,9 @@ struct QRCameraView_Previews: PreviewProvider {
     static var previews: some View {
         QRCameraView(
             store: Store(
-                initialState: WorkerQrScanState(),
-                reducer: workerQrScanReducer,
-                environment: WorkerQrScanEnvironment()
+                initialState: WorkerNewRegistrationQrScanState(),
+                reducer: workerNewRegistrationQrScanReducer,
+                environment: WorkerNewRegistrationQrScanEnvironment()
             ),
             goBackAction: {}
         )

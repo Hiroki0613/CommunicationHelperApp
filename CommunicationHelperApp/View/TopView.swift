@@ -50,8 +50,8 @@ struct TopView: View {
                             destination: {
                                 WorkerTopView(
                                     store: store.scope(
-                                        state: \.workerState,
-                                        action: TopAction.workerAction
+                                        state: \.workerTopState,
+                                        action: TopAction.workerTopAction
                                     )
                                 )
                             },
@@ -91,9 +91,9 @@ struct TopView: View {
                                 destination: {
                                     TestOwnerView(
                                         store: Store(
-                                            initialState: OwnerState(),
-                                            reducer: ownerReducer,
-                                            environment: OwnerEnvironment()
+                                            initialState: OwnerTopState(),
+                                            reducer: ownerTopReducer,
+                                            environment: OwnerTopEnvironment()
                                         )
                                     )
                                 }, label: {
@@ -115,7 +115,7 @@ struct TopView: View {
                                     TestWorkerView(
                                         store: Store(
                                             initialState: WorkerTopState(),
-                                            reducer: workerReducer,
+                                            reducer: workerTopReducer,
                                             environment: WorkerTopEnvironment()
                                         )
                                     )
@@ -147,8 +147,8 @@ struct TopView_Previews: PreviewProvider {
         TopView(
             store: Store(
                 initialState: TopState(
-                    ownerState: OwnerState(),
-                    workerState: WorkerTopState()
+                    ownerState: OwnerTopState(),
+                    workerTopState: WorkerTopState()
                 ), reducer: topReducer,
                 environment: TopEnvironment()
             )

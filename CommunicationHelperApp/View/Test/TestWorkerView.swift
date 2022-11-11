@@ -143,7 +143,7 @@ struct TestWorkerView_Previews: PreviewProvider {
         TestWorkerView(
             store: Store(
                 initialState: WorkerTopState(),
-                reducer: workerReducer,
+                reducer: workerTopReducer,
                 environment: WorkerTopEnvironment()
             )
         )

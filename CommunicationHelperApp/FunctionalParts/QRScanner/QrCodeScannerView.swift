@@ -12,7 +12,7 @@ import UIKit
 
 // https://github.com/jollyjoester/QRReaderSample
 struct QrCodeScannerView: UIViewControllerRepresentable {
-    let viewStore: ViewStore<WorkerQrScanState, WorkerQrScanAction>
+    let viewStore: ViewStore<WorkerNewRegistrationQrScanState, WorkerNewRegistrationQrScanAction>
 
     func makeUIViewController(context: Context) -> QrCodeScannerVC {
         QrCodeScannerVC(
@@ -25,7 +25,7 @@ struct QrCodeScannerView: UIViewControllerRepresentable {
 }
 
 final class QrCodeScannerVC: UIViewController {
-    let viewStore: ViewStore<WorkerQrScanState, WorkerQrScanAction>
+    let viewStore: ViewStore<WorkerNewRegistrationQrScanState, WorkerNewRegistrationQrScanAction>
     var preview = UIView()
     private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         let layer = AVCaptureVideoPreviewLayer(session: self.session)
@@ -49,7 +49,7 @@ final class QrCodeScannerVC: UIViewController {
     private let metadataOutput = AVCaptureMetadataOutput()
     private let metadataObjectQueue = DispatchQueue(label: "metadataObjectQueue")
 
-    init(viewStore: ViewStore<WorkerQrScanState, WorkerQrScanAction>) {
+    init(viewStore: ViewStore<WorkerNewRegistrationQrScanState, WorkerNewRegistrationQrScanAction>) {
         self.viewStore = viewStore
         super.init(nibName: nil, bundle: nil)
     }

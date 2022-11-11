@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TestOwnerView: View {
-    let store: Store<OwnerState, OwnerAction>
+    let store: Store<OwnerTopState, OwnerTopAction>
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -57,9 +57,9 @@ struct TestOwnerView_Previews: PreviewProvider {
     static var previews: some View {
         TestOwnerView(
             store: Store(
-                initialState: OwnerState(),
-                reducer: ownerReducer,
-                environment: OwnerEnvironment()
+                initialState: OwnerTopState(),
+                reducer: ownerTopReducer,
+                environment: OwnerTopEnvironment()
             )
         )
     }

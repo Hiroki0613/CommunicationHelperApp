@@ -8,12 +8,12 @@
 import ComposableArchitecture
 import Foundation
 
-struct WorkerQrScanState: Equatable {
+struct WorkerNewRegistrationQrScanState: Equatable {
     var hasReadOfficeAuthId = false
     var hasReadTerminalId = false
 }
 
-enum WorkerQrScanAction {
+enum WorkerNewRegistrationQrScanAction {
     case scanQrCodeResult(result: String)
     case readOfficeAuthUid(id: String)
     case readTerminalId(id: String)
@@ -21,10 +21,10 @@ enum WorkerQrScanAction {
     case firstLogin
 }
 
-struct WorkerQrScanEnvironment {
+struct WorkerNewRegistrationQrScanEnvironment {
 }
 
-let workerQrScanReducer = Reducer<WorkerQrScanState, WorkerQrScanAction, WorkerQrScanEnvironment> { state, action, _ in
+let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanState, WorkerNewRegistrationQrScanAction, WorkerNewRegistrationQrScanEnvironment> { state, action, _ in
     switch action {
     case .scanQrCodeResult(let result):
         print("hirohiro_resultAA: ", result)

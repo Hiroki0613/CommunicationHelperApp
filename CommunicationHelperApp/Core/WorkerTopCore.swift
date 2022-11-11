@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 struct WorkerTopState: Equatable {
-    var workerQrScanState = WorkerQrScanState()
+    var workerNewRegistrationQrScanState = WorkerNewRegistrationQrScanState()
     // firebaseAuthLogin
     var isLogedIn = false
     var isShowingQrReader = false
@@ -24,7 +24,7 @@ struct WorkerTopState: Equatable {
 }
 
 enum WorkerTopAction {
-    case workerQrScanAction(WorkerQrScanAction)
+    case workerNewRegistrationQrScanAction(WorkerNewRegistrationQrScanAction)
     case goToPulseView(Bool)
     case goToEndOfWorkView(Bool)
     case onAppear
@@ -37,27 +37,27 @@ enum WorkerTopAction {
 }
 
 struct WorkerTopEnvironment {
-    var workerQrScanEnvironment: WorkerQrScanEnvironment {
+    var workerNewRegistrationQrScanEnvironment: WorkerNewRegistrationQrScanEnvironment {
         .init()
     }
 }
 
-let workerReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment>.combine(
-    workerQrScanReducer.pullback(
-        state: \.workerQrScanState,
-        action: /WorkerTopAction.workerQrScanAction,
-        environment: \.workerQrScanEnvironment
+let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment>.combine(
+    workerNewRegistrationQrScanReducer.pullback(
+        state: \.workerNewRegistrationQrScanState,
+        action: /WorkerTopAction.workerNewRegistrationQrScanAction,
+        environment: \.workerNewRegistrationQrScanEnvironment
     ),
     Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment> { state, action, _ in
         switch action {
-        case .workerQrScanAction(.firstLogin):
+        case .workerNewRegistrationQrScanAction(.firstLogin):
             state.mode = .startOfWork
             return .concatenate(
                 Effect(value: .goToQrCodeView(false)),
                 Effect(value: .login)
             )
 
-        case .workerQrScanAction:
+        case .workerNewRegistrationQrScanAction:
             return .none
 
         case .goToPulseView(let isActive):

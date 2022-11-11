@@ -54,8 +54,8 @@ struct WorkerNewSignUpView: View {
                     ) {
                         QRCameraView(
                             store: store.scope(
-                                state: \.workerQrScanState,
-                                action: WorkerTopAction.workerQrScanAction
+                                state: \.workerNewRegistrationQrScanState,
+                                action: WorkerTopAction.workerNewRegistrationQrScanAction
                             ),
                             goBackAction: {
                                 viewStore.send(.goToQrCodeView(false))
@@ -73,7 +73,7 @@ struct WorkerNewSignUpView_Previews: PreviewProvider {
         WorkerNewSignUpView(
             store: Store(
                 initialState: WorkerTopState(),
-                reducer: workerReducer,
+                reducer: workerTopReducer,
                 environment: WorkerTopEnvironment()
             ),
             backToTopViewAction: { }

@@ -86,7 +86,7 @@ struct WorkerTopView_Previews: PreviewProvider {
         WorkerTopView(
             store: Store(
                 initialState: WorkerTopState(),
-                reducer: workerReducer,
+                reducer: workerTopReducer,
                 environment: WorkerTopEnvironment()
             )
         )

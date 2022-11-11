@@ -48,10 +48,11 @@
 		7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */; };
 		7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */; };
 		7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5EA2913FF4000F93A87 /* View+Ext.swift */; };
-		7F84C76729162C5400F11B01 /* OwnerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76629162C5400F11B01 /* OwnerCore.swift */; };
+		7F84C76729162C5400F11B01 /* OwnerTopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76629162C5400F11B01 /* OwnerTopCore.swift */; };
 		7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C7692916416300F11B01 /* TestOwnerView.swift */; };
 		7F84C76E29165FF600F11B01 /* QRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76D29165FF600F11B01 /* QRCameraView.swift */; };
-		7F84C770291660D900F11B01 /* WorkerQrScanCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */; };
+		7F84C770291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */; };
+		7F84C792291E90CA00F11B01 /* WorkerMorningQrScanCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C791291E90CA00F11B01 /* WorkerMorningQrScanCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,10 +93,11 @@
 		7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageBubble.swift; sourceTree = "<group>"; };
 		7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageField.swift; sourceTree = "<group>"; };
 		7F29D5EA2913FF4000F93A87 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
-		7F84C76629162C5400F11B01 /* OwnerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerCore.swift; sourceTree = "<group>"; };
+		7F84C76629162C5400F11B01 /* OwnerTopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTopCore.swift; sourceTree = "<group>"; };
 		7F84C7692916416300F11B01 /* TestOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOwnerView.swift; sourceTree = "<group>"; };
 		7F84C76D29165FF600F11B01 /* QRCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraView.swift; sourceTree = "<group>"; };
-		7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerQrScanCore.swift; sourceTree = "<group>"; };
+		7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerNewRegistrationQrScanCore.swift; sourceTree = "<group>"; };
+		7F84C791291E90CA00F11B01 /* WorkerMorningQrScanCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerMorningQrScanCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,8 +272,9 @@
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */,
-				7F84C76F291660D900F11B01 /* WorkerQrScanCore.swift */,
-				7F84C76629162C5400F11B01 /* OwnerCore.swift */,
+				7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */,
+				7F84C791291E90CA00F11B01 /* WorkerMorningQrScanCore.swift */,
+				7F84C76629162C5400F11B01 /* OwnerTopCore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
 				7F29D5D1290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift in Sources */,
 				7F29D5D3290E9CC300F93A87 /* WorkerEndOfWorkView.swift in Sources */,
+				7F84C792291E90CA00F11B01 /* WorkerMorningQrScanCore.swift in Sources */,
 				7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */,
 				7F29D5CF290E9C0F00F93A87 /* WorkerPulseTopView.swift in Sources */,
 				7F29D5CB290E9AE800F93A87 /* WorkerNewSignUpView.swift in Sources */,
@@ -465,7 +469,7 @@
 				7F29D59229058C1300F93A87 /* PulseView.swift in Sources */,
 				7F29D5CD290E9BA400F93A87 /* WorkerQRCodeView.swift in Sources */,
 				7F29D5DA2912C32C00F93A87 /* PressureView.swift in Sources */,
-				7F84C770291660D900F11B01 /* WorkerQrScanCore.swift in Sources */,
+				7F84C770291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift in Sources */,
 				7F29D5892904390100F93A87 /* HeartRateManager.swift in Sources */,
 				7F29D5E12913F53200F93A87 /* ChatTopView.swift in Sources */,
 				7F29D5E52913F6FC00F93A87 /* ChatMessage.swift in Sources */,
@@ -476,7 +480,7 @@
 				7F29D56F2902E63300F93A87 /* Constants.swift in Sources */,
 				7F29D58C290448C300F93A87 /* Filter.swift in Sources */,
 				7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */,
-				7F84C76729162C5400F11B01 /* OwnerCore.swift in Sources */,
+				7F84C76729162C5400F11B01 /* OwnerTopCore.swift in Sources */,
 				7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

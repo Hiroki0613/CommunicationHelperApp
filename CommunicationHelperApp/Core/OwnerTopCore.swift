@@ -8,22 +8,21 @@
 import ComposableArchitecture
 import Foundation
 
-struct OwnerState: Equatable {
+struct OwnerTopState: Equatable {
     var pressureString = ""
 }
 
-enum OwnerAction {
+enum OwnerTopAction {
     case setPressure(String)
 }
 
-struct OwnerEnvironment {
+struct OwnerTopEnvironment {
 }
 
-let ownerReducer = Reducer<OwnerState, OwnerAction, OwnerEnvironment> { state, action, _ in
+let ownerTopReducer = Reducer<OwnerTopState, OwnerTopAction, OwnerTopEnvironment> { state, action, _ in
     switch action {
     case .setPressure(let pressureString):
         state.pressureString = pressureString
-        print("hirohiro_pressureStringaaa: ", state.pressureString)
         return .none
     }
 }
