@@ -11,7 +11,6 @@ import UIKit
 
 class PulseViewController: UIViewController {
     private var validFrameCounter = 0
-    // TODO: 暫定対応で強制アンラップをしています
     var previewLayerShadowView = UIView()
     var previewLayer = UIView()
     var pulseLabel = UILabel()
@@ -165,7 +164,6 @@ extension PulseViewController {
         var greenMean: CGFloat = 0.0
         var blueMean: CGFloat = 0.0
         let pixelBuffer = CMSampleBufferGetImageBuffer(buffer)
-        // TODO: 暫定対応で強制アンラップをしています
         let cameraImage = CIImage(cvPixelBuffer: pixelBuffer!)
         let extent = cameraImage.extent
         let inputExtent = CIVector(

@@ -60,8 +60,6 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
             && state.hasReadTerminalId {
             print("hirohiro_完了した")
             UserDefaults.standard.set(true, forKey: UserDefaultsString.hasLogin)
-            print("hirohiro_user_officeId: ", UserDefaults.standard.string(forKey: UserDefaultsString.officeId))
-            print("hirohiro_user_terminalId: ", UserDefaults.standard.string(forKey: UserDefaultsString.terminalId))
             state.hasReadOfficeAuthId = false
             state.hasReadTerminalId = false
             return Effect(value: .firstLogin)

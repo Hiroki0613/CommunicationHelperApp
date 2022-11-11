@@ -52,7 +52,7 @@
 		7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C7692916416300F11B01 /* TestOwnerView.swift */; };
 		7F84C76E29165FF600F11B01 /* QRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76D29165FF600F11B01 /* QRCameraView.swift */; };
 		7F84C770291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */; };
-		7F84C792291E90CA00F11B01 /* WorkerMorningQrScanCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C791291E90CA00F11B01 /* WorkerMorningQrScanCore.swift */; };
+		7F84C792291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C791291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +97,7 @@
 		7F84C7692916416300F11B01 /* TestOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOwnerView.swift; sourceTree = "<group>"; };
 		7F84C76D29165FF600F11B01 /* QRCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraView.swift; sourceTree = "<group>"; };
 		7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerNewRegistrationQrScanCore.swift; sourceTree = "<group>"; };
-		7F84C791291E90CA00F11B01 /* WorkerMorningQrScanCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerMorningQrScanCore.swift; sourceTree = "<group>"; };
+		7F84C791291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerMorningQrCodeCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,7 +273,7 @@
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */,
 				7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */,
-				7F84C791291E90CA00F11B01 /* WorkerMorningQrScanCore.swift */,
+				7F84C791291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift */,
 				7F84C76629162C5400F11B01 /* OwnerTopCore.swift */,
 			);
 			path = Core;
@@ -451,7 +451,7 @@
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
 				7F29D5D1290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift in Sources */,
 				7F29D5D3290E9CC300F93A87 /* WorkerEndOfWorkView.swift in Sources */,
-				7F84C792291E90CA00F11B01 /* WorkerMorningQrScanCore.swift in Sources */,
+				7F84C792291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift in Sources */,
 				7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */,
 				7F29D5CF290E9C0F00F93A87 /* WorkerPulseTopView.swift in Sources */,
 				7F29D5CB290E9AE800F93A87 /* WorkerNewSignUpView.swift in Sources */,
