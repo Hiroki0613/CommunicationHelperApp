@@ -25,6 +25,8 @@ struct WorkerNewRegistrationQrScanEnvironment {
 }
 
 let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanState, WorkerNewRegistrationQrScanAction, WorkerNewRegistrationQrScanEnvironment> { state, action, _ in
+    var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
+
     switch action {
     case .scanQrCodeResult(let result):
         print("hirohiro_resultAA: ", result)
@@ -43,23 +45,22 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
     case .readOfficeAuthUid(let id):
         // TODO: ownerはQRコードの前にownerなどをつけて、string切り離しをおこなって登録
         state.hasReadOfficeAuthId = true
-        UserDefaults.standard.set(id, forKey: UserDefaultsString.officeId)
-        // userdefalutsで保存
+        userDefault.officeId = id
         return Effect(value: .finishReadQrCode)
 
     case .readTerminalId(let id):
         // TODO: workerIDはworker + ランダム生成を使って用意する。
         state.hasReadTerminalId = true
-        UserDefaults.standard.set(id, forKey: UserDefaultsString.terminalId)
+        userDefault.terminalId = id
         return Effect(value: .finishReadQrCode)
 
     case .finishReadQrCode:
-        if UserDefaults.standard.string(forKey: UserDefaultsString.terminalId) != nil
-            && UserDefaults.standard.string(forKey: UserDefaultsString.officeId) != nil
+        if userDefault.terminalId != nil
+            && userDefault.officeId != nil
             && state.hasReadOfficeAuthId
             && state.hasReadTerminalId {
             print("hirohiro_完了した")
-            UserDefaults.standard.set(true, forKey: UserDefaultsString.hasLogin)
+            userDefault.hasLogin = true
             state.hasReadOfficeAuthId = false
             state.hasReadTerminalId = false
             return Effect(value: .firstLogin)

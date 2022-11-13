@@ -16,6 +16,7 @@ enum Mode {
 
 struct WorkerTopView: View {
     let store: Store<WorkerTopState, WorkerTopAction>
+    var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -43,8 +44,7 @@ struct WorkerTopView: View {
                  EmptyView()
                 }
             )
-            if viewStore.isLogedIn
-                && UserDefaults.standard.string(forKey: UserDefaultsString.officeId) != nil {
+            if viewStore.isLogedIn && userDefault.officeId != nil {
                 switch viewStore.mode {
                 case .startOfWork:
                     WorkerQRCodeView()
