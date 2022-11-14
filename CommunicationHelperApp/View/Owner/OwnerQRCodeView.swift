@@ -14,6 +14,7 @@ struct OwnerQRCodeView: View {
 
     var body: some View {
         ZStack {
+            // TODO: owner、staff、workerを下タブで分けることにする。
             PrimaryColor.background
             if let qrCodeOwnerImage = qRCodeGenerator.generate(
                 with: "ownerFirebaseUid"
