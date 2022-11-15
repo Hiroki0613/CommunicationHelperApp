@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChatMessageBubble: View {
+    // TODO: FireStoreからチャットの情報を受け取る。ただし通信回数には注意するように
     var message: ChatMessage
     @State private var showTime = false
 
