@@ -68,6 +68,7 @@ struct WorkerTopView: View {
                     .navigationBarHidden(true)
                 }
             } else {
+                // TODO: トップ画面ではなく、WorkerTopViewでアニノマスログインをする。
                 // TODO: ここはif文での分岐ではなく、フルスクリーンカバーにする。そのほうが処理を記載しやすい。
                 WorkerNewSignUpView(
                     store: store,

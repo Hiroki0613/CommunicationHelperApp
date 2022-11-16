@@ -69,7 +69,8 @@ struct TopView: View {
                         Spacer().frame(height: 66)
                         NavigationLink(
                             destination: {
-                                OwnerQRCodeView()
+//                                OwnerQRCodeView()
+                                OwnerTopView()
                             }, label: {
                                 Text("支援者さん")
                                     .fontWeight(.semibold)
