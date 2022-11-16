@@ -9,7 +9,10 @@ import SwiftUI
 
 struct OwnerSettingView: View {
     var body: some View {
-        Text("Hello, World! Setting")
+        ZStack {
+            PrimaryColor.background
+            Text("Hello, World! Setting")
+        }
     }
 }
 

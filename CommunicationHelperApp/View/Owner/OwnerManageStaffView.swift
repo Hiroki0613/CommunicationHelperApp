@@ -9,7 +9,10 @@ import SwiftUI
 
 struct OwnerManageStaffView: View {
     var body: some View {
-        Text("Hello, World! Staff")
+        ZStack {
+            PrimaryColor.background
+            Text("Hello, World! Staff")
+        }
     }
 }
 
