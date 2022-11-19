@@ -44,40 +44,93 @@ struct WorkerTopView: View {
                  EmptyView()
                 }
             )
-            if viewStore.isLogedIn && userDefault.officeId != nil {
-                switch viewStore.mode {
-                case .startOfWork:
-                    WorkerQRCodeView()
+            ZStack {
+                if viewStore.isLogedIn && userDefault.officeId != nil {
+                    switch viewStore.mode {
+                    case .startOfWork:
+                        WorkerQRCodeView()
+                            .navigationBarTitleDisplayMode(.inline)
+                            .navigationBarHidden(true)
+                    case .working:
+                        WorkerPulseTopView(
+                            action: {
+                                viewStore.send(.goToPulseView(true))
+                            }
+                        )
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarHidden(true)
-                case .working:
-                    WorkerPulseTopView(
-                        action: {
-                            viewStore.send(.goToPulseView(true))
-                        }
-                    )
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarHidden(true)
-                case .endOfTheWork:
-                    WorkerEndOfWorkTopView(
-                        action: {
-                            viewStore.send(.goToEndOfWorkView(true))
+                    case .endOfTheWork:
+                        WorkerEndOfWorkTopView(
+                            action: {
+                                viewStore.send(.goToEndOfWorkView(true))
+                            }
+                        )
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarHidden(true)
+                    }
+                } else {
+                    // TODO: トップ画面ではなく、WorkerTopViewでアニノマスログインをする。
+                    // TODO: ここはif文での分岐ではなく、フルスクリーンカバーにする。そのほうが処理を記載しやすい。
+                    WorkerNewSignUpView(
+                        store: store,
+                        backToTopViewAction: {
+                            viewStore.send(.goToNewSignInView(false))
                         }
                     )
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarHidden(true)
                 }
-            } else {
-                // TODO: トップ画面ではなく、WorkerTopViewでアニノマスログインをする。
-                // TODO: ここはif文での分岐ではなく、フルスクリーンカバーにする。そのほうが処理を記載しやすい。
-                WorkerNewSignUpView(
-                    store: store,
-                    backToTopViewAction: {
-                        viewStore.send(.goToNewSignInView(false))
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Button(
+                                action: {
+                                    viewStore.send(.testChangeView(.startOfWork))
+                                }, label: {
+                                    Text("始業")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.black)
+                                        .frame(maxWidth: 70, minHeight: 70)
+                                        .background(PrimaryColor.buttonColor)
+                                        .cornerRadius(35)
+                                }
+                            )
+                            Spacer().frame(height: 20)
+                            Button(
+                                action: {
+                                    viewStore.send(.testChangeView(.working))
+                                }, label: {
+                                    Text("作業中")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.black)
+                                        .frame(maxWidth: 70, minHeight: 70)
+                                        .background(PrimaryColor.buttonColor)
+                                        .cornerRadius(35)
+                                }
+                            )
+                            Spacer().frame(height: 20)
+                            Button(
+                                action: {
+                                    viewStore.send(.testChangeView(.endOfTheWork))
+                                }, label: {
+                                    Text("終業")
+                                        .fontWeight(.semibold)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.black)
+                                        .frame(maxWidth: 70, minHeight: 70)
+                                        .background(PrimaryColor.buttonColor)
+                                        .cornerRadius(35)
+                                }
+                            )
+                            Spacer().frame(height: 20)
+                        }
                     }
-                )
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarHidden(true)
+                    Spacer().frame(height: 20)
+                }
             }
         }
     }

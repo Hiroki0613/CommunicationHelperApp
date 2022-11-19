@@ -13,7 +13,7 @@ struct WorkerTopState: Equatable {
     // firebaseAuthLogin
     var isLogedIn = false
     var isShowingQrReader = false
-    var mode: Mode = .startOfWork
+    var mode: Mode = .endOfTheWork
     var isActivePulseView = false
     var isActiveEndOfWorkView = false
     // デフォルトで8時30分
@@ -34,6 +34,7 @@ enum WorkerTopAction {
     case login
     case logout
     case setWorkerData
+    case testChangeView(Mode)
 }
 
 struct WorkerTopEnvironment {
@@ -95,6 +96,10 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
 
             // workerのデータを設定。mode、terminalIdなど
         case .setWorkerData:
+            return .none
+
+        case .testChangeView(let mode):
+            state.mode = mode
             return .none
         }
     }
