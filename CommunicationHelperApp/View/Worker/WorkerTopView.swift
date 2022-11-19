@@ -20,30 +20,6 @@ struct WorkerTopView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            NavigationLink(
-                isActive: viewStore.binding(
-                    get: \.isActivePulseView,
-                    send: WorkerTopAction.goToPulseView
-                ),
-                destination: {
-                    PulseView()
-                },
-                label: {
-                 EmptyView()
-                }
-            )
-            NavigationLink(
-                isActive: viewStore.binding(
-                    get: \.isActiveEndOfWorkView,
-                    send: WorkerTopAction.goToEndOfWorkView
-                ),
-                destination: {
-                    WorkerEndOfWorkQRCodeView()
-                },
-                label: {
-                 EmptyView()
-                }
-            )
             ZStack {
                 if viewStore.isLogedIn && userDefault.officeId != nil {
                     switch viewStore.mode {
@@ -131,6 +107,22 @@ struct WorkerTopView: View {
                     }
                     Spacer().frame(height: 20)
                 }
+            }
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: \.isActivePulseView,
+                    send: WorkerTopAction.goToPulseView
+                )
+            ) {
+                PulseView()
+            }
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: \.isActiveEndOfWorkView,
+                    send: WorkerTopAction.goToEndOfWorkView
+                )
+            ) {
+                WorkerEndOfWorkQRCodeView()
             }
         }
     }

@@ -13,7 +13,7 @@ struct WorkerTopState: Equatable {
     // firebaseAuthLogin
     var isLogedIn = false
     var isShowingQrReader = false
-    var mode: Mode = .endOfTheWork
+    var mode: Mode = .startOfWork
     var isActivePulseView = false
     var isActiveEndOfWorkView = false
     // デフォルトで8時30分
