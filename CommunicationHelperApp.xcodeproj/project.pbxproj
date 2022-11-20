@@ -48,6 +48,7 @@
 		7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */; };
 		7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */; };
 		7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D5EA2913FF4000F93A87 /* View+Ext.swift */; };
+		7F59747C292A45050018ADF5 /* OwnerLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59747B292A45050018ADF5 /* OwnerLoginView.swift */; };
 		7F84C76729162C5400F11B01 /* OwnerTopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76629162C5400F11B01 /* OwnerTopCore.swift */; };
 		7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C7692916416300F11B01 /* TestOwnerView.swift */; };
 		7F84C76E29165FF600F11B01 /* QRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76D29165FF600F11B01 /* QRCameraView.swift */; };
@@ -98,6 +99,7 @@
 		7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageBubble.swift; sourceTree = "<group>"; };
 		7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageField.swift; sourceTree = "<group>"; };
 		7F29D5EA2913FF4000F93A87 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		7F59747B292A45050018ADF5 /* OwnerLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerLoginView.swift; sourceTree = "<group>"; };
 		7F84C76629162C5400F11B01 /* OwnerTopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTopCore.swift; sourceTree = "<group>"; };
 		7F84C7692916416300F11B01 /* TestOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOwnerView.swift; sourceTree = "<group>"; };
 		7F84C76D29165FF600F11B01 /* QRCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				7F84C799292529F300F11B01 /* OwnerManageStaffView.swift */,
 				7F84C79B29252A2C00F11B01 /* OwnerSettingView.swift */,
 				7F84C797292529C500F11B01 /* OwnerManageWorkerView.swift */,
+				7F59747B292A45050018ADF5 /* OwnerLoginView.swift */,
 			);
 			path = Owner;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 			files = (
 				7F29D5D72912C28500F93A87 /* TestWorkerView.swift in Sources */,
 				7F29D5712902EB3300F93A87 /* UIImage+Ext.swift in Sources */,
+				7F59747C292A45050018ADF5 /* OwnerLoginView.swift in Sources */,
 				7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */,
 				7F29D58429042B2000F93A87 /* ColorUtils.swift in Sources */,
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,

@@ -17,7 +17,12 @@
  signInWithApple
  SwiftUIでFirebaseAuthを使用してSign in with Apple 実装
  https://qiita.com/hideto1198/items/f0ee7acd757c6ea763b0
- 
+ SwiftUI + FirebaseUIのセットアップをしたときのメモ
+ https://zenn.dev/kaorumori/articles/dc5373ba72f49e
+ FirebaseUIをSwiftUIで表示する
+ https://qiita.com/From_F/items/5888c548a9a41232509f
+ SwiftUIからFirebaseUIを使う
+ https://zenn.dev/yorifuji/articles/swiftui-firebaseui
  
  */
 
@@ -70,7 +75,12 @@ struct TopView: View {
                         NavigationLink(
                             destination: {
 //                                OwnerQRCodeView()
-                                OwnerTopView()
+                                OwnerTopView(
+                                    store: store.scope(
+                                        state: \.ownerState,
+                                        action: TopAction.ownerAction
+                                    )
+                                )
                             }, label: {
                                 Text("支援者さん")
                                     .fontWeight(.semibold)

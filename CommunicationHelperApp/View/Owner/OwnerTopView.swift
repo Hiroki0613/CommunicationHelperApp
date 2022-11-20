@@ -5,30 +5,46 @@
 //  Created by 近藤宏輝 on 2022/11/16.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct OwnerTopView: View {
+    let store: Store<OwnerTopState, OwnerTopAction>
+
     var body: some View {
-        TabView {
-            OwnerManageWorkerView()
-                .tabItem {
-                    Label("作業者", systemImage: "hammer.fill")
+        WithViewStore(store) { viewStore in
+            if viewStore.hasRegistrated {
+                ZStack {
+                    TabView {
+                        OwnerSettingView(viewStore: viewStore)
+                            .tabItem {
+                                Label("設定", systemImage: "gear")
+                            }
+                        OwnerManageStaffView()
+                            .tabItem {
+                                Label("スタッフ", systemImage: "person")
+                            }
+                        OwnerManageWorkerView(viewStore: viewStore)
+                            .tabItem {
+                                Label("スタッフ", systemImage: "hammer.fill")
+                            }
+                    }
                 }
-            OwnerManageStaffView()
-                .tabItem {
-                    Label("スタッフ", systemImage: "person")
-                }
-            OwnerSettingView()
-                .tabItem {
-                    Label("設定", systemImage: "gear")
-                }
+            } else {
+                OwnerLoginView(viewStore: viewStore)
+            }
         }
-        // TODO: トップ画面ではなく、OwnerTopViewでアカウントログインをする。フルスクリーンカバーを使う。
     }
 }
 
 struct OwnerTopView_Previews: PreviewProvider {
     static var previews: some View {
-        OwnerTopView()
+        OwnerTopView(
+            store: Store(
+                initialState: OwnerTopState(),
+                reducer: ownerTopReducer,
+                environment: OwnerTopEnvironment()
+            )
+        )
     }
 }
