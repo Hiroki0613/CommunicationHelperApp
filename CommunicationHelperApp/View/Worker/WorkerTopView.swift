@@ -46,7 +46,6 @@ struct WorkerTopView: View {
                     }
                 } else {
                     // TODO: トップ画面ではなく、WorkerTopViewでアニノマスログインをする。
-                    // TODO: ここはif文での分岐ではなく、フルスクリーンカバーにする。そのほうが処理を記載しやすい。
                     WorkerNewSignUpView(
                         store: store,
                         backToTopViewAction: {
@@ -61,48 +60,50 @@ struct WorkerTopView: View {
                     HStack {
                         Spacer()
                         VStack {
-                            Button(
-                                action: {
-                                    viewStore.send(.testChangeView(.startOfWork))
-                                }, label: {
-                                    Text("始業")
-                                        .fontWeight(.semibold)
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.black)
-                                        .frame(maxWidth: 70, minHeight: 70)
-                                        .background(PrimaryColor.buttonColor)
-                                        .cornerRadius(35)
-                                }
-                            )
-                            Spacer().frame(height: 20)
-                            Button(
-                                action: {
-                                    viewStore.send(.testChangeView(.working))
-                                }, label: {
-                                    Text("作業中")
-                                        .fontWeight(.semibold)
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.black)
-                                        .frame(maxWidth: 70, minHeight: 70)
-                                        .background(PrimaryColor.buttonColor)
-                                        .cornerRadius(35)
-                                }
-                            )
-                            Spacer().frame(height: 20)
-                            Button(
-                                action: {
-                                    viewStore.send(.testChangeView(.endOfTheWork))
-                                }, label: {
-                                    Text("終業")
-                                        .fontWeight(.semibold)
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.black)
-                                        .frame(maxWidth: 70, minHeight: 70)
-                                        .background(PrimaryColor.buttonColor)
-                                        .cornerRadius(35)
-                                }
-                            )
-                            Spacer().frame(height: 20)
+                            if viewStore.isLogedIn && userDefault.officeId != nil {
+                                Button(
+                                    action: {
+                                        viewStore.send(.testChangeView(.startOfWork))
+                                    }, label: {
+                                        Text("始業")
+                                            .fontWeight(.semibold)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(Color.black)
+                                            .frame(maxWidth: 70, minHeight: 70)
+                                            .background(PrimaryColor.buttonColor)
+                                            .cornerRadius(35)
+                                    }
+                                )
+                                Spacer().frame(height: 20)
+                                Button(
+                                    action: {
+                                        viewStore.send(.testChangeView(.working))
+                                    }, label: {
+                                        Text("作業中")
+                                            .fontWeight(.semibold)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(Color.black)
+                                            .frame(maxWidth: 70, minHeight: 70)
+                                            .background(PrimaryColor.buttonColor)
+                                            .cornerRadius(35)
+                                    }
+                                )
+                                Spacer().frame(height: 20)
+                                Button(
+                                    action: {
+                                        viewStore.send(.testChangeView(.endOfTheWork))
+                                    }, label: {
+                                        Text("終業")
+                                            .fontWeight(.semibold)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(Color.black)
+                                            .frame(maxWidth: 70, minHeight: 70)
+                                            .background(PrimaryColor.buttonColor)
+                                            .cornerRadius(35)
+                                    }
+                                )
+                                Spacer().frame(height: 20)
+                            }
                         }
                     }
                     Spacer().frame(height: 20)

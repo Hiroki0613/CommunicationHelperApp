@@ -123,7 +123,6 @@ struct TopView: View {
                             Spacer()
                             NavigationLink(
                                 destination: {
-                                    // TODO: Morning、Working、EndOfWorkの三画面はWorkerTopViewに小さなボタンを押して画面を変えられるようになる。
                                     TestWorkerView(
                                         store: Store(
                                             initialState: WorkerTopState(),
