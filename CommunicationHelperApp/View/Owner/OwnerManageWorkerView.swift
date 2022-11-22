@@ -5,44 +5,19 @@
 //  Created by 近藤宏輝 on 2022/11/16.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct OwnerManageWorkerView: View {
+    let viewStore: ViewStore<OwnerTopState, OwnerTopAction>
+
     var body: some View {
-        ZStack {
-            PrimaryColor.background
-            ZStack {
-                Rectangle()
-                    .fill(PrimaryColor.buttonColor)
-                    .frame(width: 303, height: 272)
-                    .cornerRadius(20)
-                VStack {
-                    Spacer().frame(height: 18)
-                    HStack {
-                        Spacer().frame(width: 34)
-                        Text("支援者")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(width: 303, height: 30, alignment: .leading)
-                    }
-                    HStack {
-                        Text("開始　０：００")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(width: 303, height: 30, alignment: .trailing)
-                        Spacer().frame(width: 20)
-                    }
-                    HStack {
-                        Text("終了　０：００")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                            .frame(width: 303, height: 30, alignment: .trailing)
-                        Spacer().frame(width: 20)
-                    }
-                }
+        List {
+            Section("作業者") {
+                Text("ヤマダさん\n平均心拍数: 60\n 特徴\n　少し落ち着きが無いところがある\n")
+                Text("スズキさん\n平均心拍数: 70\n 特徴\n　いつもご機嫌である\n")
+                Text("サトウさん\n平均心拍数: 80\n 特徴\n　耳が聞こえづらいので近くで声をかけてあげて\n")
+                Text("エンドウさん\n平均心拍数: 70\n 特徴\n　釣りの趣味があって、話を振ってあげると喜ぶ\n")
             }
         }
     }
@@ -50,6 +25,6 @@ struct OwnerManageWorkerView: View {
 
 struct OwnerManageWorkerView_Previews: PreviewProvider {
     static var previews: some View {
-        OwnerManageWorkerView()
+        OwnerManageStaffView()
     }
 }

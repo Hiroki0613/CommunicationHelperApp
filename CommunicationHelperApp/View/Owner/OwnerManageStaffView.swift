@@ -8,10 +8,19 @@
 import SwiftUI
 
 struct OwnerManageStaffView: View {
+
+    init() {
+        UITableView.appearance().backgroundColor = PrimaryUIColor.background
+     }
+
     var body: some View {
-        ZStack {
-            PrimaryColor.background
-            Text("Hello, World! Staff")
+        List {
+            Section("スタッフ") {
+                Text("山田さん")
+                Text("鈴木さん")
+                Text("佐藤さん")
+                Text("遠藤さん")
+            }
         }
     }
 }
