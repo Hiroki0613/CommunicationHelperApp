@@ -26,7 +26,7 @@ class AltimatorManager: NSObject, ObservableObject {
             altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main, withHandler: { data, error in
                     if error == nil {
                         let pressure: Double = data!.pressure.doubleValue
-                        self.pressureString = String(format: "気圧:%.1f hPa", pressure * 10)
+                        self.pressureString = String(format: "気圧:　%.1f hPa", pressure * 10)
                         self.willChange.send()
                     }
             })

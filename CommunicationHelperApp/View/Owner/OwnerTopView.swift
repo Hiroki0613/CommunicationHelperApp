@@ -14,9 +14,11 @@ struct OwnerTopView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             if viewStore.hasRegistrated {
+                // TODO: TabViewとNavigationViewは同時に使わないほうが良さそう。ナビゲーションヘッダーが消せない。タブは独自のタブに切り替える。
+                // https://zenn.dev/usk2000/articles/dda70ffe1973e0
                 ZStack {
                     TabView {
-                        OwnerSettingView(viewStore: viewStore)
+                        OwnerSettingTopView(viewStore: viewStore)
                             .tabItem {
                                 Label("設定", systemImage: "gear")
                             }

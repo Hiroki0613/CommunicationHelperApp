@@ -10,6 +10,8 @@ import SwiftUI
 // QRコードを作成
 struct OwnerQRCodeView: View {
     @State private var qrCodeImage: UIImage?
+    @Environment(\.dismiss) private var dismiss
+//    var backViewAction: () -> Void
     private let qRCodeGenerator = QRCodeGenerator()
 
     var body: some View {
@@ -22,6 +24,7 @@ struct OwnerQRCodeView: View {
                 with: "workerUUID"
                ) {
                 VStack {
+                    Spacer()
                     Text("OwnerID")
                         .fontWeight(.semibold)
                         .font(.system(size: 20))
@@ -29,7 +32,7 @@ struct OwnerQRCodeView: View {
                     Image(uiImage: qrCodeOwnerImage)
                         .resizable()
                         .frame(width: 200, height: 200)
-                    Spacer().frame(height: 70)
+                    Spacer().frame(height: 30)
                     Text("WorkerID")
                         .fontWeight(.semibold)
                         .font(.system(size: 20))
@@ -37,6 +40,19 @@ struct OwnerQRCodeView: View {
                     Image(uiImage: qrCodeWorkerImage)
                         .resizable()
                         .frame(width: 200, height: 200)
+                    Spacer().frame(height: 30)
+                    Button(
+                        action: {
+                            dismiss()
+                        }, label: {
+                            Text("戻る")
+                                .foregroundColor(Color.black)
+                                .frame(width: 200, height: 50)
+                                .background(PrimaryColor.buttonColor)
+                                .cornerRadius(20)
+                        }
+                    )
+                    Spacer()
                 }
             }
         }
