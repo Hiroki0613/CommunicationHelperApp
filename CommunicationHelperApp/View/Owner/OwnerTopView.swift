@@ -20,13 +20,13 @@ struct OwnerTopView: View {
                             .tabItem {
                                 Label("設定", systemImage: "gear")
                             }
-                        OwnerManageStaffView()
+                        OwnerManageStaffTopView()
                             .tabItem {
                                 Label("スタッフ", systemImage: "person")
                             }
-                        OwnerManageWorkerView(viewStore: viewStore)
+                        OwnerManageWorkerTopView(viewStore: viewStore)
                             .tabItem {
-                                Label("スタッフ", systemImage: "hammer.fill")
+                                Label("作業者", systemImage: "hammer.fill")
                             }
                     }
                 }

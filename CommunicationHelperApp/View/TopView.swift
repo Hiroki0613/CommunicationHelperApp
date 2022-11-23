@@ -74,7 +74,6 @@ struct TopView: View {
                         Spacer().frame(height: 66)
                         NavigationLink(
                             destination: {
-//                                OwnerQRCodeView()
                                 OwnerTopView(
                                     store: store.scope(
                                         state: \.ownerState,

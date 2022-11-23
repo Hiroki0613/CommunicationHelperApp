@@ -76,7 +76,7 @@ struct OwnerSettingView: View {
 
 struct OwnerSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        OwnerManageWorkerView(
+        OwnerManageWorkerTopView(
             viewStore: ViewStore(
                 Store(
                     initialState: OwnerTopState(),
