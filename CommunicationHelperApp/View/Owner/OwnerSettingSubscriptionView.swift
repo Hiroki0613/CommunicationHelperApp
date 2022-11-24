@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OwnerSettingsubscriptionView: View {
+struct OwnerSettingSubscriptionView: View {
     var body: some View {
         ZStack {
             PrimaryColor.buttonColor
@@ -35,6 +35,6 @@ struct OwnerSettingsubscriptionView: View {
 
 struct OwnerSettingsubscriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        OwnerSettingsubscriptionView()
+        OwnerSettingSubscriptionView()
     }
 }
