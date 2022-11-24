@@ -25,7 +25,7 @@ struct OwnerSettingTopView: View {
                     OwnerSettingPressureView(viewStore: viewStore)
                         .cornerRadius(20)
                     Spacer().frame(height: 30)
-                    OwnerSettingSubscriptionView()
+                    OwnerSettingsubscriptionView()
                         .cornerRadius(20)
                     Spacer().frame(height: 30)
                     Button(action: {
