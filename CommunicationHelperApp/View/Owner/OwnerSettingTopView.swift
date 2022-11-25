@@ -42,6 +42,7 @@ struct OwnerSettingTopView: View {
                 }
                 .padding(.horizontal, 30)
             }
+            .clipped()
             .fullScreenCover(
                 isPresented: viewStore.binding(
                     get: \.hasShowedQrCode,
