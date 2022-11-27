@@ -18,12 +18,14 @@ struct WorkerEndOfWorkView: View {
                     .foregroundColor(Color.black)
                     .frame(maxWidth: .infinity, minHeight: 92)
                     .background(PrimaryColor.buttonColor)
+                    .cornerRadius(20)
                     .padding(.horizontal, 19)
                 Spacer().frame(height: 33)
                 ZStack {
                     Rectangle()
                         .fill(PrimaryColor.buttonColor)
                         .frame(width: 282, height: 232)
+                        .cornerRadius(20)
                     VStack {
                         Spacer().frame(height: 13)
                         Text("心拍")
@@ -48,6 +50,7 @@ struct WorkerEndOfWorkView: View {
                             .fontWeight(.semibold)
                             .font(.system(size: 24))
                             .foregroundColor(Color.black)
+                            .cornerRadius(20)
                         Spacer().frame(height: 100)
                     }
                 }
