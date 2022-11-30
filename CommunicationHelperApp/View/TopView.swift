@@ -95,29 +95,6 @@ struct TopView: View {
                     }
                     VStack {
                         Spacer()
-//                        HStack {
-//                            Spacer()
-//                            NavigationLink(
-//                                destination: {
-//                                    TestOwnerView(
-//                                        store: Store(
-//                                            initialState: OwnerTopState(),
-//                                            reducer: ownerTopReducer,
-//                                            environment: OwnerTopEnvironment()
-//                                        )
-//                                    )
-//                                }, label: {
-//                                    Text("owner\ntest")
-//                                        .fontWeight(.semibold)
-//                                        .font(.system(size: 12))
-//                                        .foregroundColor(Color.black)
-//                                        .frame(maxWidth: 70, minHeight: 70)
-//                                        .background(PrimaryColor.buttonColor)
-//                                        .cornerRadius(35)
-//                                }
-//                            )
-//                            Spacer().frame(width: 40)
-//                        }
                         HStack {
                             Spacer()
                             NavigationLink(
