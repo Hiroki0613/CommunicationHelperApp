@@ -24,13 +24,6 @@ struct TestOwnerView: View {
                             .foregroundColor(Color.black)
                         NavigationLink(
                             destination: {
-//                                PressureView(
-//                                    store: Store(
-//                                        initialState: OwnerState(),
-//                                        reducer: ownerReducer,
-//                                        environment: OwnerEnvironment()
-//                                    )
-//                                )
                                 PressureView(viewStore: viewStore)
                             },
                             label: {
@@ -44,7 +37,6 @@ struct TestOwnerView: View {
                             }
                         )
                         Spacer().frame(height: 20)
-
                     }
                 }
             }
