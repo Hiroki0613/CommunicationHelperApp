@@ -257,7 +257,6 @@
 				7F84C7682916414C00F11B01 /* Test */,
 				7F29D5C4290C090D00F93A87 /* Owner */,
 				7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */,
-				7F597485292E47040018ADF5 /* OwnerSettingSubscriptionView.swift */,
 				7F29D54E28F3D44600F93A87 /* TopView.swift */,
 				7F29D5C2290C08DB00F93A87 /* Worker */,
 			);
@@ -274,6 +273,7 @@
 				7F84C79B29252A2C00F11B01 /* OwnerSettingTopView.swift */,
 				7F597483292E44F20018ADF5 /* OwnerSettingPressureView.swift */,
 				7F597481292E3F950018ADF5 /* OwnerSettingOperatingTimeView.swift */,
+				7F597485292E47040018ADF5 /* OwnerSettingSubscriptionView.swift */,
 				7F84C797292529C500F11B01 /* OwnerManageWorkerTopView.swift */,
 				7F59747D292E27C00018ADF5 /* OwnerManageWorkerCellView.swift */,
 				7F59747B292A45050018ADF5 /* OwnerLoginView.swift */,
