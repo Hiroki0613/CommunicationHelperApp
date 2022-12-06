@@ -12,6 +12,7 @@ struct OwnerManageWorkerTopView: View {
     let viewStore: ViewStore<OwnerTopState, OwnerTopAction>
     var nameArray = ["ヤマダ", "スズキ", "サトウ", "エンドウ"]
     var averagePulseArray = [60, 70, 80, 70]
+    // TODO: ここの個人の特性は、偏見を持つ可能性があるために省くこと。
     var characteristicArray = [
         "少し落ち着きが無いところがある",
         "いつもご機嫌である",
