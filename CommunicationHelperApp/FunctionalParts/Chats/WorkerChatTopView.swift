@@ -1,5 +1,5 @@
 //
-//  ChatTopView.swift
+//  WorkerChatTopView.swift
 //  CommunicationHelperApp
 //
 //  Created by 近藤宏輝 on 2022/11/03.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChatTopView: View {
+struct WorkerChatTopView: View {
     var messageArray = [
          "コミュニケーション",
          "どうやってとるの？",
@@ -45,6 +45,6 @@ struct ChatTopView: View {
 
 struct ChatTopView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatTopView()
+        WorkerChatTopView()
     }
 }

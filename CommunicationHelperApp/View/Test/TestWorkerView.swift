@@ -119,7 +119,7 @@ struct TestWorkerView: View {
                         Spacer().frame(height: 20)
                         NavigationLink(
                             destination: {
-                                ChatTopView()
+                                WorkerChatTopView()
                             },
                             label: {
                                 Text("Chat")

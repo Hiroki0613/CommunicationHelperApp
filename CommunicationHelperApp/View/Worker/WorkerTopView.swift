@@ -28,13 +28,16 @@ struct WorkerTopView: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationBarHidden(true)
                     case .working:
-                        WorkerPulseTopView(
-                            action: {
-                                viewStore.send(.goToPulseView(true))
-                            }
-                        )
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationBarHidden(true)
+//                        WorkerPulseTopView(
+//                            action: {
+//                                viewStore.send(.goToPulseView(true))
+//                            }
+//                        )
+//                        .navigationBarTitleDisplayMode(.inline)
+//                        .navigationBarHidden(true)
+                        WorkerChatTopView()
+                            .navigationBarTitleDisplayMode(.inline)
+                            .navigationBarHidden(true)
                     case .endOfTheWork:
                         WorkerEndOfWorkTopView(
                             action: {
