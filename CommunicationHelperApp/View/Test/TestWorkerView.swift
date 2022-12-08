@@ -20,6 +20,8 @@ struct TestWorkerView: View {
                 ),
                 destination: {
                     PulseView()
+//                    PulseViewView()
+                        .frame(width: 300, height: 300)
                 },
                 label: {
                     EmptyView()
