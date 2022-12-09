@@ -248,6 +248,7 @@
 				7F29D575290416AA00F93A87 /* WorkerPulseView.swift */,
 				7F29D5CC290E9BA400F93A87 /* WorkerQRCodeView.swift */,
 				7F29D5CE290E9C0F00F93A87 /* WorkerPulseTopView.swift */,
+				7F29D5E02913F53200F93A87 /* WorkerChatTopView.swift */,
 				7F29D5D0290E9C6700F93A87 /* WorkerEndOfWorkTopView.swift */,
 				7F29D5D4290E9D2A00F93A87 /* WorkerEndOfWorkQRCodeView.swift */,
 			);
@@ -328,7 +329,6 @@
 			isa = PBXGroup;
 			children = (
 				7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */,
-				7F29D5E02913F53200F93A87 /* WorkerChatTopView.swift */,
 				7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */,
 				7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */,
 			);
