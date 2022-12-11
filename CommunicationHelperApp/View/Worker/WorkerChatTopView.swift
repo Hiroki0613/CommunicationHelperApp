@@ -36,8 +36,21 @@ struct WorkerChatTopView: View {
                 }
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
+                NavigationLink(
+                    destination: {
+                        WorkerFiveWsAndOneHChatInputView()
+                    },
+                    label: {
+                        Text("送信する")
+                            .foregroundColor(Color.black)
+                            .frame(width: 200, height: 50)
+                            .background(PrimaryColor.buttonColor)
+                            .cornerRadius(20)
+                            .padding()
+                    })
+                Spacer()
             }
-            ChatMessageField()
+//            ChatMessageField()
         }
         .background(PrimaryColor.background)
     }

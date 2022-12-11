@@ -23,6 +23,7 @@ struct CommunicationHelperApp: App {
                     environment: TopEnvironment()
                 )
             )
+//            WorkerFiveWsAndOneHChatInputView()
         }
     }
 }
