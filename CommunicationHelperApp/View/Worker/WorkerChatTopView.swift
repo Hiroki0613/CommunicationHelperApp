@@ -38,7 +38,7 @@ struct WorkerChatTopView: View {
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 NavigationLink(
                     destination: {
-                        WorkerFiveWsAndOneHChatInputView()
+                        WorkerChatInputFiveWsAndOneHView()
                     },
                     label: {
                         Text("送信する")

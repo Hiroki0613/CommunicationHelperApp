@@ -1,5 +1,5 @@
 //
-//  WorkerFiveWsAndOneHChatInputView.swift
+//  WorkerChatInputFiveWsAndOneHView.swift
 //  CommunicationHelperApp
 //
 //  Created by 近藤宏輝 on 2022/12/05.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkerFiveWsAndOneHChatInputView: View {
+struct WorkerChatInputFiveWsAndOneHView: View {
     var body: some View {
         ZStack {
             PrimaryColor.background
@@ -61,7 +61,7 @@ struct WorkerFiveWsAndOneHChatInputView: View {
 
 struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerFiveWsAndOneHChatInputView()
+        WorkerChatInputFiveWsAndOneHView()
     }
 }
 
@@ -143,14 +143,12 @@ struct WorkerChatInputSentenceView: View {
     }
 }
 
-
 extension String {
     func size(with font: UIFont) -> CGSize {
         let attributes = [NSAttributedString.Key.font : font]
         return (self as NSString).size(withAttributes: attributes)
     }
 }
-
 
 extension View {
     func placeholder<Content: View>(
