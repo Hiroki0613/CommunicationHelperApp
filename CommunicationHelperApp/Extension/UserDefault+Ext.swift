@@ -19,6 +19,7 @@ protocol UserDefaultDataStore {
     var hasLogin: Bool? { get set }
     var officeId: String? { get set }
     var terminalId: String? { get set }
+    var isBlackAndWhiteMode: Bool? { get set }
 }
 
 private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
@@ -46,6 +47,15 @@ private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "terminalId")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var isBlackAndWhiteMode: Bool? {
+        get {
+            return UserDefaults.standard.object(forKey: "isBlackAndWhiteMode") as? Bool
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isBlackAndWhiteMode")
             UserDefaults.standard.synchronize()
         }
     }

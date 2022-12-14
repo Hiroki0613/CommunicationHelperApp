@@ -8,6 +8,7 @@
 import ComposableArchitecture
 
 struct TopState: Equatable {
+    var isBlackAndWhiteMode = false
     var ownerState: OwnerTopState
     var workerTopState: WorkerTopState
     var isShowingNewSignIn = false
@@ -17,6 +18,7 @@ enum TopAction {
     case ownerAction(OwnerTopAction)
     case workerTopAction(WorkerTopAction)
     case goToNewSignInView(Bool)
+    case setColorModeByButton(Bool)
 }
 
 // TCAの観点から、理想はFirebaseの処理はenvironmentから行う。しかし、今回はaction+別modelでfuncを用意する方向にする。
@@ -53,6 +55,12 @@ let topReducer = Reducer<TopState, TopAction, TopEnvironment>.combine(
 
         case .goToNewSignInView(let isActive):
             state.isShowingNewSignIn = isActive
+            return .none
+
+        case .setColorModeByButton(let flag):
+            var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
+            userDefault.isBlackAndWhiteMode = flag
+            print("hirohiro_userDefault: ", userDefault.isBlackAndWhiteMode)
             return .none
         }
     }
