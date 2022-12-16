@@ -99,11 +99,11 @@ struct TopView: View {
                         Spacer()
                         HStack {
                             Spacer()
-                            Toggle("", isOn: $flag)
-                                .labelsHidden()
-                                .onChange(of: flag, perform: { newValue in
-                                    viewStore.send(.setColorModeByButton(newValue))
-                                })
+//                            Toggle("", isOn: $flag)
+//                                .labelsHidden()
+//                                .onChange(of: flag, perform: { newValue in
+//                                    viewStore.send(.setColorModeByButton(newValue))
+//                                })
                             NavigationLink(
                                 destination: {
                                     TestWorkerView(
@@ -119,8 +119,8 @@ struct TopView: View {
                                         .font(.system(size: 12))
                                         .foregroundColor(Color.black)
                                         .frame(maxWidth: 70, minHeight: 70)
-//                                        .background(PrimaryColor.buttonColor)
-                                        .background(switchColors())
+                                        .background(PrimaryColor.buttonColor)
+//                                        .background(switchColors())
                                         .cornerRadius(35)
                                 }
                             )
@@ -129,8 +129,8 @@ struct TopView: View {
                         Spacer().frame(height: 20)
                     }
                 }
-//                .background(PrimaryColor.background)
-                .background(switchBackGrondColors())
+                .background(PrimaryColor.background)
+//                .background(switchBackGrondColors())
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarHidden(true)
             }

@@ -9,9 +9,12 @@ import SwiftUI
 
 enum PrimaryColor {
     // スイッチで背景色を切り替える
-    static let buttonColor = UserDefaultsDataStoreProvider.provide().isBlackAndWhiteMode ?? false ? buttonWhite : buttonLightGray
-    static let buttonRedColor = UserDefaultsDataStoreProvider.provide().isBlackAndWhiteMode ?? false ? buttonGray : buttonRed
-    static let background = UserDefaultsDataStoreProvider.provide().isBlackAndWhiteMode ?? false ? backgroundBlack : backgroundGreen
+    static let buttonColor = buttonLightGray
+    static let buttonRedColor = buttonRed
+    static let background = backgroundGreen
+//    static let buttonColor = UserDefaultsDataStoreProvider.provide().isBlackAndWhiteMode ?? false ? buttonWhite : buttonLightGray
+//    static let buttonRedColor = UserDefaultsDataStoreProvider.provide().isBlackAndWhiteMode ?? false ? buttonGray : buttonRed
+//    static let background = UserDefaultsDataStoreProvider.provide().isBlackAndWhiteMode ?? false ? backgroundBlack : backgroundGreen
     // カラー配色
     static let buttonLightGray = Color(red: 0.961, green: 0.961, blue: 0.937)
     static let buttonRed = Color(red: 0.758, green: 0.145, blue: 0.145)
