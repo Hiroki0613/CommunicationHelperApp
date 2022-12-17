@@ -10,6 +10,7 @@ import Foundation
 
 struct WorkerTopState: Equatable {
     var workerNewRegistrationQrScanState = WorkerNewRegistrationQrScanState()
+    var workerMorningQrCodeState = WorkerMorningQrCodeState()
     // firebaseAuthLogin
     var isLogedIn = false
     var isShowingQrReader = false
@@ -25,6 +26,7 @@ struct WorkerTopState: Equatable {
 
 enum WorkerTopAction {
     case workerNewRegistrationQrScanAction(WorkerNewRegistrationQrScanAction)
+    case workerMorningQrCodeAction(WorkerMorningQrCodeAction)
     case goToPulseView(Bool)
     case goToEndOfWorkView(Bool)
     case onAppear
@@ -41,6 +43,9 @@ struct WorkerTopEnvironment {
     var workerNewRegistrationQrScanEnvironment: WorkerNewRegistrationQrScanEnvironment {
         .init()
     }
+    var workerMorningQrCodeEnvironment: WorkerMorningQrCodeEnvironment {
+        .init()
+    }
 }
 
 let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment>.combine(
@@ -48,6 +53,11 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
         state: \.workerNewRegistrationQrScanState,
         action: /WorkerTopAction.workerNewRegistrationQrScanAction,
         environment: \.workerNewRegistrationQrScanEnvironment
+    ),
+    workerMorningQrCodeReducer.pullback(
+        state: \.workerMorningQrCodeState,
+        action: /WorkerTopAction.workerMorningQrCodeAction,
+        environment: \.workerMorningQrCodeEnvironment
     ),
     Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment> { state, action, _ in
         switch action {
@@ -59,6 +69,9 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
             )
 
         case .workerNewRegistrationQrScanAction:
+            return .none
+
+        case .workerMorningQrCodeAction:
             return .none
 
         case .goToPulseView(let isActive):
