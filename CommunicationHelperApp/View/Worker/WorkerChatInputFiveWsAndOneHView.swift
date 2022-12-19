@@ -14,6 +14,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
             VStack {
                 Spacer().frame(height: 20)
                 HStack {
+                    // 5W1Hを一つ一つ入力するスタイルに変更する。
                     makeInputLabel(text: "どこで")
                     makeInputLabel(text: "誰が")
                     makeInputLabel(text: "何を")
@@ -26,6 +27,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                 }
                 Spacer().frame(height: 10)
                 ZStack {
+                    // TCAのスコープを通して、WorkerChatInputSentenceViewとも連動させる。
                     WorkerChatInputSentenceView()
                         .frame(height: 312)
                         .cornerRadius(20)

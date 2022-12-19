@@ -6,10 +6,15 @@
 //
 
 import ComposableArchitecture
+import Firebase
 import SwiftUI
 
 @main
 struct CommunicationHelperApp: App {
+
+    init() {
+        FirebaseApp.configure()
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -24,6 +29,7 @@ struct CommunicationHelperApp: App {
                 )
             )
 //            WorkerFiveWsAndOneHChatInputView()
+//            AuthTestView()
         }
     }
 }
