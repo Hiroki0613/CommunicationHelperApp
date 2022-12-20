@@ -63,33 +63,38 @@ struct AuthTestView: View {
     @State var isShowSheet = false
     
     var body: some View {
-        VStack {
-            if authState.isSignin {
-                Text("You are logined")
-                    .padding()
-                Button(
-                    action: {
-                        do {
-                            try Auth.auth().signOut()
-                        } catch {
-                            print("error")
-                        }
-                    }, label: {
-                        Text("logout")
-                    })
-            } else {
-                Text("You are not logged in.")
-                    .padding()
-                Button(
-                    action: {
-                        isShowSheet.toggle()
-                    }, label: {
-                        Text("login")
-                    })
+        ZStack {
+            PrimaryColor.backgroundGreen
+            VStack {
+                if authState.isSignin {
+                    Text("You are logined")
+                        .padding()
+                    Button(
+                        action: {
+                            do {
+                                try Auth.auth().signOut()
+                            } catch {
+                                print("error")
+                            }
+                        }, label: {
+                            Text("logout")
+                        })
+                } else {
+                    Text("You are not logged in.")
+                        .padding()
+                    Button(
+                        action: {
+                            isShowSheet.toggle()
+                        }, label: {
+                            Text("login")
+                        })
+                }
             }
         }
         .sheet(isPresented: $isShowSheet, content: {
-            FirebaseUIView()
+            ZStack {
+                FirebaseUIView()
+            }
         })
     }
 }
