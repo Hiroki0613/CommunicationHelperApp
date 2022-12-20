@@ -70,6 +70,7 @@
 		7FFA0C32294F526F00E2BC27 /* FirebaseEmailAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7FFA0C31294F526F00E2BC27 /* FirebaseEmailAuthUI */; };
 		7FFA0C34294F526F00E2BC27 /* FirebaseGoogleAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7FFA0C33294F526F00E2BC27 /* FirebaseGoogleAuthUI */; };
 		7FFA0C36294F526F00E2BC27 /* FirebaseOAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7FFA0C35294F526F00E2BC27 /* FirebaseOAuthUI */; };
+		7FFA0C392951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFA0C382951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,8 @@
 		7FFA0C2729478D0D00E2BC27 /* WorkerChatInputSentenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerChatInputSentenceView.swift; sourceTree = "<group>"; };
 		7FFA0C29294F492300E2BC27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7FFA0C2B294F4C6F00E2BC27 /* FirebaseUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUiView.swift; sourceTree = "<group>"; };
+		7FFA0C372950B63700E2BC27 /* CommunicationHelperApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommunicationHelperApp.entitlements; sourceTree = "<group>"; };
+		7FFA0C382951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerChatInputFiveWsAndOneHCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,7 @@
 		7F29D54B28F3D44600F93A87 /* CommunicationHelperApp */ = {
 			isa = PBXGroup;
 			children = (
+				7FFA0C372950B63700E2BC27 /* CommunicationHelperApp.entitlements */,
 				7FFA0C29294F492300E2BC27 /* Info.plist */,
 				7F29D5C7290C09C200F93A87 /* Core */,
 				7F29D5C5290C095E00F93A87 /* Extension */,
@@ -324,6 +328,7 @@
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */,
+				7FFA0C382951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift */,
 				7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */,
 				7F84C791291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift */,
 				7F84C76629162C5400F11B01 /* OwnerTopCore.swift */,
@@ -540,6 +545,7 @@
 				7F29D58E290449D400F93A87 /* PulseDetector.swift in Sources */,
 				7F29D5DF2913F48F00F93A87 /* ChatTitleRow.swift in Sources */,
 				7F597482292E3F950018ADF5 /* OwnerSettingOperatingTimeView.swift in Sources */,
+				7FFA0C392951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift in Sources */,
 				7F29D56D2902DB4700F93A87 /* OwnerQRCodeView.swift in Sources */,
 				7F29D5EB2913FF4000F93A87 /* View+Ext.swift in Sources */,
 				7F29D576290416AA00F93A87 /* WorkerPulseView.swift in Sources */,
@@ -691,6 +697,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CommunicationHelperApp/CommunicationHelperApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"CommunicationHelperApp/Preview Content\"";
@@ -723,6 +730,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CommunicationHelperApp/CommunicationHelperApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"CommunicationHelperApp/Preview Content\"";
