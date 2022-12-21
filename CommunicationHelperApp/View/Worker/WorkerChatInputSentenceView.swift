@@ -14,7 +14,6 @@ struct WorkerChatInputSentenceView: View {
     @State var whenText = ""
     @State var whyText = ""
     @State var howText = ""
-    var happty = ""
 
     var body: some View {
         ZStack {

@@ -9,6 +9,12 @@ import ComposableArchitecture
 import Foundation
 
 struct WorkerChatInputFiveWsAndOneHState: Equatable {
+    var whereText = ""
+    var whoText = ""
+    var whatText = ""
+    var whenText = ""
+    var whyText = ""
+    var howText = ""
     var hasInputWhere = false
     var hasInputWho = false
     var hasInputWhat = false
@@ -18,12 +24,12 @@ struct WorkerChatInputFiveWsAndOneHState: Equatable {
 }
 
 enum WorkerChatInputFiveWsAndOneHAction {
-    case checkInputWhere
-    case checkInputWho
-    case checkInputWhat
-    case checkInputWhen
-    case checkInputWhy
-    case checkInputHow
+    case inputWhere(String)
+    case inputWho(String)
+    case inputWhat(String)
+    case inputWhen(String)
+    case inputWhy(String)
+    case inputHow(String)
 }
 
 struct WorkerChatInputFiveWsAndOneHEnvironment {
@@ -31,22 +37,28 @@ struct WorkerChatInputFiveWsAndOneHEnvironment {
 
 let workerChatInputFiveWsAndOneHReducer = Reducer<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction, WorkerChatInputFiveWsAndOneHEnvironment> { state, action, _ in
     switch action {
-    case .checkInputWhere:
+    case .inputWhere:
+        state.hasInputWhere = true
         return .none
 
-    case .checkInputWho:
+    case .inputWho:
+        state.hasInputWho = true
         return .none
 
-    case .checkInputWhat:
+    case .inputWhat:
+        state.hasInputWhat = true
         return .none
 
-    case .checkInputWhen:
+    case .inputWhen:
+        state.hasInputWhen = true
         return .none
 
-    case .checkInputWhy:
+    case .inputWhy:
+        state.hasInputWhy = true
         return .none
 
-    case .checkInputHow:
+    case .inputHow:
+        state.hasInputHow = true
         return .none
     }
 }
