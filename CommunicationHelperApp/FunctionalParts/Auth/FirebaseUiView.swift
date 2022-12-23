@@ -17,6 +17,10 @@ struct FirebaseUIView: UIViewControllerRepresentable {
         Coordinator(self)
     }
 
+    // signInApple
+    // https://ios-docs.dev/guideline4-8/
+    // https://www.amefure.com/tech/swift-firebase-authentication-apple
+    // https://i-app-tec.com/ios/apply-application.html
     func makeUIViewController(context: Context) -> UINavigationController {
         let authUI = FUIAuth.defaultAuthUI()!
         let providers: [FUIAuthProvider] = [
