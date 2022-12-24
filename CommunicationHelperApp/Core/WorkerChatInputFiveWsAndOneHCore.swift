@@ -9,27 +9,23 @@ import ComposableArchitecture
 import Foundation
 
 struct WorkerChatInputFiveWsAndOneHState: Equatable {
-    var whereText = ""
-    var whoText = ""
-    var whatText = ""
-    var whenText = ""
-    var whyText = ""
-    var howText = ""
-    var hasInputWhere = false
+    var allString = ""
     var hasInputWho = false
     var hasInputWhat = false
     var hasInputWhen = false
     var hasInputWhy = false
     var hasInputHow = false
+    var showSendTextButton = false
 }
 
 enum WorkerChatInputFiveWsAndOneHAction {
-    case inputWhere(String)
-    case inputWho(String)
-    case inputWhat(String)
-    case inputWhen(String)
-    case inputWhy(String)
-    case inputHow(String)
+    case afterInputWhere
+    case afterInputWho
+    case afterInputWhat
+    case afterInputWhen
+    case afterInputWhy
+    case afterInputHow
+    case getAllString(whereText: String, whoText: String, whatText: String, whenText: String, whyText: String, howText: String)
 }
 
 struct WorkerChatInputFiveWsAndOneHEnvironment {
@@ -37,28 +33,34 @@ struct WorkerChatInputFiveWsAndOneHEnvironment {
 
 let workerChatInputFiveWsAndOneHReducer = Reducer<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction, WorkerChatInputFiveWsAndOneHEnvironment> { state, action, _ in
     switch action {
-    case .inputWhere:
-        state.hasInputWhere = true
-        return .none
-
-    case .inputWho:
+    case .afterInputWhere:
         state.hasInputWho = true
         return .none
 
-    case .inputWhat:
+    case .afterInputWho:
         state.hasInputWhat = true
         return .none
 
-    case .inputWhen:
+    case .afterInputWhat:
         state.hasInputWhen = true
         return .none
 
-    case .inputWhy:
+    case .afterInputWhen:
         state.hasInputWhy = true
         return .none
 
-    case .inputHow:
+    case .afterInputWhy:
         state.hasInputHow = true
+        return .none
+
+    case .afterInputHow:
+        // ここで送信ボタンを押せるようにする。
+        return .none
+
+    case let .getAllString(whereText, whoText, whatText, whenText, whyText, howText ):
+        var allString = whereText + "で" + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
+        state.allString = allString
+        print("hirohiro_allString: ", state.allString)
         return .none
     }
 }

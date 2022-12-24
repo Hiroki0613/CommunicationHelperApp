@@ -5,9 +5,12 @@
 //  Created by 近藤宏輝 on 2022/12/05.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
+    let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
+
     var body: some View {
         ZStack {
             PrimaryColor.background
@@ -28,7 +31,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                 Spacer().frame(height: 10)
                 ZStack {
                     // TCAのスコープを通して、WorkerChatInputSentenceViewとも連動させる。
-                    WorkerChatInputSentenceView()
+                    WorkerChatInputSentenceView(store: store)
                         .frame(height: 312)
                         .cornerRadius(20)
                         .padding(.horizontal, 22)
@@ -63,7 +66,13 @@ struct WorkerChatInputFiveWsAndOneHView: View {
 
 struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerChatInputFiveWsAndOneHView()
+        WorkerChatInputFiveWsAndOneHView(
+            store: Store(
+                initialState: WorkerChatInputFiveWsAndOneHState(),
+                reducer: workerChatInputFiveWsAndOneHReducer,
+                environment: WorkerChatInputFiveWsAndOneHEnvironment()
+            )
+        )
     }
 }
 

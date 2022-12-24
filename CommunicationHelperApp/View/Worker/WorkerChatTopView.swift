@@ -5,9 +5,12 @@
 //  Created by 近藤宏輝 on 2022/11/03.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatTopView: View {
+    let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
+
     var messageArray = [
          "コミュニケーション",
          "どうやってとるの？",
@@ -38,7 +41,8 @@ struct WorkerChatTopView: View {
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 NavigationLink(
                     destination: {
-                        WorkerChatInputFiveWsAndOneHView()
+                        WorkerChatInputFiveWsAndOneHView(
+                            store: store)
                     },
                     label: {
                         Text("送信する")
@@ -58,6 +62,12 @@ struct WorkerChatTopView: View {
 
 struct ChatTopView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerChatTopView()
+        WorkerChatTopView(
+            store: Store(
+                initialState: WorkerChatInputFiveWsAndOneHState(),
+                reducer: workerChatInputFiveWsAndOneHReducer,
+                environment: WorkerChatInputFiveWsAndOneHEnvironment()
+            )
+        )
     }
 }

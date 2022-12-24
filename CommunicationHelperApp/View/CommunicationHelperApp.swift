@@ -28,7 +28,13 @@ struct CommunicationHelperApp: App {
                     environment: TopEnvironment()
                 )
             )
-//            WorkerFiveWsAndOneHChatInputView()
+//            WorkerChatInputFiveWsAndOneHView(
+//                store: Store(
+//                    initialState: WorkerChatInputFiveWsAndOneHState(),
+//                    reducer: workerChatInputFiveWsAndOneHReducer,
+//                    environment: WorkerChatInputFiveWsAndOneHEnvironment()
+//                )
+//            )
 //            AuthTestView()
         }
     }

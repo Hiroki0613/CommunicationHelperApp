@@ -121,7 +121,12 @@ struct TestWorkerView: View {
                         Spacer().frame(height: 20)
                         NavigationLink(
                             destination: {
-                                WorkerChatTopView()
+                                WorkerChatTopView(
+                                    store: store.scope(
+                                        state: \.workerChatInputFiveWsAndOneHState,
+                                        action: WorkerTopAction.workerChatInputFiveWsAndOneHAction
+                                    )
+                                )
                             },
                             label: {
                                 Text("Chat")
