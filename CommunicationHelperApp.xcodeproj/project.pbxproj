@@ -71,6 +71,7 @@
 		7FFA0C34294F526F00E2BC27 /* FirebaseGoogleAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7FFA0C33294F526F00E2BC27 /* FirebaseGoogleAuthUI */; };
 		7FFA0C36294F526F00E2BC27 /* FirebaseOAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7FFA0C35294F526F00E2BC27 /* FirebaseOAuthUI */; };
 		7FFA0C392951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFA0C382951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift */; };
+		7FFA0C3B29572F0E00E2BC27 /* WorkerChatTopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFA0C3A29572F0E00E2BC27 /* WorkerChatTopCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +134,7 @@
 		7FFA0C2B294F4C6F00E2BC27 /* FirebaseUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUiView.swift; sourceTree = "<group>"; };
 		7FFA0C372950B63700E2BC27 /* CommunicationHelperApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommunicationHelperApp.entitlements; sourceTree = "<group>"; };
 		7FFA0C382951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerChatInputFiveWsAndOneHCore.swift; sourceTree = "<group>"; };
+		7FFA0C3A29572F0E00E2BC27 /* WorkerChatTopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerChatTopCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 			children = (
 				7F29D56828FEECE900F93A87 /* TopCore.swift */,
 				7F29D5C8290D64B400F93A87 /* WorkerTopCore.swift */,
+				7FFA0C3A29572F0E00E2BC27 /* WorkerChatTopCore.swift */,
 				7FFA0C382951F46B00E2BC27 /* WorkerChatInputFiveWsAndOneHCore.swift */,
 				7F84C76F291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift */,
 				7F84C791291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift */,
@@ -533,6 +536,7 @@
 				7F84C792291E90CA00F11B01 /* WorkerMorningQrCodeCore.swift in Sources */,
 				7F29D5862904348D00F93A87 /* AVCaptureDevice+Ext.swift in Sources */,
 				7F29D5CF290E9C0F00F93A87 /* WorkerPulseTopView.swift in Sources */,
+				7FFA0C3B29572F0E00E2BC27 /* WorkerChatTopCore.swift in Sources */,
 				7F29D5CB290E9AE800F93A87 /* WorkerNewSignUpView.swift in Sources */,
 				7F29D5C9290D64B400F93A87 /* WorkerTopCore.swift in Sources */,
 				7F84C79A292529F300F11B01 /* OwnerManageStaffTopView.swift in Sources */,
