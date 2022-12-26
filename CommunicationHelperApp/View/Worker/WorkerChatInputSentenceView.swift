@@ -40,8 +40,9 @@ struct WorkerChatInputSentenceView: View {
                         textOpacity: true,
                         onSubmitAction: {
                             print("hirohiro_どこで入力: ", whereText)
-                            viewStore.send(.afterInputWhere)
                             focusedField = .whoText
+                            // TODO: TCAを使うと、なぜか前の画面に戻ってしまう・・・
+                            viewStore.send(.afterInputWhere)
                         }
                     )
                     .focused($focusedField, equals: .whereText)
@@ -50,11 +51,12 @@ struct WorkerChatInputSentenceView: View {
                         inputText: whoText,
                         inputTextBinding: $whoText,
                         suffixText: "が",
-                        textOpacity: viewStore.hasInputWho,
+//                        textOpacity: viewStore.hasInputWho,
+                        textOpacity: true,
                         onSubmitAction: {
                             print("hirohiro_だれが入力: ", whoText)
-                            viewStore.send(.afterInputWho)
                             focusedField = .whatText
+                            viewStore.send(.afterInputWho)
                         }
                     )
                     .focused($focusedField, equals: .whoText)
@@ -66,8 +68,8 @@ struct WorkerChatInputSentenceView: View {
                         textOpacity: viewStore.hasInputWhat,
                         onSubmitAction: {
                             print("hirohiro_なにを入力: ", whatText)
-                            viewStore.send(.afterInputWhat)
                             focusedField = .whenText
+                            viewStore.send(.afterInputWhat)
                         }
                     )
                     .focused($focusedField, equals: .whatText)
@@ -79,8 +81,8 @@ struct WorkerChatInputSentenceView: View {
                         textOpacity: viewStore.hasInputWhen,
                         onSubmitAction: {
                             print("hirohiro_いつ入力: ", whenText)
-                            viewStore.send(.afterInputWhen)
                             focusedField = .whyText
+                            viewStore.send(.afterInputWhen)
                         }
                     )
                     .focused($focusedField, equals: .whenText)
@@ -92,8 +94,8 @@ struct WorkerChatInputSentenceView: View {
                         textOpacity: viewStore.hasInputWhy,
                         onSubmitAction: {
                             print("hirohiro_なぜ入力: ", whyText)
-                            viewStore.send(.afterInputWhy)
                             focusedField = .howText
+                            viewStore.send(.afterInputWhy)
                         }
                     )
                     .focused($focusedField, equals: .whyText)
@@ -104,11 +106,10 @@ struct WorkerChatInputSentenceView: View {
                         suffixText: "",
                         textOpacity: viewStore.hasInputHow,
                         onSubmitAction: {
-                            viewStore.send(.afterInputHow)
                             print("hirohiro_どうした入力: ", howText)
                             let allString = whereText + whoText + whatText + whenText + whyText + howText
-//                            print("hirohiro_allString:", allString)
                             viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
+                            viewStore.send(.afterInputHow)
                         }
                     )
                     .focused($focusedField, equals: .howText)
@@ -153,7 +154,7 @@ struct WorkerChatInputSentenceView: View {
                 .foregroundColor(Color.black)
             Spacer()
         }
-        .opacity(textOpacity ? 1.0 : 0.0)
+//        .opacity(textOpacity ? 1.0 : 0.0)
     }
 }
 
