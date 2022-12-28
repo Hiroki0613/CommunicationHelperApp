@@ -11,7 +11,8 @@ import Foundation
 struct WorkerTopState: Equatable {
     var workerNewRegistrationQrScanState = WorkerNewRegistrationQrScanState()
     var workerMorningQrCodeState = WorkerMorningQrCodeState()
-    var workerChatInputFiveWsAndOneHState = WorkerChatInputFiveWsAndOneHState()
+    var workerChatTopState = WorkerChatTopState()
+//    var workerChatInputFiveWsAndOneHState = WorkerChatInputFiveWsAndOneHState()
     // firebaseAuthLogin
     var isLogedIn = false
     var isShowingQrReader = false
@@ -28,7 +29,8 @@ struct WorkerTopState: Equatable {
 enum WorkerTopAction {
     case workerNewRegistrationQrScanAction(WorkerNewRegistrationQrScanAction)
     case workerMorningQrCodeAction(WorkerMorningQrCodeAction)
-    case workerChatInputFiveWsAndOneHAction(WorkerChatInputFiveWsAndOneHAction)
+    case workerChatTopAction(WorkerChatTopAction)
+//    case workerChatInputFiveWsAndOneHAction(WorkerChatInputFiveWsAndOneHAction)
     case goToPulseView(Bool)
     case goToEndOfWorkView(Bool)
     case onAppear
@@ -48,9 +50,12 @@ struct WorkerTopEnvironment {
     var workerMorningQrCodeEnvironment: WorkerMorningQrCodeEnvironment {
         .init()
     }
-    var workerChatInputFiveWsAndOneHEnvironment: WorkerChatInputFiveWsAndOneHEnvironment {
+    var workerChatTopEnvironment: WorkerChatTopEnvironMent {
         .init()
     }
+//    var workerChatInputFiveWsAndOneHEnvironment: WorkerChatInputFiveWsAndOneHEnvironment {
+//        .init()
+//    }
 }
 
 let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment>.combine(
@@ -64,11 +69,16 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
         action: /WorkerTopAction.workerMorningQrCodeAction,
         environment: \.workerMorningQrCodeEnvironment
     ),
-    workerChatInputFiveWsAndOneHReducer.pullback(
-        state: \.workerChatInputFiveWsAndOneHState,
-        action: /WorkerTopAction.workerChatInputFiveWsAndOneHAction,
-        environment: \.workerChatInputFiveWsAndOneHEnvironment
+    workerChatTopReducer.pullback(
+        state: \.workerChatTopState,
+        action: /WorkerTopAction.workerChatTopAction,
+        environment: \.workerChatTopEnvironment
     ),
+//    workerChatInputFiveWsAndOneHReducer.pullback(
+//        state: \.workerChatInputFiveWsAndOneHState,
+//        action: /WorkerTopAction.workerChatInputFiveWsAndOneHAction,
+//        environment: \.workerChatInputFiveWsAndOneHEnvironment
+//    ),
     Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment> { state, action, _ in
         switch action {
         case .workerNewRegistrationQrScanAction(.firstLogin):
@@ -84,8 +94,11 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
         case .workerMorningQrCodeAction:
             return .none
 
-        case .workerChatInputFiveWsAndOneHAction:
+        case .workerChatTopAction:
             return .none
+
+//        case .workerChatInputFiveWsAndOneHAction:
+//            return .none
 
         case .goToPulseView(let isActive):
             state.isActivePulseView = isActive
