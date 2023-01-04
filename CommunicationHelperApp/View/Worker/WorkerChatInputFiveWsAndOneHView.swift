@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
-    let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
+    let store: Store<WorkerChatTopState, WorkerChatTopAction>
 
     var body: some View {
         ZStack {
@@ -31,10 +31,15 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                 Spacer().frame(height: 10)
                 ZStack {
                     // TCAのスコープを通して、WorkerChatInputSentenceViewとも連動させる。
-                    WorkerChatInputSentenceView(store: store)
-                        .frame(height: 312)
-                        .cornerRadius(20)
-                        .padding(.horizontal, 22)
+                    WorkerChatInputSentenceView(
+                        store: store.scope(
+                            state: \.workerChatInputFiveWsAndOneHState,
+                            action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
+                        )
+                    )
+                    .frame(height: 312)
+                    .cornerRadius(20)
+                    .padding(.horizontal, 22)
                 }
                 Spacer().frame(height: 10)
                 NavigationLink(
@@ -68,9 +73,9 @@ struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
     static var previews: some View {
         WorkerChatInputFiveWsAndOneHView(
             store: Store(
-                initialState: WorkerChatInputFiveWsAndOneHState(),
-                reducer: workerChatInputFiveWsAndOneHReducer,
-                environment: WorkerChatInputFiveWsAndOneHEnvironment()
+                initialState: WorkerChatTopState(),
+                reducer: workerChatTopReducer,
+                environment: WorkerChatTopEnvironMent()
             )
         )
     }

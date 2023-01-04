@@ -30,8 +30,8 @@ struct WorkerTopView: View {
                     case .working:
                         WorkerChatTopView(
                             store: store.scope(
-                                state: \.workerChatInputFiveWsAndOneHState,
-                                action: WorkerTopAction.workerChatInputFiveWsAndOneHAction
+                                state: \.workerChatTopState,
+                                action: WorkerTopAction.workerChatTopAction
                             )
                         )
                         .navigationBarTitleDisplayMode(.inline)
