@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatTopView: View {
-    let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
+    let store: Store<WorkerChatTopState, WorkerChatTopAction>
 
     var messageArray = [
          "コミュニケーション",
@@ -41,8 +41,7 @@ struct WorkerChatTopView: View {
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 NavigationLink(
                     destination: {
-                        WorkerChatInputFiveWsAndOneHView(
-                            store: store)
+                        WorkerChatInputFiveWsAndOneHView(store: store)
                     },
                     label: {
                         Text("送信する")
@@ -64,9 +63,9 @@ struct ChatTopView_Previews: PreviewProvider {
     static var previews: some View {
         WorkerChatTopView(
             store: Store(
-                initialState: WorkerChatInputFiveWsAndOneHState(),
-                reducer: workerChatInputFiveWsAndOneHReducer,
-                environment: WorkerChatInputFiveWsAndOneHEnvironment()
+                initialState: WorkerChatTopState(),
+                reducer: workerChatTopReducer,
+                environment: WorkerChatTopEnvironMent()
             )
         )
     }
