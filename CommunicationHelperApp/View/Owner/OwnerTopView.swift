@@ -24,6 +24,18 @@ struct OwnerTopView: View {
                      ・チャットはOwnerのUUID直下に置くようにする。チャットルームは、独立させる。ただし、Workerとは紐付けをしておいて該当のチャットルームを出すようにする。
                      ・出勤、不在が一目でわかるようにすると良さそう。
                      ・オーナー側の作業者の削除機能はどうする？名前を変えて、そのまま使い続けるのも構わない。
+                     ・やるべきことリスト
+                     　1. FirebaseUIを実装 ( AuthTestView()を参考に )
+                     　2. ログインをしているかをチェック
+                     　3. ログイン画面しているかどうかで画面の切り替え
+                     　　https://www.youtube.com/watch?v=hwbHQf1Mvxk
+                     　4. QRリーダーを実装
+                     　5. QR作成を実装
+                     　6. 気圧計を実装
+                     　7. チャット機能を実装(Ownerは選べる)
+                     　8. ListViewでスタッフ、作業者のUIを実装
+                     　9. 通知機能を実装
+                     　10. 決済機能を実装
                      */
                     OwnerSettingTopView(viewStore: viewStore)
                         .tabItem {
