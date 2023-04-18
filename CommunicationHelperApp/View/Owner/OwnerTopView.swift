@@ -26,7 +26,9 @@ struct OwnerTopView: View {
                      ・オーナー側の作業者の削除機能はどうする？名前を変えて、そのまま使い続けるのも構わない。
                      ・やるべきことリスト
                      　1. FirebaseUIを実装 ( AuthTestView()を参考に )
+                     　　→ 場合によっては、通常のログイン画面でも良さそう。
                      　2. ログインをしているかをチェック
+                     　　→ Auth.auth().addStateDidChangeListener
                      　3. ログイン画面しているかどうかで画面の切り替え
                      　　https://www.youtube.com/watch?v=hwbHQf1Mvxk
                      　4. QRリーダーを実装
