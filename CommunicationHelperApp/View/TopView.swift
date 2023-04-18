@@ -73,26 +73,6 @@ struct TopView: View {
                                     .padding(.horizontal, 22)
                             }
                         )
-//                        Spacer().frame(height: 66)
-//                        NavigationLink(
-//                            destination: {
-//                                OwnerTopView(
-//                                    store: store.scope(
-//                                        state: \.ownerState,
-//                                        action: TopAction.ownerAction
-//                                    )
-//                                )
-//                            }, label: {
-//                                Text("支援者さん")
-//                                    .fontWeight(.semibold)
-//                                    .font(.system(size: 20))
-//                                    .foregroundColor(Color.black)
-//                                    .frame(maxWidth: .infinity, minHeight: 96)
-//                                    .background(PrimaryColor.buttonColor)
-//                                    .cornerRadius(20)
-//                                    .padding(.horizontal, 22)
-//                            }
-//                        )
                         Spacer()
                     }
                     VStack {

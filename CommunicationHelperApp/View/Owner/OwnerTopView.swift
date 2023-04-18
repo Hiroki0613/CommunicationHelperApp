@@ -53,8 +53,6 @@ struct OwnerTopView: View {
                         }
                 }
                 .navigationBarBackButtonHidden(true)
-            } else {
-//                OwnerLoginView(viewStore: viewStore)
             }
         }
     }
