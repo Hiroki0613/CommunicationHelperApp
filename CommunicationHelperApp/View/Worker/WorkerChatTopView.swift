@@ -11,6 +11,7 @@ import SwiftUI
 struct WorkerChatTopView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
 
+    // TODO: ここのチャット画面はOwnerアプリを踏襲する形で良い。
     var messageArray = [
          "コミュニケーション",
          "どうやってとるの？",
