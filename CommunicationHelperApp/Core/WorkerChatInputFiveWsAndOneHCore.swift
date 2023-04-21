@@ -57,6 +57,7 @@ let workerChatInputFiveWsAndOneHReducer = Reducer<WorkerChatInputFiveWsAndOneHSt
         // ここで送信ボタンを押せるようにする。
         return .none
 
+        // TODO: 近藤　ここでチャットの内容を送信している。
     case let .getAllString(whereText, whoText, whatText, whenText, whyText, howText ):
         var allString = whereText + "で" + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
         state.allString = allString
