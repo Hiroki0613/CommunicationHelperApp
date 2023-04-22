@@ -25,6 +25,7 @@ struct WorkerChatInputSentenceView: View {
     @State private var whenText = ""
     @State private var whyText = ""
     @State private var howText = ""
+    @State private var messageText = ""
     @FocusState private var focusedField: Field?
 
     var body: some View {
@@ -109,6 +110,7 @@ struct WorkerChatInputSentenceView: View {
                             print("hirohiro_どうした入力: ", howText)
                             let allString = whereText + whoText + whatText + whenText + whyText + howText
 //                            viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
+                            print("hirohiro_allStringです: ", allString)
 //                            viewStore.send(.afterInputHow)
                         }
                     )
@@ -118,7 +120,7 @@ struct WorkerChatInputSentenceView: View {
             }
             .onTapGesture {
                 focusedField = nil
-                viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
+//                viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
             }
         }
         .onAppear {

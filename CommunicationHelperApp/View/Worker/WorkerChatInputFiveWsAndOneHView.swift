@@ -10,6 +10,13 @@ import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
+    @Binding var whereText: String
+    @Binding var whoText: String
+    @Binding var whatText: String
+    @Binding var whenText: String
+    @Binding var whyText: String
+    @Binding var howText: String
+    @Binding var messageText: String
 
     var body: some View {
         ZStack {
@@ -44,6 +51,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                 Spacer().frame(height: 10)
                 NavigationLink(
                     destination: {
+                        // TODO: ここにパルス情報を送信すること。
                         WorkerPulseView()
                     },
                     label: {

@@ -11,7 +11,9 @@ import SwiftUI
 import UIKit
 
 struct PulseView: UIViewControllerRepresentable {
+    @Binding var messageText: String
     func makeUIViewController(context: Context) -> UIViewController {
+        print("hirohiro_messageText: ", messageText)
         return PulseViewController()
     }
 
