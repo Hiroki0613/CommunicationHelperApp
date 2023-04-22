@@ -19,7 +19,7 @@ struct TestWorkerView: View {
                     send: WorkerTopAction.goToPulseView
                 ),
                 destination: {
-                    PulseView()
+                    PulseView(messageText: "hirohiro_TestWorkerViewから来た")
 //                    PulseViewView()
                         .frame(width: 300, height: 300)
                 },

@@ -116,7 +116,7 @@ struct WorkerTopView: View {
                     send: WorkerTopAction.goToPulseView
                 )
             ) {
-                PulseView()
+                PulseView(messageText: "hirohiro_WorkerTopViewから来た")
             }
             .sheet(
                 isPresented: viewStore.binding(

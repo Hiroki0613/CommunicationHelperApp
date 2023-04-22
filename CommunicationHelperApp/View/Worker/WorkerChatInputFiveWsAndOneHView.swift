@@ -10,13 +10,6 @@ import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
-    @Binding var whereText: String
-    @Binding var whoText: String
-    @Binding var whatText: String
-    @Binding var whenText: String
-    @Binding var whyText: String
-    @Binding var howText: String
-    @Binding var messageText: String
 
     var body: some View {
         ZStack {
@@ -36,7 +29,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                     makeInputLabel(text: "どうした")
                 }
                 Spacer().frame(height: 10)
-                ZStack {
+//                ZStack {
                     // TCAのスコープを通して、WorkerChatInputSentenceViewとも連動させる。
                     WorkerChatInputSentenceView(
                         store: store.scope(
@@ -44,24 +37,24 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                             action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
                         )
                     )
-                    .frame(height: 312)
-                    .cornerRadius(20)
-                    .padding(.horizontal, 22)
-                }
-                Spacer().frame(height: 10)
-                NavigationLink(
-                    destination: {
-                        // TODO: ここにパルス情報を送信すること。
-                        WorkerPulseView()
-                    },
-                    label: {
-                        Text("送信")
-                            .foregroundColor(Color.white)
-                            .frame(width: 270, height: 70)
-                            .background(PrimaryColor.buttonRedColor)
-                            .cornerRadius(20)
-                    }
-                )
+//                    .frame(height: 312)
+//                    .cornerRadius(20)
+//                    .padding(.horizontal, 22)
+//                }
+//                Spacer().frame(height: 10)
+//                NavigationLink(
+//                    destination: {
+//                        // TODO: ここにパルス情報を送信すること。
+//                        WorkerPulseView(messageText: messageText)
+//                    },
+//                    label: {
+//                        Text("送信")
+//                            .foregroundColor(Color.white)
+//                            .frame(width: 270, height: 70)
+//                            .background(PrimaryColor.buttonRedColor)
+//                            .cornerRadius(20)
+//                    }
+//                )
                 Spacer()
             }
         }

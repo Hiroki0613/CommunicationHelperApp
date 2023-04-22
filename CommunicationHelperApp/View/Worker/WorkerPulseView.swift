@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct WorkerPulseView: View {
+    var messageText: String
+
     var body: some View {
         // TODO: 近藤　チャット機能＋パルス機能にする。
         /*
@@ -60,12 +62,12 @@ struct WorkerPulseView: View {
          4. その時に、自分の意見を早く通すためにhelpを押すと、同時に表示される前にhelpを押した側の文章が表れる
          
          */
-        PulseView()
+        PulseView(messageText: messageText)
     }
 }
 
 struct WorkerPulseView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerPulseView()
+        WorkerPulseView(messageText: "")
     }
 }

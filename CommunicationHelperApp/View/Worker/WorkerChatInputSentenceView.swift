@@ -30,98 +30,124 @@ struct WorkerChatInputSentenceView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            ZStack {
-                PrimaryColor.buttonColor
-                VStack(spacing: 10) {
-                    makeFiveWsAndOneHTextField(
-                        placeHolder: "　どこで",
-                        inputText: whereText,
-                        inputTextBinding: $whereText,
-                        suffixText: "で",
-                        textOpacity: true,
-                        onSubmitAction: {
-                            print("hirohiro_どこで入力: ", whereText)
-                            focusedField = .whoText
-                            // TODO: TCAを使うと、なぜか前の画面に戻ってしまう・・・
-//                            viewStore.send(.afterInputWhere)
-                        }
-                    )
-                    .focused($focusedField, equals: .whereText)
-                    makeFiveWsAndOneHTextField(
-                        placeHolder: "　誰が",
-                        inputText: whoText,
-                        inputTextBinding: $whoText,
-                        suffixText: "が",
-//                        textOpacity: viewStore.hasInputWho,
-                        textOpacity: true,
-                        onSubmitAction: {
-                            print("hirohiro_だれが入力: ", whoText)
-                            focusedField = .whatText
-//                            viewStore.send(.afterInputWho)
-                        }
-                    )
-                    .focused($focusedField, equals: .whoText)
-                    makeFiveWsAndOneHTextField(
-                        placeHolder: "　何を",
-                        inputText: whatText,
-                        inputTextBinding: $whatText,
-                        suffixText: "を",
-                        textOpacity: viewStore.hasInputWhat,
-                        onSubmitAction: {
-                            print("hirohiro_なにを入力: ", whatText)
-                            focusedField = .whenText
-//                            viewStore.send(.afterInputWhat)
-                        }
-                    )
-                    .focused($focusedField, equals: .whatText)
-                    makeFiveWsAndOneHTextField(
-                        placeHolder: "　いつ",
-                        inputText: whenText,
-                        inputTextBinding: $whenText,
-                        suffixText: "に",
-                        textOpacity: viewStore.hasInputWhen,
-                        onSubmitAction: {
-                            print("hirohiro_いつ入力: ", whenText)
-                            focusedField = .whyText
-//                            viewStore.send(.afterInputWhen)
-                        }
-                    )
-                    .focused($focusedField, equals: .whenText)
-                    makeFiveWsAndOneHTextField(
-                        placeHolder: "　なぜ",
-                        inputText: whyText,
-                        inputTextBinding: $whyText,
-                        suffixText: "",
-                        textOpacity: viewStore.hasInputWhy,
-                        onSubmitAction: {
-                            print("hirohiro_なぜ入力: ", whyText)
-                            focusedField = .howText
-//                            viewStore.send(.afterInputWhy)
-                        }
-                    )
-                    .focused($focusedField, equals: .whyText)
-                    makeFiveWsAndOneHTextField(
-                        placeHolder: "　どうした",
-                        inputText: howText,
-                        inputTextBinding: $howText,
-                        suffixText: "",
-                        textOpacity: viewStore.hasInputHow,
-                        onSubmitAction: {
-                            print("hirohiro_どうした入力: ", howText)
-                            let allString = whereText + whoText + whatText + whenText + whyText + howText
-//                            viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
-                            print("hirohiro_allStringです: ", allString)
-//                            viewStore.send(.afterInputHow)
-                        }
-                    )
-                    .focused($focusedField, equals: .howText)
+            VStack {
+                ZStack {
+                    PrimaryColor.buttonColor
+                    VStack(spacing: 10) {
+                        makeFiveWsAndOneHTextField(
+                            placeHolder: "　どこで",
+                            inputText: whereText,
+                            inputTextBinding: $whereText,
+                            suffixText: "で",
+                            textOpacity: true,
+                            onSubmitAction: {
+                                print("hirohiro_どこで入力: ", whereText)
+                                focusedField = .whoText
+                                // TODO: TCAを使うと、なぜか前の画面に戻ってしまう・・・
+    //                            viewStore.send(.afterInputWhere)
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                        )
+                        .focused($focusedField, equals: .whereText)
+                        makeFiveWsAndOneHTextField(
+                            placeHolder: "　誰が",
+                            inputText: whoText,
+                            inputTextBinding: $whoText,
+                            suffixText: "が",
+    //                        textOpacity: viewStore.hasInputWho,
+                            textOpacity: true,
+                            onSubmitAction: {
+                                print("hirohiro_だれが入力: ", whoText)
+                                focusedField = .whatText
+    //                            viewStore.send(.afterInputWho)
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                        )
+                        .focused($focusedField, equals: .whoText)
+                        makeFiveWsAndOneHTextField(
+                            placeHolder: "　何を",
+                            inputText: whatText,
+                            inputTextBinding: $whatText,
+                            suffixText: "を",
+                            textOpacity: viewStore.hasInputWhat,
+                            onSubmitAction: {
+                                print("hirohiro_なにを入力: ", whatText)
+                                focusedField = .whenText
+    //                            viewStore.send(.afterInputWhat)
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                        )
+                        .focused($focusedField, equals: .whatText)
+                        makeFiveWsAndOneHTextField(
+                            placeHolder: "　いつ",
+                            inputText: whenText,
+                            inputTextBinding: $whenText,
+                            suffixText: "に",
+                            textOpacity: viewStore.hasInputWhen,
+                            onSubmitAction: {
+                                print("hirohiro_いつ入力: ", whenText)
+                                focusedField = .whyText
+    //                            viewStore.send(.afterInputWhen)
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                        )
+                        .focused($focusedField, equals: .whenText)
+                        makeFiveWsAndOneHTextField(
+                            placeHolder: "　なぜ",
+                            inputText: whyText,
+                            inputTextBinding: $whyText,
+                            suffixText: "",
+                            textOpacity: viewStore.hasInputWhy,
+                            onSubmitAction: {
+                                print("hirohiro_なぜ入力: ", whyText)
+                                focusedField = .howText
+    //                            viewStore.send(.afterInputWhy)
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                        )
+                        .focused($focusedField, equals: .whyText)
+                        makeFiveWsAndOneHTextField(
+                            placeHolder: "　どうした",
+                            inputText: howText,
+                            inputTextBinding: $howText,
+                            suffixText: "",
+                            textOpacity: viewStore.hasInputHow,
+                            onSubmitAction: {
+                                print("hirohiro_どうした入力: ", howText)
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+    //                            viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
+                                print("hirohiro_allStringです: ", messageText)
+    //                            viewStore.send(.afterInputHow)
+                            }
+                        )
+                        .focused($focusedField, equals: .howText)
+                    }
+                    .padding()
+                   
                 }
-                .padding()
+                .frame(height: 312)
+                .cornerRadius(20)
+                .padding(.horizontal, 22)
+
+                NavigationLink(
+                    destination: {
+                        WorkerPulseView(messageText: messageText)
+                    },
+                    label: {
+                        Text("送信")
+                            .foregroundColor(Color.white)
+                            .frame(width: 270, height: 70)
+                            .background(PrimaryColor.buttonRedColor)
+                            .cornerRadius(20)
+                    }
+                )
             }
+            
             .onTapGesture {
                 focusedField = nil
 //                viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
             }
+
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
