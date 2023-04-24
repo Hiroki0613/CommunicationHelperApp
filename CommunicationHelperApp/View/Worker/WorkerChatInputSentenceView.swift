@@ -19,7 +19,6 @@ enum Field: Hashable {
 
 struct WorkerChatInputSentenceView: View {
     let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
-    @Binding var isWorkerChatTopViewActive: Bool
     @State private var isWorkerChatInputSentenceViewActive = false
     @State private var whereText = ""
     @State private var whoText = ""
@@ -44,11 +43,16 @@ struct WorkerChatInputSentenceView: View {
                             suffixText: "で",
                             textOpacity: true,
                             onSubmitAction: {
-                                print("hirohiro_どこで入力: ", whereText)
                                 focusedField = .whoText
                                 // TODO: TCAを使うと、なぜか前の画面に戻ってしまう・・・
     //                            viewStore.send(.afterInputWhere)
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                if whereText.isEmpty {
+                                    messageText = whoText + whatText + whenText + whyText + howText
+                                } else {
+                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
+
+                                }
+                                print("hirohiro_どこで入力: ", whereText, messageText)
                             }
                         )
                         .focused($focusedField, equals: .whereText)
@@ -60,10 +64,14 @@ struct WorkerChatInputSentenceView: View {
     //                        textOpacity: viewStore.hasInputWho,
                             textOpacity: true,
                             onSubmitAction: {
-                                print("hirohiro_だれが入力: ", whoText)
                                 focusedField = .whatText
     //                            viewStore.send(.afterInputWho)
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                if whoText.isEmpty {
+                                    messageText = whereText + whatText + whenText + whyText + howText
+                                } else {
+                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                }
+                                print("hirohiro_だれが入力: ", whoText, messageText)
                             }
                         )
                         .focused($focusedField, equals: .whoText)
@@ -74,10 +82,14 @@ struct WorkerChatInputSentenceView: View {
                             suffixText: "を",
                             textOpacity: viewStore.hasInputWhat,
                             onSubmitAction: {
-                                print("hirohiro_なにを入力: ", whatText)
                                 focusedField = .whenText
     //                            viewStore.send(.afterInputWhat)
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                if whenText.isEmpty {
+                                    messageText = whereText + whoText + whenText + whyText + howText
+                                } else {
+                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                }
+                                print("hirohiro_なにを入力: ", whatText, messageText)
                             }
                         )
                         .focused($focusedField, equals: .whatText)
@@ -88,10 +100,15 @@ struct WorkerChatInputSentenceView: View {
                             suffixText: "に",
                             textOpacity: viewStore.hasInputWhen,
                             onSubmitAction: {
-                                print("hirohiro_いつ入力: ", whenText)
                                 focusedField = .whyText
     //                            viewStore.send(.afterInputWhen)
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                if whenText.isEmpty {
+                                    messageText = whereText + whoText + whatText + whyText + howText
+                                } else {
+                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
+
+                                }
+                                print("hirohiro_いつ入力: ", whenText, messageText)
                             }
                         )
                         .focused($focusedField, equals: .whenText)
@@ -102,10 +119,14 @@ struct WorkerChatInputSentenceView: View {
                             suffixText: "",
                             textOpacity: viewStore.hasInputWhy,
                             onSubmitAction: {
-                                print("hirohiro_なぜ入力: ", whyText)
                                 focusedField = .howText
     //                            viewStore.send(.afterInputWhy)
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                if whyText.isEmpty {
+                                    messageText = whereText + whoText + whatText + whenText + howText
+                                } else {
+                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                }
+                                print("hirohiro_なぜ入力: ", whyText, messageText)
                             }
                         )
                         .focused($focusedField, equals: .whyText)
@@ -117,7 +138,11 @@ struct WorkerChatInputSentenceView: View {
                             textOpacity: viewStore.hasInputHow,
                             onSubmitAction: {
                                 print("hirohiro_どうした入力: ", howText)
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                if howText.isEmpty {
+                                    messageText = whereText + whoText + whatText + whenText + whyText
+                                } else {
+                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                }
     //                            viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
                                 print("hirohiro_allStringです: ", messageText)
     //                            viewStore.send(.afterInputHow)
@@ -126,7 +151,6 @@ struct WorkerChatInputSentenceView: View {
                         .focused($focusedField, equals: .howText)
                     }
                     .padding()
-                   
                 }
                 .frame(height: 312)
                 .cornerRadius(20)
@@ -237,14 +261,14 @@ struct WorkerChatInputSentenceView: View {
     }
 }
 
-//struct WorkerChatInputSentenceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WorkerChatInputSentenceView(
-//            store: Store(
-//                initialState: WorkerChatInputFiveWsAndOneHState(),
-//                reducer: workerChatInputFiveWsAndOneHReducer,
-//                environment: WorkerChatInputFiveWsAndOneHEnvironment()
-//            )
-//        )
-//    }
-//}
+struct WorkerChatInputSentenceView_Previews: PreviewProvider {
+    static var previews: some View {
+        WorkerChatInputSentenceView(
+            store: Store(
+                initialState: WorkerChatInputFiveWsAndOneHState(),
+                reducer: workerChatInputFiveWsAndOneHReducer,
+                environment: WorkerChatInputFiveWsAndOneHEnvironment()
+            )
+        )
+    }
+}

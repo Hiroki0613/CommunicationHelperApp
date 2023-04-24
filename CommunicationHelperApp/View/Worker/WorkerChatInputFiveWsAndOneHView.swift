@@ -36,8 +36,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                         store: store.scope(
                             state: \.workerChatInputFiveWsAndOneHState,
                             action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
-                        ),
-                        isWorkerChatTopViewActive: $isWorkerChatTopViewActive
+                        )
                     )
 //                    .frame(height: 312)
 //                    .cornerRadius(20)
