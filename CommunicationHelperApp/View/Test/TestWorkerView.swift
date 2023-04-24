@@ -20,7 +20,6 @@ struct TestWorkerView: View {
                 ),
                 destination: {
                     PulseView(messageText: "hirohiro_TestWorkerViewから来た")
-//                    PulseViewView()
                         .frame(width: 300, height: 300)
                 },
                 label: {

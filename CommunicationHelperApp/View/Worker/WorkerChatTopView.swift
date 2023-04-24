@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WorkerChatTopView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
+    @State private var isWorkerChatTopViewActive: Bool = false
 
     // TODO: ここのチャット画面はOwnerアプリを踏襲する形で良い。
     var messageArray = [
@@ -40,23 +41,63 @@ struct WorkerChatTopView: View {
                 }
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
+//                Button(
+//                    action: {
+//                        openView.toggle()
+//                    },
+//                    label: {
+//                        Text("送信する")
+//                            .foregroundColor(Color.black)
+//                            .frame(width: 200, height: 50)
+//                            .background(PrimaryColor.buttonColor)
+//                            .cornerRadius(20)
+//                            .padding()
+//                    }
+//                )
+//                NavigationLink(
+//                    destination: {
+//                        WorkerChatInputFiveWsAndOneHView(store: store)
+//                    },
+//                    label: {
+//                        Text("送信する")
+//                            .foregroundColor(Color.black)
+//                            .frame(width: 200, height: 50)
+//                            .background(PrimaryColor.buttonColor)
+//                            .cornerRadius(20)
+//                            .padding()
+//                    }
+//                )
                 NavigationLink(
-                    destination: {
-                        WorkerChatInputFiveWsAndOneHView(store: store)
-                    },
-                    label: {
-                        Text("送信する")
-                            .foregroundColor(Color.black)
-                            .frame(width: 200, height: 50)
-                            .background(PrimaryColor.buttonColor)
-                            .cornerRadius(20)
-                            .padding()
-                    })
+                    destination: WorkerChatInputFiveWsAndOneHView(
+                        store: store,
+                        isWorkerChatTopViewActive: $isWorkerChatTopViewActive
+                    ),
+                    isActive: $isWorkerChatTopViewActive) {
+                        Button(
+                            action: {
+                                self.isWorkerChatTopViewActive = true
+                            },
+                            label: {
+                                Text("送信する")
+                                    .foregroundColor(Color.black)
+                                    .frame(width: 200, height: 50)
+                                    .background(PrimaryColor.buttonColor)
+                                    .cornerRadius(20)
+                                    .padding()
+                            }
+                        )
+                    }
                 Spacer()
             }
 //            ChatMessageField()
         }
         .background(PrimaryColor.background)
+//        .fullScreenCover(
+//            isPresented: $openView,
+//            content: {
+//                WorkerChatInputFiveWsAndOneHView(store: store, openView: $openView)
+//            }
+//        )
     }
 }
 

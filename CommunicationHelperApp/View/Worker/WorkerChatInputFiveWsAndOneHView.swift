@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
+    @Binding var isWorkerChatTopViewActive: Bool
 
     var body: some View {
         ZStack {
@@ -35,7 +36,8 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                         store: store.scope(
                             state: \.workerChatInputFiveWsAndOneHState,
                             action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
-                        )
+                        ),
+                        isWorkerChatTopViewActive: $isWorkerChatTopViewActive
                     )
 //                    .frame(height: 312)
 //                    .cornerRadius(20)
@@ -70,17 +72,17 @@ struct WorkerChatInputFiveWsAndOneHView: View {
     }
 }
 
-struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkerChatInputFiveWsAndOneHView(
-            store: Store(
-                initialState: WorkerChatTopState(),
-                reducer: workerChatTopReducer,
-                environment: WorkerChatTopEnvironMent()
-            )
-        )
-    }
-}
+//struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WorkerChatInputFiveWsAndOneHView(
+//            store: Store(
+//                initialState: WorkerChatTopState(),
+//                reducer: workerChatTopReducer,
+//                environment: WorkerChatTopEnvironMent()
+//            )
+//        )
+//    }
+//}
 
 extension String {
     func size(with font: UIFont) -> CGSize {

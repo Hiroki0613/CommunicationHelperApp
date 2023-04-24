@@ -19,6 +19,8 @@ enum Field: Hashable {
 
 struct WorkerChatInputSentenceView: View {
     let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
+    @Binding var isWorkerChatTopViewActive: Bool
+    @State private var isWorkerChatInputSentenceViewActive = false
     @State private var whereText = ""
     @State private var whoText = ""
     @State private var whatText = ""
@@ -27,6 +29,7 @@ struct WorkerChatInputSentenceView: View {
     @State private var howText = ""
     @State private var messageText = ""
     @FocusState private var focusedField: Field?
+    @State private var openChatView: Bool = false
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -129,9 +132,12 @@ struct WorkerChatInputSentenceView: View {
                 .cornerRadius(20)
                 .padding(.horizontal, 22)
 
-                NavigationLink(
-                    destination: {
-                        WorkerPulseView(messageText: messageText)
+                Button(
+                    action: {
+                        if messageText.isEmpty { return }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                            openChatView.toggle()
+                        })
                     },
                     label: {
                         Text("送信")
@@ -141,13 +147,58 @@ struct WorkerChatInputSentenceView: View {
                             .cornerRadius(20)
                     }
                 )
+//                NavigationLink(
+//                    destination: {
+//                        WorkerPulseView(messageText: messageText)
+//                    },
+//                    label: {
+//                        Text("送信")
+//                            .foregroundColor(Color.white)
+//                            .frame(width: 270, height: 70)
+//                            .background(PrimaryColor.buttonRedColor)
+//                            .cornerRadius(20)
+//                    }
+//                )
+//                NavigationLink(
+//                    destination: PulseView(
+//                        isWorkerChatTopViewActive: $isWorkerChatTopViewActive,
+//                        messageText: messageText
+//                    ),
+//                    isActive: $isWorkerChatInputSentenceViewActive) {
+//                        Button(
+//                            action: {
+//                                if messageText.isEmpty { return }
+//                                self.isWorkerChatInputSentenceViewActive = true
+//                            },
+//                            label: {
+//                                Text("送信")
+//                                    .foregroundColor(Color.white)
+//                                    .frame(width: 270, height: 70)
+//                                    .background(PrimaryColor.buttonRedColor)
+//                                    .cornerRadius(20)
+//                            }
+//                        )
+//                    }
             }
-            
             .onTapGesture {
                 focusedField = nil
 //                viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
             }
-
+            .fullScreenCover(
+                isPresented: $openChatView,
+                content: {
+                    PulseView(messageText: messageText)
+                        .onDisappear {
+                            whereText = ""
+                            whoText = ""
+                            whatText = ""
+                            whenText = ""
+                            whyText = ""
+                            howText = ""
+                            messageText = ""
+                        }
+                }
+            )
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -186,14 +237,14 @@ struct WorkerChatInputSentenceView: View {
     }
 }
 
-struct WorkerChatInputSentenceView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkerChatInputSentenceView(
-            store: Store(
-                initialState: WorkerChatInputFiveWsAndOneHState(),
-                reducer: workerChatInputFiveWsAndOneHReducer,
-                environment: WorkerChatInputFiveWsAndOneHEnvironment()
-            )
-        )
-    }
-}
+//struct WorkerChatInputSentenceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WorkerChatInputSentenceView(
+//            store: Store(
+//                initialState: WorkerChatInputFiveWsAndOneHState(),
+//                reducer: workerChatInputFiveWsAndOneHReducer,
+//                environment: WorkerChatInputFiveWsAndOneHEnvironment()
+//            )
+//        )
+//    }
+//}
