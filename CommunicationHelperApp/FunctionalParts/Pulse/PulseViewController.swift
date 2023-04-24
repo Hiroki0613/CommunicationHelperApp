@@ -169,9 +169,24 @@ class PulseViewController: UIViewController {
                             self.pulseLabel.text = "\(lroundf(pulse)) BPM"
                             // TODO: ここで心拍数を送信する機能sendMessageを発火させれば良い。
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                guard let auth = Auth.auth().currentUser?.uid else { return }
+//                                guard let auth = Auth.auth().currentUser?.uid else { return }
                                 if self.hasSendMessage == false {
-                                    self.db.collection("OwnerList").document(auth).collection("ChatRoomId").document(self.personalID).collection("Chat").document().setData(
+//                                    self.db.collection("OwnerList").document(auth).collection("ChatRoomId").document(self.personalID).collection("Chat").document().setData(
+//                                        ["id": "\(UUID())" as Any,
+//                                         "personalId": self.personalID as Any,
+//                                         "personalInformation": "\(round(pulse))BPM" as Any,
+//                                         "text": self.messageText as Any,
+//                                         "timestamp": Date() as Any,
+//                                        ]
+//                                    ) { error in
+//                                        // TODO: 何かしらの処理を入れたほうが良いかも
+//                                        print("hirohiro_d_error: ", error)
+//                                    }
+                                    self.db.collection("OwnerList")
+                                        .document("onLqDuEae8asgxF9UtdlFds8Cdg1")
+                                        .collection("ChatRoomId")
+                                        .document("worker_LblN3rJuKgiP6WfrMp86")
+                                        .collection("Chat").document().setData(
                                         ["id": "\(UUID())" as Any,
                                          "personalId": self.personalID as Any,
                                          "personalInformation": "\(round(pulse))BPM" as Any,

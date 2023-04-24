@@ -11,62 +11,45 @@ import SwiftUI
 struct WorkerChatTopView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
-
-    // TODO: ここのチャット画面はOwnerアプリを踏襲する形で良い。
-    var messageArray = [
-         "コミュニケーション",
-         "どうやってとるの？",
-         "チャットでも取れるよ",
-         "それすごいね!",
-         "具体的な例があるとわかりやすいよ",
-         "例えば",
-         "心拍数をもとに測定したりとか"
-    ]
+    @StateObject var messagesManager = MessagesManager()
 
     var body: some View {
         VStack {
             VStack {
                 ChatTitleRow()
-                ScrollView {
-                    ForEach(messageArray, id: \.self) { text in
-                        ChatMessageBubble(
-                            message: ChatMessage(
-                                id: "12345",
-                                text: text,
-                                received: text.count % 2 == 1 ? true : false,
-                                timestamp: Date()
-                            )
-                        )
+//                ScrollView {
+////                    ForEach(messageArray, id: \.self) { text in
+////                        ChatMessageBubble(
+////                            message: ChatMessage(
+////                                id: "12345",
+////                                text: text,
+////                                received: text.count % 2 == 1 ? true : false,
+////                                timestamp: Date()
+////                            )
+////                        )
+////                    }
+//
+//                }
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        // TODO: ここに背景色を入れると、うまいこと背景が入ってくる。
+                        PrimaryColor.backgroundGreen
+                        ForEach(messagesManager.messages, id: \.id) { message in
+                            let _ = print("hirohiro_message: ", message)
+                            MessageBubble(message: message)
+                        }
+                    }
+                    .padding(.top, 10)
+                    .background(.green)
+                    .onChange(of: messagesManager.lastMessageId) { id in
+                        // When the lastMessageId changes, scroll to the bottom of the conversation
+                        withAnimation {
+                            proxy.scrollTo(id, anchor: .bottom)
+                        }
                     }
                 }
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
-//                Button(
-//                    action: {
-//                        openView.toggle()
-//                    },
-//                    label: {
-//                        Text("送信する")
-//                            .foregroundColor(Color.black)
-//                            .frame(width: 200, height: 50)
-//                            .background(PrimaryColor.buttonColor)
-//                            .cornerRadius(20)
-//                            .padding()
-//                    }
-//                )
-//                NavigationLink(
-//                    destination: {
-//                        WorkerChatInputFiveWsAndOneHView(store: store)
-//                    },
-//                    label: {
-//                        Text("送信する")
-//                            .foregroundColor(Color.black)
-//                            .frame(width: 200, height: 50)
-//                            .background(PrimaryColor.buttonColor)
-//                            .cornerRadius(20)
-//                            .padding()
-//                    }
-//                )
                 NavigationLink(
                     destination: WorkerChatInputFiveWsAndOneHView(
                         store: store,
@@ -92,12 +75,9 @@ struct WorkerChatTopView: View {
 //            ChatMessageField()
         }
         .background(PrimaryColor.background)
-//        .fullScreenCover(
-//            isPresented: $openView,
-//            content: {
-//                WorkerChatInputFiveWsAndOneHView(store: store, openView: $openView)
-//            }
-//        )
+        .onAppear {
+            messagesManager.getMessages(personalId: "")
+        }
     }
 }
 
@@ -110,5 +90,46 @@ struct ChatTopView_Previews: PreviewProvider {
                 environment: WorkerChatTopEnvironMent()
             )
         )
+    }
+}
+
+struct MessageBubble: View {
+    var message: Message
+    // TODO: MessageBubbleでのアライメント、色などはpersonalIdで判別すること。
+    var isMessageReceived = true
+
+    // TODO: 身体情報を入れるUIを作成すること personalInformation
+    var body: some View {
+        VStack(alignment: isMessageReceived ? .leading : .trailing) {
+            HStack(spacing: .zero) {
+                Text(message.text)
+                    .font(.caption2)
+                    .fontWeight(.thin)
+                    .padding(.all, 10)
+                    .foregroundColor(.black)
+                    .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
+                    .cornerRadius(10)
+                Spacer().frame(width: 5)
+                VStack {
+                    Spacer()
+                    Text("\(message.personalInformation)")
+                        .font(.caption2)
+                        .fontWeight(.thin)
+                        .foregroundColor(.gray)
+                        .padding(isMessageReceived ? .leading : .trailing, 10)
+                    Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                        .padding(isMessageReceived ? .leading : .trailing, 10)
+                    Spacer()
+                }
+                Spacer()
+            }
+            .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
+         
+        }
+        .frame(maxWidth: .infinity, alignment: isMessageReceived ? .leading : .trailing)
+        .padding(isMessageReceived ? .leading : .trailing)
+        .padding(.horizontal, 10)
     }
 }
