@@ -10,7 +10,6 @@ import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
-    @Binding var isWorkerChatTopViewActive: Bool
 
     var body: some View {
         ZStack {

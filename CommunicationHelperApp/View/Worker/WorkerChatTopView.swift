@@ -51,10 +51,7 @@ struct WorkerChatTopView: View {
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 NavigationLink(
-                    destination: WorkerChatInputFiveWsAndOneHView(
-                        store: store,
-                        isWorkerChatTopViewActive: $isWorkerChatTopViewActive
-                    ),
+                    destination: WorkerChatInputFiveWsAndOneHView(store: store),
                     isActive: $isWorkerChatTopViewActive) {
                         Button(
                             action: {
