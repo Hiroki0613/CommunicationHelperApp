@@ -11,13 +11,13 @@ import SwiftUI
 struct WorkerQRCodeView: View {
     @State private var qrCodeImage: UIImage?
     private let qRCodeGenerator = QRCodeGenerator()
+    var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
     var body: some View {
         ZStack {
             PrimaryColor.background
-            if let qrCodeImage = qRCodeGenerator.generate(
-                with: "https://dev.classmethod.jp/articles/swift-generate-qr-code/"
-            ) {
+            if let deviceId = userDefault.deviceId,
+               let qrCodeImage = qRCodeGenerator.generate(with: deviceId) {
                 VStack {
                     Text("おはようございます。\nニックネームさん")
                         .fontWeight(.semibold)
