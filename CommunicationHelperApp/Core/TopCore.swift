@@ -11,7 +11,7 @@ struct TopState: Equatable {
     var isBlackAndWhiteMode = false
     var ownerState: OwnerTopState
     var workerTopState: WorkerTopState
-    var isShowingNewSignIn = false
+    var isShowingNewSignIn = true
 }
 
 enum TopAction {
