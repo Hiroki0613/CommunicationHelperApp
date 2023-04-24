@@ -14,7 +14,8 @@ struct WorkerTopState: Equatable {
     var workerChatTopState = WorkerChatTopState()
 //    var workerChatInputFiveWsAndOneHState = WorkerChatInputFiveWsAndOneHState()
     // firebaseAuthLogin
-    var isLogedIn = false
+    // TODO: 暫定でカメラのチェックを外している。本来はisLogedIn = falseである。
+    var isLogedIn = true
     var isShowingQrReader = false
     var mode: Mode = .startOfWork
     var isActivePulseView = false
