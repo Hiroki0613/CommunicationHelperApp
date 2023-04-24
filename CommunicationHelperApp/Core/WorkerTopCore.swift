@@ -12,10 +12,6 @@ struct WorkerTopState: Equatable {
     var workerNewRegistrationQrScanState = WorkerNewRegistrationQrScanState()
     var workerMorningQrCodeState = WorkerMorningQrCodeState()
     var workerChatTopState = WorkerChatTopState()
-//    var workerChatInputFiveWsAndOneHState = WorkerChatInputFiveWsAndOneHState()
-    // firebaseAuthLogin
-    // TODO: 暫定でカメラのチェックを外している。本来はisLogedIn = falseである。
-    var isLogedIn = true
     var isShowingQrReader = false
     var mode: Mode = .startOfWork
     var isActivePulseView = false
@@ -54,9 +50,6 @@ struct WorkerTopEnvironment {
     var workerChatTopEnvironment: WorkerChatTopEnvironMent {
         .init()
     }
-//    var workerChatInputFiveWsAndOneHEnvironment: WorkerChatInputFiveWsAndOneHEnvironment {
-//        .init()
-//    }
 }
 
 let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment>.combine(
@@ -75,11 +68,6 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
         action: /WorkerTopAction.workerChatTopAction,
         environment: \.workerChatTopEnvironment
     ),
-//    workerChatInputFiveWsAndOneHReducer.pullback(
-//        state: \.workerChatInputFiveWsAndOneHState,
-//        action: /WorkerTopAction.workerChatInputFiveWsAndOneHAction,
-//        environment: \.workerChatInputFiveWsAndOneHEnvironment
-//    ),
     Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnvironment> { state, action, _ in
         switch action {
         case .workerNewRegistrationQrScanAction(.firstLogin):
@@ -97,9 +85,6 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
 
         case .workerChatTopAction:
             return .none
-
-//        case .workerChatInputFiveWsAndOneHAction:
-//            return .none
 
         case .goToPulseView(let isActive):
             state.isActivePulseView = isActive
@@ -127,8 +112,6 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
             return .none
 
         case .login:
-            // TODO: staff、worker側は正しいQRコードを読み取り次第、アニノマスログインを行う。
-            state.isLogedIn = true
             return .none
 
         case .logout:

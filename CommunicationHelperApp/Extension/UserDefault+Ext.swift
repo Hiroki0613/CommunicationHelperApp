@@ -18,7 +18,8 @@ struct UserDefaultsDataStoreProvider {
 protocol UserDefaultDataStore {
     var hasLogin: Bool? { get set }
     var officeId: String? { get set }
-    var terminalId: String? { get set }
+    var deviceId: String? { get set }
+    var workerId: String? { get set }
     var isBlackAndWhiteMode: Bool? { get set }
 }
 
@@ -41,12 +42,21 @@ private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
             UserDefaults.standard.synchronize()
         }
     }
-    var terminalId: String? {
+    var deviceId: String? {
         get {
-            return UserDefaults.standard.object(forKey: "terminalId") as? String
+            return UserDefaults.standard.object(forKey: "deviceId") as? String
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "terminalId")
+            UserDefaults.standard.set(newValue, forKey: "deviceId")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var workerId: String? {
+        get {
+            return UserDefaults.standard.object(forKey: "workerId") as? String
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "workerId")
             UserDefaults.standard.synchronize()
         }
     }
