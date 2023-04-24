@@ -17,7 +17,7 @@ struct UserDefaultsDataStoreProvider {
 
 protocol UserDefaultDataStore {
     var hasLogin: Bool? { get set }
-    var officeId: String? { get set }
+    var ownerId: String? { get set }
     var deviceId: String? { get set }
     var workerId: String? { get set }
     var isBlackAndWhiteMode: Bool? { get set }
@@ -33,7 +33,7 @@ private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
             UserDefaults.standard.synchronize()
         }
     }
-    var officeId: String? {
+    var ownerId: String? {
         get {
             return UserDefaults.standard.object(forKey: "officeId") as? String
         }

@@ -43,8 +43,10 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
         return .none
 
     case .readOfficeAuthUid(let id):
+        // TODO: ここでowner_のstringだけを取り除く。
+        var ownerId = id.replacingOccurrences(of: "owner_", with: "")
         state.hasReadOfficeAuthId = true
-        userDefault.officeId = id
+        userDefault.ownerId = ownerId
         return Effect(value: .finishReadQrCode)
 
     case .readDeviceId(let id):
@@ -54,7 +56,7 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
 
     case .finishReadQrCode:
         if userDefault.deviceId != nil
-            && userDefault.officeId != nil
+            && userDefault.ownerId != nil
             && state.hasReadOfficeAuthId
             && state.hasReadDeviceId {
             print("hirohiro_完了した")

@@ -21,8 +21,8 @@ struct WorkerTopView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
-                let _ = print("hirohiro_UserDefaults: ", userDefault.deviceId, userDefault.officeId, userDefault.workerId)
-                if userDefault.deviceId != nil && userDefault.officeId != nil {
+                let _ = print("hirohiro_UserDefaults: ", userDefault.deviceId, userDefault.ownerId, userDefault.workerId)
+                if userDefault.deviceId != nil && userDefault.ownerId != nil {
                     switch viewStore.mode {
                     case .startOfWork:
                         WorkerQRCodeView()
@@ -62,7 +62,7 @@ struct WorkerTopView: View {
                     HStack {
                         Spacer()
                         VStack {
-                            if userDefault.deviceId != nil && userDefault.officeId != nil {
+                            if userDefault.deviceId != nil && userDefault.ownerId != nil {
                                 Button(
                                     action: {
                                         viewStore.send(.testChangeView(.startOfWork))
