@@ -41,8 +41,6 @@ struct TopView: View {
     @State var flag = false
     let store: Store<TopState, TopAction>
 
-    // TODO: オーナー側はemail、passwordのログイン or appleIDログインを使う。というより、apple側が強制してくる。
-    // TODO: ここで最初にNavigationLinkを入れているのは大丈夫なのか・・・。確認したほうが良いかも・・・。そもそもcloudFunctionでidも取得できるらしいですし・・・。
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {

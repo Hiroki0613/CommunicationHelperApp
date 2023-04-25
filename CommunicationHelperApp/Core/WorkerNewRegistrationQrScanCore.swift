@@ -43,7 +43,7 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
         return .none
 
     case .readOfficeAuthUid(let id):
-        // TODO: ここでowner_のstringだけを取り除く。
+        // "owner_"のstringだけを取り除く。
         var ownerId = id.replacingOccurrences(of: "owner_", with: "")
         state.hasReadOfficeAuthId = true
         userDefault.ownerId = ownerId
@@ -64,6 +64,12 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
             state.hasReadOfficeAuthId = false
             state.hasReadDeviceId = false
             return Effect(value: .firstLogin)
+            // TODO: QRコードを読み込んだ時についでに行うこと。　匿名ログインでも問題が無いかは要確認。
+            /*
+             　1. 同時にFirebaseでデータを作成。そのときにFCMトークン欄も作成しておくこと。
+             　2. FCMトークンは朝の調整時に毎回、データを入れ替える。そのことで、トークンが入れ替わっていたら再セットをしなおす。
+             　3. FCMトークンはPush通知で使うために用意する。これが匿名ログインでも効果を発揮したら万歳である。
+             */
         }
         return .none
 

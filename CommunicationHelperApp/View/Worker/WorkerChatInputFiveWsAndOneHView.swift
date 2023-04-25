@@ -29,32 +29,12 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                     makeInputLabel(text: "どうした")
                 }
                 Spacer().frame(height: 10)
-//                ZStack {
-                    // TCAのスコープを通して、WorkerChatInputSentenceViewとも連動させる。
-                    WorkerChatInputSentenceView(
-                        store: store.scope(
-                            state: \.workerChatInputFiveWsAndOneHState,
-                            action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
-                        )
+                WorkerChatInputSentenceView(
+                    store: store.scope(
+                        state: \.workerChatInputFiveWsAndOneHState,
+                        action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
                     )
-//                    .frame(height: 312)
-//                    .cornerRadius(20)
-//                    .padding(.horizontal, 22)
-//                }
-//                Spacer().frame(height: 10)
-//                NavigationLink(
-//                    destination: {
-//                        // TODO: ここにパルス情報を送信すること。
-//                        WorkerPulseView(messageText: messageText)
-//                    },
-//                    label: {
-//                        Text("送信")
-//                            .foregroundColor(Color.white)
-//                            .frame(width: 270, height: 70)
-//                            .background(PrimaryColor.buttonRedColor)
-//                            .cornerRadius(20)
-//                    }
-//                )
+                )
                 Spacer()
             }
         }
@@ -70,17 +50,17 @@ struct WorkerChatInputFiveWsAndOneHView: View {
     }
 }
 
-//struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WorkerChatInputFiveWsAndOneHView(
-//            store: Store(
-//                initialState: WorkerChatTopState(),
-//                reducer: workerChatTopReducer,
-//                environment: WorkerChatTopEnvironMent()
-//            )
-//        )
-//    }
-//}
+struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
+    static var previews: some View {
+        WorkerChatInputFiveWsAndOneHView(
+            store: Store(
+                initialState: WorkerChatTopState(),
+                reducer: workerChatTopReducer,
+                environment: WorkerChatTopEnvironMent()
+            )
+        )
+    }
+}
 
 extension String {
     func size(with font: UIFont) -> CGSize {

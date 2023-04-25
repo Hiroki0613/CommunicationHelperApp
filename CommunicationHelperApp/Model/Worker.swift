@@ -24,7 +24,7 @@ class WorkerSettingManager: ObservableObject {
     let db = Firestore.firestore()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
-    // TODO: getWorkerDataが取得できない。
+    // TODO: getWorkerDataがリアルタイムで取得できない。
     func getWorkerData() {
         guard let ownerId = userDefault.ownerId,
               let deviceId = userDefault.deviceId else { return }

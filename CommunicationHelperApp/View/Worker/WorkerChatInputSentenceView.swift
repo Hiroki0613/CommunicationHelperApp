@@ -30,6 +30,7 @@ struct WorkerChatInputSentenceView: View {
     @FocusState private var focusedField: Field?
     @State private var openChatView: Bool = false
 
+    // TODO: 5W1Hを文章になるようにする。 messageText = whereText + "で" + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
@@ -41,11 +42,8 @@ struct WorkerChatInputSentenceView: View {
                             inputText: whereText,
                             inputTextBinding: $whereText,
                             suffixText: "で",
-                            textOpacity: true,
                             onSubmitAction: {
                                 focusedField = .whoText
-                                // TODO: TCAを使うと、なぜか前の画面に戻ってしまう・・・
-    //                            viewStore.send(.afterInputWhere)
                                 if whereText.isEmpty {
                                     messageText = whoText + whatText + whenText + whyText + howText
                                 } else {
@@ -61,11 +59,8 @@ struct WorkerChatInputSentenceView: View {
                             inputText: whoText,
                             inputTextBinding: $whoText,
                             suffixText: "が",
-    //                        textOpacity: viewStore.hasInputWho,
-                            textOpacity: true,
                             onSubmitAction: {
                                 focusedField = .whatText
-    //                            viewStore.send(.afterInputWho)
                                 if whoText.isEmpty {
                                     messageText = whereText + whatText + whenText + whyText + howText
                                 } else {
@@ -80,10 +75,8 @@ struct WorkerChatInputSentenceView: View {
                             inputText: whatText,
                             inputTextBinding: $whatText,
                             suffixText: "を",
-                            textOpacity: viewStore.hasInputWhat,
                             onSubmitAction: {
                                 focusedField = .whenText
-    //                            viewStore.send(.afterInputWhat)
                                 if whenText.isEmpty {
                                     messageText = whereText + whoText + whenText + whyText + howText
                                 } else {
@@ -98,10 +91,8 @@ struct WorkerChatInputSentenceView: View {
                             inputText: whenText,
                             inputTextBinding: $whenText,
                             suffixText: "に",
-                            textOpacity: viewStore.hasInputWhen,
                             onSubmitAction: {
                                 focusedField = .whyText
-    //                            viewStore.send(.afterInputWhen)
                                 if whenText.isEmpty {
                                     messageText = whereText + whoText + whatText + whyText + howText
                                 } else {
@@ -117,10 +108,8 @@ struct WorkerChatInputSentenceView: View {
                             inputText: whyText,
                             inputTextBinding: $whyText,
                             suffixText: "",
-                            textOpacity: viewStore.hasInputWhy,
                             onSubmitAction: {
                                 focusedField = .howText
-    //                            viewStore.send(.afterInputWhy)
                                 if whyText.isEmpty {
                                     messageText = whereText + whoText + whatText + whenText + howText
                                 } else {
@@ -135,7 +124,6 @@ struct WorkerChatInputSentenceView: View {
                             inputText: howText,
                             inputTextBinding: $howText,
                             suffixText: "",
-                            textOpacity: viewStore.hasInputHow,
                             onSubmitAction: {
                                 print("hirohiro_どうした入力: ", howText)
                                 if howText.isEmpty {
@@ -143,9 +131,7 @@ struct WorkerChatInputSentenceView: View {
                                 } else {
                                     messageText = whereText + whoText + whatText + whenText + whyText + howText
                                 }
-    //                            viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
                                 print("hirohiro_allStringです: ", messageText)
-    //                            viewStore.send(.afterInputHow)
                             }
                         )
                         .focused($focusedField, equals: .howText)
@@ -171,42 +157,9 @@ struct WorkerChatInputSentenceView: View {
                             .cornerRadius(20)
                     }
                 )
-//                NavigationLink(
-//                    destination: {
-//                        WorkerPulseView(messageText: messageText)
-//                    },
-//                    label: {
-//                        Text("送信")
-//                            .foregroundColor(Color.white)
-//                            .frame(width: 270, height: 70)
-//                            .background(PrimaryColor.buttonRedColor)
-//                            .cornerRadius(20)
-//                    }
-//                )
-//                NavigationLink(
-//                    destination: PulseView(
-//                        isWorkerChatTopViewActive: $isWorkerChatTopViewActive,
-//                        messageText: messageText
-//                    ),
-//                    isActive: $isWorkerChatInputSentenceViewActive) {
-//                        Button(
-//                            action: {
-//                                if messageText.isEmpty { return }
-//                                self.isWorkerChatInputSentenceViewActive = true
-//                            },
-//                            label: {
-//                                Text("送信")
-//                                    .foregroundColor(Color.white)
-//                                    .frame(width: 270, height: 70)
-//                                    .background(PrimaryColor.buttonRedColor)
-//                                    .cornerRadius(20)
-//                            }
-//                        )
-//                    }
             }
             .onTapGesture {
                 focusedField = nil
-//                viewStore.send(.getAllString(whereText: whereText, whoText: whoText, whatText: whatText, whenText: whenText, whyText: whyText, howText: howText))
             }
             .fullScreenCover(
                 isPresented: $openChatView,
@@ -236,7 +189,6 @@ struct WorkerChatInputSentenceView: View {
         inputText: String,
         inputTextBinding: Binding<String>,
         suffixText: String,
-        textOpacity: Bool,
         onSubmitAction: @escaping(() -> Void)
     ) -> some View {
         HStack {
@@ -257,7 +209,6 @@ struct WorkerChatInputSentenceView: View {
                 .foregroundColor(Color.black)
             Spacer()
         }
-//        .opacity(textOpacity ? 1.0 : 0.0)
     }
 }
 

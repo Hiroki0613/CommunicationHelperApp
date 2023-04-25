@@ -194,7 +194,6 @@ class PulseViewController: UIViewController {
                                          "timestamp": Date() as Any,
                                         ]
                                     ) { error in
-                                        // TODO: 何かしらの処理を入れたほうが良いかも
                                         print("hirohiro_d_error: ", error)
                                     }
                                 }
@@ -277,7 +276,6 @@ extension PulseViewController {
             measurementStartedFlag = false
             pulseDetector.reset()
             DispatchQueue.main.async {
-//                self.toggleTorch(status: false)
                 self.thresholdLabel.text = "バックカメラに赤色 🟥　になるまで指をあててください"
             }
         }
@@ -466,7 +464,6 @@ extension PulseViewController {
 //            measurementStartedFlag = false
 //            pulseDetector.reset()
 //            DispatchQueue.main.async {
-//                self.toggleTorch(status: false)
 //                self.thresholdText = "バックカメラに赤色 🟥　になるまで指をあててください"
 //            }
 //        }
