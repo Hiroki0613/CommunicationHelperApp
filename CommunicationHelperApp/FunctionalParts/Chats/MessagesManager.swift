@@ -20,7 +20,7 @@ class MessagesManager: ObservableObject {
 
     func getMessages(personalId: String) {
         guard let ownerId = userDefault.ownerId,
-              let workerId = userDefault.workerId else { return }
+        let workerId = userDefault.workerId else { return }
         db.collection("OwnerList")
             .document(ownerId)
             .collection("ChatRoomId")
