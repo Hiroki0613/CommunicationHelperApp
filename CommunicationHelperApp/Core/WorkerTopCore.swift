@@ -37,7 +37,7 @@ enum WorkerTopAction {
     case login
     case logout
     case setWorkerData
-    case testChangeView(Mode)
+    case changeView(Mode)
 }
 
 struct WorkerTopEnvironment {
@@ -117,11 +117,11 @@ let workerTopReducer = Reducer<WorkerTopState, WorkerTopAction, WorkerTopEnviron
         case .logout:
             return .none
 
-            // workerのデータを設定。mode、terminalIdなど
+            // workerのデータを設定。mode、deviceなど
         case .setWorkerData:
             return .none
 
-        case .testChangeView(let mode):
+        case .changeView(let mode):
             state.mode = mode
             return .none
         }

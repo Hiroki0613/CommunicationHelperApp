@@ -23,6 +23,7 @@ struct WorkerTopView: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 let _ = print("hirohiro_UserDefaults: ", userDefault.deviceId, userDefault.ownerId, userDefault.workerId)
+                // TODO: 現状はリアルタイムでの更新が出来ていない状況
                 if userDefault.deviceId != nil && userDefault.ownerId != nil {
                     if let _ = userDefault.workerId,
                        let loginDate = userDefault.loginDate,
@@ -82,7 +83,7 @@ struct WorkerTopView: View {
                             if userDefault.deviceId != nil && userDefault.ownerId != nil {
                                 Button(
                                     action: {
-                                        viewStore.send(.testChangeView(.startOfWork))
+                                        viewStore.send(.changeView(.startOfWork))
                                     }, label: {
                                         Text("始業")
                                             .fontWeight(.semibold)
@@ -96,7 +97,7 @@ struct WorkerTopView: View {
                                 Spacer().frame(height: 20)
                                 Button(
                                     action: {
-                                        viewStore.send(.testChangeView(.working))
+                                        viewStore.send(.changeView(.working))
                                     }, label: {
                                         Text("作業中")
                                             .fontWeight(.semibold)
@@ -110,7 +111,7 @@ struct WorkerTopView: View {
                                 Spacer().frame(height: 20)
                                 Button(
                                     action: {
-                                        viewStore.send(.testChangeView(.endOfTheWork))
+                                        viewStore.send(.changeView(.endOfTheWork))
                                     }, label: {
                                         Text("終業")
                                             .fontWeight(.semibold)
