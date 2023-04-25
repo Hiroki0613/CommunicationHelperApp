@@ -19,7 +19,7 @@ struct WorkerQRCodeView: View {
             if let deviceId = userDefault.deviceId,
                let qrCodeImage = qRCodeGenerator.generate(with: deviceId) {
                 VStack {
-                    Text("おはようございます。\nニックネームさん")
+                    Text("おはようございます。\n")
                         .fontWeight(.semibold)
                         .font(.system(size: 20))
                         .foregroundColor(Color.black)

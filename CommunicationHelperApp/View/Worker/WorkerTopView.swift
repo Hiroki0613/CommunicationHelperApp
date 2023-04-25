@@ -17,12 +17,16 @@ enum Mode {
 struct WorkerTopView: View {
     let store: Store<WorkerTopState, WorkerTopAction>
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
+    @StateObject var workerSettingManager = WorkerSettingManager()
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack {
                 let _ = print("hirohiro_UserDefaults: ", userDefault.deviceId, userDefault.ownerId, userDefault.workerId)
                 if userDefault.deviceId != nil && userDefault.ownerId != nil {
+                    
+                    // TODO: if文のネストだけど、一旦の制御をかけよう。
+                    
                     switch viewStore.mode {
                     case .startOfWork:
                         WorkerQRCodeView()
@@ -126,6 +130,9 @@ struct WorkerTopView: View {
                 )
             ) {
                 WorkerEndOfWorkQRCodeView()
+            }
+            .onAppear {
+                workerSettingManager.getWorkerData()
             }
         }
     }

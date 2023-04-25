@@ -21,6 +21,7 @@ protocol UserDefaultDataStore {
     var deviceId: String? { get set }
     var workerId: String? { get set }
     var isBlackAndWhiteMode: Bool? { get set }
+    var loginDate: Date? { get set }
 }
 
 private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
@@ -66,6 +67,15 @@ private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "isBlackAndWhiteMode")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var loginDate: Date? {
+        get {
+            return UserDefaults.standard.object(forKey: "loginDate") as? Date
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "loginDate")
             UserDefaults.standard.synchronize()
         }
     }

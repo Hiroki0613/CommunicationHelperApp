@@ -50,6 +50,7 @@
 		7F50FA0C29F62B6200CD3CA6 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50FA0B29F62B6200CD3CA6 /* MessagesManager.swift */; };
 		7F50FA0E29F62B9E00CD3CA6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50FA0D29F62B9E00CD3CA6 /* Message.swift */; };
 		7F50FA1029F62C8100CD3CA6 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7F50FA0F29F62C8100CD3CA6 /* FirebaseFirestoreSwift */; };
+		7F50FA1229F67BF000CD3CA6 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F50FA1129F67BF000CD3CA6 /* Worker.swift */; };
 		7F59747C292A45050018ADF5 /* OwnerLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59747B292A45050018ADF5 /* OwnerLoginView.swift */; };
 		7F59747E292E27C00018ADF5 /* OwnerManageWorkerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59747D292E27C00018ADF5 /* OwnerManageWorkerCellView.swift */; };
 		7F597480292E38680018ADF5 /* OwnerManageStaffCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F59747F292E38680018ADF5 /* OwnerManageStaffCellView.swift */; };
@@ -117,6 +118,7 @@
 		7F29D5EA2913FF4000F93A87 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		7F50FA0B29F62B6200CD3CA6 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		7F50FA0D29F62B9E00CD3CA6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		7F50FA1129F67BF000CD3CA6 /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		7F59747B292A45050018ADF5 /* OwnerLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerLoginView.swift; sourceTree = "<group>"; };
 		7F59747D292E27C00018ADF5 /* OwnerManageWorkerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerManageWorkerCellView.swift; sourceTree = "<group>"; };
 		7F59747F292E38680018ADF5 /* OwnerManageStaffCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerManageStaffCellView.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				7F29D5E32913F6E100F93A87 /* Chats */,
+				7F50FA1129F67BF000CD3CA6 /* Worker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				7F50FA0E29F62B9E00CD3CA6 /* Message.swift in Sources */,
 				7F29D5CF290E9C0F00F93A87 /* WorkerPulseTopView.swift in Sources */,
 				7FFA0C3B29572F0E00E2BC27 /* WorkerChatTopCore.swift in Sources */,
+				7F50FA1229F67BF000CD3CA6 /* Worker.swift in Sources */,
 				7F29D5CB290E9AE800F93A87 /* WorkerNewSignUpView.swift in Sources */,
 				7F29D5C9290D64B400F93A87 /* WorkerTopCore.swift in Sources */,
 				7F84C79A292529F300F11B01 /* OwnerManageStaffTopView.swift in Sources */,
