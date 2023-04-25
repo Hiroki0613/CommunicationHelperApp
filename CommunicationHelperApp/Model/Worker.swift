@@ -36,15 +36,15 @@ class WorkerSettingManager: ObservableObject {
             self.workers = documents.compactMap{ document -> Worker? in
                 print("hirohiro_a_getWorkerData: ", documents)
                 do {
-                    if let index = self.workers.firstIndex(where: { $0.deviceId == deviceId }) {
-                        self.userDefault.workerId = self.workers[index].workerId
-                        self.userDefault.loginDate = Date()
-                    }
                     return try document.data(as: Worker.self)
                 } catch {
                     print("WorkerSettingManager / Error decoding document into Message: \(error)")
                     return nil
                 }
+            }
+            if let index = self.workers.firstIndex(where: { $0.deviceId == deviceId }) {
+                self.userDefault.workerId = self.workers[index].workerId
+                self.userDefault.loginDate = Date()
             }
             print("hirohiro_a_workers: ", self.workers, ownerId, deviceId)
         }
