@@ -24,15 +24,9 @@ struct WorkerTopView: View {
             ZStack {
                 let _ = print("hirohiro_UserDefaults: ", userDefault.deviceId, userDefault.ownerId, userDefault.workerId)
                 if userDefault.deviceId != nil && userDefault.ownerId != nil {
-                    
-                    // TODO: if文のネストだけど、一旦の制御をかけよう。
-                    
-                    switch viewStore.mode {
-                    case .startOfWork:
-                        WorkerQRCodeView()
-                            .navigationBarTitleDisplayMode(.inline)
-                            .navigationBarHidden(true)
-                    case .working:
+                    if let _ = userDefault.workerId,
+                       let loginDate = userDefault.loginDate,
+                       Calendar.current.isDateInToday(loginDate) {
                         WorkerChatTopView(
                             store: store.scope(
                                 state: \.workerChatTopState,
@@ -41,15 +35,34 @@ struct WorkerTopView: View {
                         )
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarHidden(true)
-                    case .endOfTheWork:
-                        WorkerEndOfWorkTopView(
-                            action: {
-                                viewStore.send(.goToEndOfWorkView(true))
-                            }
-                        )
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationBarHidden(true)
+                    } else {
+                        WorkerQRCodeView()
+                            .navigationBarTitleDisplayMode(.inline)
+                            .navigationBarHidden(true)
                     }
+//                    switch viewStore.mode {
+//                    case .startOfWork:
+//                        WorkerQRCodeView()
+//                            .navigationBarTitleDisplayMode(.inline)
+//                            .navigationBarHidden(true)
+//                    case .working:
+//                        WorkerChatTopView(
+//                            store: store.scope(
+//                                state: \.workerChatTopState,
+//                                action: WorkerTopAction.workerChatTopAction
+//                            )
+//                        )
+//                        .navigationBarTitleDisplayMode(.inline)
+//                        .navigationBarHidden(true)
+//                    case .endOfTheWork:
+//                        WorkerEndOfWorkTopView(
+//                            action: {
+//                                viewStore.send(.goToEndOfWorkView(true))
+//                            }
+//                        )
+//                        .navigationBarTitleDisplayMode(.inline)
+//                        .navigationBarHidden(true)
+//                    }
                 } else {
                     // TODO: トップ画面ではなく、WorkerTopViewでアニノマスログインをする。
                     WorkerNewSignUpView(
