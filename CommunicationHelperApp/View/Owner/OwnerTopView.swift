@@ -15,7 +15,6 @@
 //        WithViewStore(store) { viewStore in
 //            if viewStore.hasRegistrated {
 //                TabView {
-//                    // TODO: 画面には出さないが、端末管理は無制限に登録させる。作業者のみを課金制にする。
 //                    /*
 //                     ・端末追加はworker側がQRコードを読み込んで保存。
 //                     ・UserDefaultsに情報を保存して、朝礼時にその端末QRコードを表示するようにする。
