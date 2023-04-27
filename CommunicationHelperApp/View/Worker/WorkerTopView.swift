@@ -98,59 +98,59 @@ struct WorkerTopView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarHidden(true)
                 }
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        VStack {
-                            if userDefault.deviceId != nil && userDefault.ownerId != nil {
-                                Button(
-                                    action: {
-                                        viewStore.send(.changeView(.startOfWork))
-                                    }, label: {
-                                        Text("始業")
-                                            .fontWeight(.semibold)
-                                            .font(.system(size: 12))
-                                            .foregroundColor(Color.black)
-                                            .frame(maxWidth: 70, minHeight: 70)
-                                            .background(PrimaryColor.buttonColor)
-                                            .cornerRadius(35)
-                                    }
-                                )
-                                Spacer().frame(height: 20)
-                                Button(
-                                    action: {
-                                        viewStore.send(.changeView(.working))
-                                    }, label: {
-                                        Text("作業中")
-                                            .fontWeight(.semibold)
-                                            .font(.system(size: 12))
-                                            .foregroundColor(Color.black)
-                                            .frame(maxWidth: 70, minHeight: 70)
-                                            .background(PrimaryColor.buttonColor)
-                                            .cornerRadius(35)
-                                    }
-                                )
-                                Spacer().frame(height: 20)
-                                Button(
-                                    action: {
-                                        viewStore.send(.changeView(.endOfTheWork))
-                                    }, label: {
-                                        Text("終業")
-                                            .fontWeight(.semibold)
-                                            .font(.system(size: 12))
-                                            .foregroundColor(Color.black)
-                                            .frame(maxWidth: 70, minHeight: 70)
-                                            .background(PrimaryColor.buttonColor)
-                                            .cornerRadius(35)
-                                    }
-                                )
-                                Spacer().frame(height: 20)
-                            }
-                        }
-                    }
-                    Spacer().frame(height: 20)
-                }
+//                VStack {
+//                    Spacer()
+//                    HStack {
+//                        Spacer()
+//                        VStack {
+//                            if userDefault.deviceId != nil && userDefault.ownerId != nil {
+//                                Button(
+//                                    action: {
+//                                        viewStore.send(.changeView(.startOfWork))
+//                                    }, label: {
+//                                        Text("始業")
+//                                            .fontWeight(.semibold)
+//                                            .font(.system(size: 12))
+//                                            .foregroundColor(Color.black)
+//                                            .frame(maxWidth: 70, minHeight: 70)
+//                                            .background(PrimaryColor.buttonColor)
+//                                            .cornerRadius(35)
+//                                    }
+//                                )
+//                                Spacer().frame(height: 20)
+//                                Button(
+//                                    action: {
+//                                        viewStore.send(.changeView(.working))
+//                                    }, label: {
+//                                        Text("作業中")
+//                                            .fontWeight(.semibold)
+//                                            .font(.system(size: 12))
+//                                            .foregroundColor(Color.black)
+//                                            .frame(maxWidth: 70, minHeight: 70)
+//                                            .background(PrimaryColor.buttonColor)
+//                                            .cornerRadius(35)
+//                                    }
+//                                )
+//                                Spacer().frame(height: 20)
+//                                Button(
+//                                    action: {
+//                                        viewStore.send(.changeView(.endOfTheWork))
+//                                    }, label: {
+//                                        Text("終業")
+//                                            .fontWeight(.semibold)
+//                                            .font(.system(size: 12))
+//                                            .foregroundColor(Color.black)
+//                                            .frame(maxWidth: 70, minHeight: 70)
+//                                            .background(PrimaryColor.buttonColor)
+//                                            .cornerRadius(35)
+//                                    }
+//                                )
+//                                Spacer().frame(height: 20)
+//                            }
+//                        }
+//                    }
+//                    Spacer().frame(height: 20)
+//                }
             }
             .sheet(
                 isPresented: viewStore.binding(

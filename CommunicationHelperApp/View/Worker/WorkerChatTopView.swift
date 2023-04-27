@@ -17,7 +17,7 @@ struct WorkerChatTopView: View {
     var body: some View {
         VStack {
             VStack {
-                ChatTitleRow()
+//                ChatTitleRow()
                 ScrollViewReader { proxy in
                     ScrollView {
                         // TODO: ここに背景色を入れると、うまいこと背景が入ってくる。
