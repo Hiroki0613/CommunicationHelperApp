@@ -28,8 +28,7 @@ struct WorkerChatInputSentenceView: View {
     @State private var messageText = ""
     @FocusState private var focusedField: Field?
     @State private var openChatView: Bool = false
-    
-    // TODO: 5W1Hを文章になるようにする。 messageText = whereText + "で" + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
+
     var body: some View {
         VStack {
             ZStack {
@@ -43,9 +42,9 @@ struct WorkerChatInputSentenceView: View {
                         onSubmitAction: {
                             focusedField = .whoText
                             if whereText.isEmpty {
-                                messageText = whoText + whatText + whenText + whyText + howText
+                                messageText = whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             } else {
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で" + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             }
                             print("hirohiro_どこで入力: ", whereText, messageText)
                         }
@@ -59,9 +58,9 @@ struct WorkerChatInputSentenceView: View {
                         onSubmitAction: {
                             focusedField = .whatText
                             if whoText.isEmpty {
-                                messageText = whereText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whatText + "を" + whenText + "に" + whyText + howText
                             } else {
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             }
                             print("hirohiro_だれが入力: ", whoText, messageText)
                         }
@@ -75,9 +74,9 @@ struct WorkerChatInputSentenceView: View {
                         onSubmitAction: {
                             focusedField = .whenText
                             if whenText.isEmpty {
-                                messageText = whereText + whoText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whenText + "に" + whyText + howText
                             } else {
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             }
                             print("hirohiro_なにを入力: ", whatText, messageText)
                         }
@@ -91,9 +90,9 @@ struct WorkerChatInputSentenceView: View {
                         onSubmitAction: {
                             focusedField = .whyText
                             if whenText.isEmpty {
-                                messageText = whereText + whoText + whatText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whyText + howText
                             } else {
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             }
                             print("hirohiro_いつ入力: ", whenText, messageText)
                         }
@@ -107,9 +106,9 @@ struct WorkerChatInputSentenceView: View {
                         onSubmitAction: {
                             focusedField = .howText
                             if whyText.isEmpty {
-                                messageText = whereText + whoText + whatText + whenText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + howText
                             } else {
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             }
                             print("hirohiro_なぜ入力: ", whyText, messageText)
                         }
@@ -123,9 +122,9 @@ struct WorkerChatInputSentenceView: View {
                         onSubmitAction: {
                             print("hirohiro_どうした入力: ", howText)
                             if howText.isEmpty {
-                                messageText = whereText + whoText + whatText + whenText + whyText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + whyText
                             } else {
-                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                                messageText = whereText + "で"  + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
                             }
                             print("hirohiro_allStringです: ", messageText)
                         }
