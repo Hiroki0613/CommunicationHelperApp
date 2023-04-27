@@ -52,10 +52,10 @@ struct WorkerTopView: View {
 //                    }
                     if hasAlreadyMorningMeeting() {
                         WorkerChatTopView(
-                            store: store.scope(
-                                state: \.workerChatTopState,
-                                action: WorkerTopAction.workerChatTopAction
-                            )
+//                            store: store.scope(
+//                                state: \.workerChatTopState,
+//                                action: WorkerTopAction.workerChatTopAction
+//                            )
                         )
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarHidden(true)
@@ -64,8 +64,6 @@ struct WorkerTopView: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationBarHidden(true)
                     }
-                    
-                    
 //                    switch viewStore.mode {
 //                    case .startOfWork:
 //                        WorkerQRCodeView()
@@ -180,7 +178,6 @@ struct WorkerTopView: View {
         guard let index = workerSettingManager.workers.firstIndex(where: { $0.deviceId == userDefault.deviceId }) else { return false }
         let worker = workerSettingManager.workers[index]
         print("hirohiro_hasAlreadyMorningMeeting: ", worker.workerId, worker.timestamp)
-        
         if userDefault.workerId != nil || !worker.workerId.isEmpty,
            let userDefaultLoginDate = userDefault.loginDate,
            Calendar.current.isDateInToday(userDefaultLoginDate) || Calendar.current.isDateInToday(worker.timestamp) {

@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatTopView: View {
-    let store: Store<WorkerChatTopState, WorkerChatTopAction>
+//    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
     @StateObject var messagesManager = MessagesManager()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
@@ -18,19 +18,6 @@ struct WorkerChatTopView: View {
         VStack {
             VStack {
                 ChatTitleRow()
-//                ScrollView {
-////                    ForEach(messageArray, id: \.self) { text in
-////                        ChatMessageBubble(
-////                            message: ChatMessage(
-////                                id: "12345",
-////                                text: text,
-////                                received: text.count % 2 == 1 ? true : false,
-////                                timestamp: Date()
-////                            )
-////                        )
-////                    }
-//
-//                }
                 ScrollViewReader { proxy in
                     ScrollView {
                         // TODO: ここに背景色を入れると、うまいこと背景が入ってくる。
@@ -54,7 +41,7 @@ struct WorkerChatTopView: View {
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 NavigationLink(
-                    destination: WorkerChatInputFiveWsAndOneHView(store: store),
+                    destination: WorkerChatInputFiveWsAndOneHView(),
                     isActive: $isWorkerChatTopViewActive) {
                         Button(
                             action: {
@@ -72,7 +59,6 @@ struct WorkerChatTopView: View {
                     }
                 Spacer()
             }
-//            ChatMessageField()
         }
         .background(PrimaryColor.background)
         .onAppear {
@@ -84,53 +70,20 @@ struct WorkerChatTopView: View {
 struct ChatTopView_Previews: PreviewProvider {
     static var previews: some View {
         WorkerChatTopView(
-            store: Store(
-                initialState: WorkerChatTopState(),
-                reducer: workerChatTopReducer,
-                environment: WorkerChatTopEnvironMent()
-            )
+//            store: Store(
+//                initialState: WorkerChatTopState(),
+//                reducer: workerChatTopReducer,
+//                environment: WorkerChatTopEnvironMent()
+//            )
         )
     }
 }
 
 struct MessageBubble: View {
     var message: Message
-    // TODO: MessageBubbleでのアライメント、色などはpersonalIdで判別すること。
     var isMessageReceived: Bool
 
-    // TODO: 身体情報を入れるUIを作成すること personalInformation
     var body: some View {
-        //        VStack(alignment: isMessageReceived ? .leading : .trailing) {
-        //            HStack(spacing: .zero) {
-        //                Text(message.text)
-        //                    .font(.caption2)
-        //                    .fontWeight(.thin)
-        //                    .padding(.all, 10)
-        //                    .foregroundColor(.black)
-        //                    .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
-        //                    .cornerRadius(10)
-        //                Spacer().frame(width: 5)
-        //                VStack {
-        //                    Spacer()
-        //                    Text("\(message.personalInformation)")
-        //                        .font(.caption2)
-        //                        .fontWeight(.thin)
-        //                        .foregroundColor(.gray)
-        //                        .padding(isMessageReceived ? .leading : .trailing, 10)
-        //                    Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
-        //                        .font(.caption2)
-        //                        .foregroundColor(.gray)
-        //                        .padding(isMessageReceived ? .leading : .trailing, 10)
-        //                    Spacer()
-        //                }
-        //                Spacer()
-        //            }
-        //            .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
-        //
-        //        }
-        //        .frame(maxWidth: .infinity, alignment: isMessageReceived ? .leading : .trailing)
-        //        .padding(isMessageReceived ? .leading : .trailing)
-        //        .padding(.horizontal, 10)
         if isMessageReceived {
             // 左側 自分以外
             VStack {
@@ -159,7 +112,6 @@ struct MessageBubble: View {
                     Spacer()
                 }
                 .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
-                
             }
             .padding(.horizontal, 10)
         } else {

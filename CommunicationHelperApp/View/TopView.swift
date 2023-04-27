@@ -73,39 +73,33 @@ struct TopView: View {
                         )
                         Spacer()
                     }
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-//                            Toggle("", isOn: $flag)
-//                                .labelsHidden()
-//                                .onChange(of: flag, perform: { newValue in
-//                                    viewStore.send(.setColorModeByButton(newValue))
-//                                })
-                            NavigationLink(
-                                destination: {
-                                    TestWorkerView(
-                                        store: Store(
-                                            initialState: WorkerTopState(),
-                                            reducer: workerTopReducer,
-                                            environment: WorkerTopEnvironment()
-                                        )
-                                    )
-                                }, label: {
-                                    Text("worker\ntest")
-                                        .fontWeight(.semibold)
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.black)
-                                        .frame(maxWidth: 70, minHeight: 70)
-                                        .background(PrimaryColor.buttonColor)
-//                                        .background(switchColors())
-                                        .cornerRadius(35)
-                                }
-                            )
-                            Spacer().frame(width: 40)
-                        }
-                        Spacer().frame(height: 20)
-                    }
+//                    VStack {
+//                        Spacer()
+//                        HStack {
+//                            Spacer()
+//                            NavigationLink(
+//                                destination: {
+//                                    TestWorkerView(
+//                                        store: Store(
+//                                            initialState: WorkerTopState(),
+//                                            reducer: workerTopReducer,
+//                                            environment: WorkerTopEnvironment()
+//                                        )
+//                                    )
+//                                }, label: {
+//                                    Text("worker\ntest")
+//                                        .fontWeight(.semibold)
+//                                        .font(.system(size: 12))
+//                                        .foregroundColor(Color.black)
+//                                        .frame(maxWidth: 70, minHeight: 70)
+//                                        .background(PrimaryColor.buttonColor)
+//                                        .cornerRadius(35)
+//                                }
+//                            )
+//                            Spacer().frame(width: 40)
+//                        }
+//                        Spacer().frame(height: 20)
+//                    }
                 }
                 .background(PrimaryColor.background)
 //                .background(switchBackGrondColors())

@@ -18,7 +18,6 @@ enum Field: Hashable {
 }
 
 struct WorkerChatInputSentenceView: View {
-    let store: Store<WorkerChatInputFiveWsAndOneHState, WorkerChatInputFiveWsAndOneHAction>
     @State private var isWorkerChatInputSentenceViewActive = false
     @State private var whereText = ""
     @State private var whoText = ""
@@ -29,154 +28,149 @@ struct WorkerChatInputSentenceView: View {
     @State private var messageText = ""
     @FocusState private var focusedField: Field?
     @State private var openChatView: Bool = false
-
+    
     // TODO: 5W1Hを文章になるようにする。 messageText = whereText + "で" + whoText + "が" + whatText + "を" + whenText + "に" + whyText + howText
     var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack {
-                ZStack {
-                    PrimaryColor.buttonColor
-                    VStack(spacing: 10) {
-                        makeFiveWsAndOneHTextField(
-                            placeHolder: "　どこで",
-                            inputText: whereText,
-                            inputTextBinding: $whereText,
-                            suffixText: "で",
-                            onSubmitAction: {
-                                focusedField = .whoText
-                                if whereText.isEmpty {
-                                    messageText = whoText + whatText + whenText + whyText + howText
-                                } else {
-                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
-
-                                }
-                                print("hirohiro_どこで入力: ", whereText, messageText)
+        VStack {
+            ZStack {
+                PrimaryColor.buttonColor
+                VStack(spacing: 10) {
+                    makeFiveWsAndOneHTextField(
+                        placeHolder: "　どこで",
+                        inputText: whereText,
+                        inputTextBinding: $whereText,
+                        suffixText: "で",
+                        onSubmitAction: {
+                            focusedField = .whoText
+                            if whereText.isEmpty {
+                                messageText = whoText + whatText + whenText + whyText + howText
+                            } else {
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
                             }
-                        )
-                        .focused($focusedField, equals: .whereText)
-                        makeFiveWsAndOneHTextField(
-                            placeHolder: "　誰が",
-                            inputText: whoText,
-                            inputTextBinding: $whoText,
-                            suffixText: "が",
-                            onSubmitAction: {
-                                focusedField = .whatText
-                                if whoText.isEmpty {
-                                    messageText = whereText + whatText + whenText + whyText + howText
-                                } else {
-                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
-                                }
-                                print("hirohiro_だれが入力: ", whoText, messageText)
-                            }
-                        )
-                        .focused($focusedField, equals: .whoText)
-                        makeFiveWsAndOneHTextField(
-                            placeHolder: "　何を",
-                            inputText: whatText,
-                            inputTextBinding: $whatText,
-                            suffixText: "を",
-                            onSubmitAction: {
-                                focusedField = .whenText
-                                if whenText.isEmpty {
-                                    messageText = whereText + whoText + whenText + whyText + howText
-                                } else {
-                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
-                                }
-                                print("hirohiro_なにを入力: ", whatText, messageText)
-                            }
-                        )
-                        .focused($focusedField, equals: .whatText)
-                        makeFiveWsAndOneHTextField(
-                            placeHolder: "　いつ",
-                            inputText: whenText,
-                            inputTextBinding: $whenText,
-                            suffixText: "に",
-                            onSubmitAction: {
-                                focusedField = .whyText
-                                if whenText.isEmpty {
-                                    messageText = whereText + whoText + whatText + whyText + howText
-                                } else {
-                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
-
-                                }
-                                print("hirohiro_いつ入力: ", whenText, messageText)
-                            }
-                        )
-                        .focused($focusedField, equals: .whenText)
-                        makeFiveWsAndOneHTextField(
-                            placeHolder: "　なぜ",
-                            inputText: whyText,
-                            inputTextBinding: $whyText,
-                            suffixText: "",
-                            onSubmitAction: {
-                                focusedField = .howText
-                                if whyText.isEmpty {
-                                    messageText = whereText + whoText + whatText + whenText + howText
-                                } else {
-                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
-                                }
-                                print("hirohiro_なぜ入力: ", whyText, messageText)
-                            }
-                        )
-                        .focused($focusedField, equals: .whyText)
-                        makeFiveWsAndOneHTextField(
-                            placeHolder: "　どうした",
-                            inputText: howText,
-                            inputTextBinding: $howText,
-                            suffixText: "",
-                            onSubmitAction: {
-                                print("hirohiro_どうした入力: ", howText)
-                                if howText.isEmpty {
-                                    messageText = whereText + whoText + whatText + whenText + whyText
-                                } else {
-                                    messageText = whereText + whoText + whatText + whenText + whyText + howText
-                                }
-                                print("hirohiro_allStringです: ", messageText)
-                            }
-                        )
-                        .focused($focusedField, equals: .howText)
-                    }
-                    .padding()
-                }
-                .frame(height: 312)
-                .cornerRadius(20)
-                .padding(.horizontal, 22)
-
-                Button(
-                    action: {
-                        if messageText.isEmpty { return }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-                            openChatView.toggle()
-                        })
-                    },
-                    label: {
-                        Text("送信")
-                            .foregroundColor(Color.white)
-                            .frame(width: 270, height: 70)
-                            .background(PrimaryColor.buttonRedColor)
-                            .cornerRadius(20)
-                    }
-                )
-            }
-            .onTapGesture {
-                focusedField = nil
-            }
-            .fullScreenCover(
-                isPresented: $openChatView,
-                content: {
-                    PulseView(messageText: messageText)
-                        .onDisappear {
-                            whereText = ""
-                            whoText = ""
-                            whatText = ""
-                            whenText = ""
-                            whyText = ""
-                            howText = ""
-                            messageText = ""
+                            print("hirohiro_どこで入力: ", whereText, messageText)
                         }
+                    )
+                    .focused($focusedField, equals: .whereText)
+                    makeFiveWsAndOneHTextField(
+                        placeHolder: "　誰が",
+                        inputText: whoText,
+                        inputTextBinding: $whoText,
+                        suffixText: "が",
+                        onSubmitAction: {
+                            focusedField = .whatText
+                            if whoText.isEmpty {
+                                messageText = whereText + whatText + whenText + whyText + howText
+                            } else {
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                            print("hirohiro_だれが入力: ", whoText, messageText)
+                        }
+                    )
+                    .focused($focusedField, equals: .whoText)
+                    makeFiveWsAndOneHTextField(
+                        placeHolder: "　何を",
+                        inputText: whatText,
+                        inputTextBinding: $whatText,
+                        suffixText: "を",
+                        onSubmitAction: {
+                            focusedField = .whenText
+                            if whenText.isEmpty {
+                                messageText = whereText + whoText + whenText + whyText + howText
+                            } else {
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                            print("hirohiro_なにを入力: ", whatText, messageText)
+                        }
+                    )
+                    .focused($focusedField, equals: .whatText)
+                    makeFiveWsAndOneHTextField(
+                        placeHolder: "　いつ",
+                        inputText: whenText,
+                        inputTextBinding: $whenText,
+                        suffixText: "に",
+                        onSubmitAction: {
+                            focusedField = .whyText
+                            if whenText.isEmpty {
+                                messageText = whereText + whoText + whatText + whyText + howText
+                            } else {
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                            print("hirohiro_いつ入力: ", whenText, messageText)
+                        }
+                    )
+                    .focused($focusedField, equals: .whenText)
+                    makeFiveWsAndOneHTextField(
+                        placeHolder: "　なぜ",
+                        inputText: whyText,
+                        inputTextBinding: $whyText,
+                        suffixText: "",
+                        onSubmitAction: {
+                            focusedField = .howText
+                            if whyText.isEmpty {
+                                messageText = whereText + whoText + whatText + whenText + howText
+                            } else {
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                            print("hirohiro_なぜ入力: ", whyText, messageText)
+                        }
+                    )
+                    .focused($focusedField, equals: .whyText)
+                    makeFiveWsAndOneHTextField(
+                        placeHolder: "　どうした",
+                        inputText: howText,
+                        inputTextBinding: $howText,
+                        suffixText: "",
+                        onSubmitAction: {
+                            print("hirohiro_どうした入力: ", howText)
+                            if howText.isEmpty {
+                                messageText = whereText + whoText + whatText + whenText + whyText
+                            } else {
+                                messageText = whereText + whoText + whatText + whenText + whyText + howText
+                            }
+                            print("hirohiro_allStringです: ", messageText)
+                        }
+                    )
+                    .focused($focusedField, equals: .howText)
+                }
+                .padding()
+            }
+            .frame(height: 312)
+            .cornerRadius(20)
+            .padding(.horizontal, 22)
+            Button(
+                action: {
+                    if messageText.isEmpty { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                        openChatView.toggle()
+                    })
+                },
+                label: {
+                    Text("送信")
+                        .foregroundColor(Color.white)
+                        .frame(width: 270, height: 70)
+                        .background(PrimaryColor.buttonRedColor)
+                        .cornerRadius(20)
                 }
             )
         }
+        .onTapGesture {
+            focusedField = nil
+        }
+        .fullScreenCover(
+            isPresented: $openChatView,
+            content: {
+                PulseView(messageText: messageText)
+                    .onDisappear {
+                        whereText = ""
+                        whoText = ""
+                        whatText = ""
+                        whenText = ""
+                        whyText = ""
+                        howText = ""
+                        messageText = ""
+                    }
+            }
+        )
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 focusedField = .whereText
@@ -214,12 +208,6 @@ struct WorkerChatInputSentenceView: View {
 
 struct WorkerChatInputSentenceView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerChatInputSentenceView(
-            store: Store(
-                initialState: WorkerChatInputFiveWsAndOneHState(),
-                reducer: workerChatInputFiveWsAndOneHReducer,
-                environment: WorkerChatInputFiveWsAndOneHEnvironment()
-            )
-        )
+        WorkerChatInputSentenceView()
     }
 }
