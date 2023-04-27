@@ -12,6 +12,7 @@ struct WorkerChatTopView: View {
     let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
     @StateObject var messagesManager = MessagesManager()
+    var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
     var body: some View {
         VStack {
@@ -35,8 +36,10 @@ struct WorkerChatTopView: View {
                         // TODO: ここに背景色を入れると、うまいこと背景が入ってくる。
                         PrimaryColor.backgroundGreen
                         ForEach(messagesManager.messages, id: \.id) { message in
-                            let _ = print("hirohiro_message: ", message)
-                            MessageBubble(message: message)
+                            let _ = print("hirohiro_message: ", message, userDefault.workerId ?? "userDefaultのworkerIdが取得できません")
+                            let workerId = userDefault.workerId ?? ""
+                            let isMessageReceived = message.personalId == workerId
+                            MessageBubble(message: message, isMessageReceived: isMessageReceived)
                         }
                     }
                     .padding(.top, 10)
@@ -93,40 +96,103 @@ struct ChatTopView_Previews: PreviewProvider {
 struct MessageBubble: View {
     var message: Message
     // TODO: MessageBubbleでのアライメント、色などはpersonalIdで判別すること。
-    var isMessageReceived = true
+    var isMessageReceived: Bool
 
     // TODO: 身体情報を入れるUIを作成すること personalInformation
     var body: some View {
-        VStack(alignment: isMessageReceived ? .leading : .trailing) {
-            HStack(spacing: .zero) {
-                Text(message.text)
-                    .font(.caption2)
-                    .fontWeight(.thin)
-                    .padding(.all, 10)
-                    .foregroundColor(.black)
-                    .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
-                    .cornerRadius(10)
-                Spacer().frame(width: 5)
-                VStack {
-                    Spacer()
-                    Text("\(message.personalInformation)")
+        //        VStack(alignment: isMessageReceived ? .leading : .trailing) {
+        //            HStack(spacing: .zero) {
+        //                Text(message.text)
+        //                    .font(.caption2)
+        //                    .fontWeight(.thin)
+        //                    .padding(.all, 10)
+        //                    .foregroundColor(.black)
+        //                    .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
+        //                    .cornerRadius(10)
+        //                Spacer().frame(width: 5)
+        //                VStack {
+        //                    Spacer()
+        //                    Text("\(message.personalInformation)")
+        //                        .font(.caption2)
+        //                        .fontWeight(.thin)
+        //                        .foregroundColor(.gray)
+        //                        .padding(isMessageReceived ? .leading : .trailing, 10)
+        //                    Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
+        //                        .font(.caption2)
+        //                        .foregroundColor(.gray)
+        //                        .padding(isMessageReceived ? .leading : .trailing, 10)
+        //                    Spacer()
+        //                }
+        //                Spacer()
+        //            }
+        //            .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
+        //
+        //        }
+        //        .frame(maxWidth: .infinity, alignment: isMessageReceived ? .leading : .trailing)
+        //        .padding(isMessageReceived ? .leading : .trailing)
+        //        .padding(.horizontal, 10)
+        if isMessageReceived {
+            // 左側 自分以外
+            VStack {
+                HStack(spacing: .zero) {
+                    Text(message.text)
                         .font(.caption2)
                         .fontWeight(.thin)
-                        .foregroundColor(.gray)
-                        .padding(isMessageReceived ? .leading : .trailing, 10)
-                    Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                        .padding(isMessageReceived ? .leading : .trailing, 10)
+                        .padding(.all, 10)
+                        .foregroundColor(.black)
+                        .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
+                        .cornerRadius(10)
+                    Spacer().frame(width: 5)
+                    VStack {
+                        Spacer()
+                        Text("\(message.personalInformation)")
+                            .font(.caption2)
+                            .fontWeight(.thin)
+                            .foregroundColor(.gray)
+                            .padding(isMessageReceived ? .leading : .trailing, 10)
+                        Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
+                            .font(.caption2)
+                            .foregroundColor(.gray)
+                            .padding(isMessageReceived ? .leading : .trailing, 10)
+                        Spacer()
+                    }
                     Spacer()
                 }
-                Spacer()
+                .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
+                
             }
-            .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
-         
+            .padding(.horizontal, 10)
+        } else {
+            // 右側　自分自身
+            VStack {
+                HStack(spacing: .zero) {
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        Text("\(message.personalInformation)")
+                            .font(.caption2)
+                            .fontWeight(.thin)
+                            .foregroundColor(.gray)
+                            .padding(isMessageReceived ? .leading : .trailing, 10)
+                        Text("\(message.timestamp.formatted(.dateTime.hour().minute()))")
+                            .font(.caption2)
+                            .foregroundColor(.gray)
+                            .padding(isMessageReceived ? .leading : .trailing, 10)
+                        Spacer()
+                    }
+                    Spacer().frame(width: 5)
+                    Text(message.text)
+                        .font(.caption2)
+                        .fontWeight(.thin)
+                        .padding(.all, 10)
+                        .foregroundColor(.black)
+                        .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
+                        .cornerRadius(10)
+                    Spacer().frame(width: 5)
+                }
+                .frame(maxWidth: 300, alignment: isMessageReceived ? .leading : .trailing)
+            }
+            .padding(.horizontal, 10)
         }
-        .frame(maxWidth: .infinity, alignment: isMessageReceived ? .leading : .trailing)
-        .padding(isMessageReceived ? .leading : .trailing)
-        .padding(.horizontal, 10)
     }
 }

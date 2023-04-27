@@ -15,7 +15,6 @@ import UIKit
 class PulseViewController: UIViewController {
     let db = Firestore.firestore()
     var messageText: String = ""
-    var personalID: String = ""
     private var validFrameCounter = 0
     var previewLayerShadowView = UIView()
     var previewLayer = UIView()
@@ -28,10 +27,10 @@ class PulseViewController: UIViewController {
     private var measurementStartedFlag = false
     private var timer = Timer()
     private var hasSendMessage = false
+    var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
-    init(messageText: String, personalId: String) {
+    init(messageText: String) {
         self.messageText = messageText
-        self.personalID = personalId
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -165,8 +164,9 @@ class PulseViewController: UIViewController {
                             self.pulseLabel.alpha = 1.0
                         },
                         completion: { _ in
+                            let roundPulseString = String(format: "%.0f", round(pulse))
                             self.pulseLabel.isHidden = false
-                            self.pulseLabel.text = "\(lroundf(pulse)) BPM"
+                            self.pulseLabel.text = "\(roundPulseString) BPM"
                             // TODO: ここで心拍数を送信する機能sendMessageを発火させれば良い。
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 //                                guard let auth = Auth.auth().currentUser?.uid else { return }
@@ -174,7 +174,7 @@ class PulseViewController: UIViewController {
 //                                    self.db.collection("OwnerList").document(auth).collection("ChatRoomId").document(self.personalID).collection("Chat").document().setData(
 //                                        ["id": "\(UUID())" as Any,
 //                                         "personalId": self.personalID as Any,
-//                                         "personalInformation": "\(round(pulse))BPM" as Any,
+//                                         "personalInformation": "\(roundPulseString)BPM" as Any,
 //                                         "text": self.messageText as Any,
 //                                         "timestamp": Date() as Any,
 //                                        ]
@@ -182,16 +182,19 @@ class PulseViewController: UIViewController {
 //                                        // TODO: 何かしらの処理を入れたほうが良いかも
 //                                        print("hirohiro_d_error: ", error)
 //                                    }
+                                    guard let ownerId = self.userDefault.ownerId,
+                                          let workerId = self.userDefault.workerId else { return }
                                     self.db.collection("OwnerList")
-                                        .document("onLqDuEae8asgxF9UtdlFds8Cdg1")
+                                        .document(ownerId)
                                         .collection("ChatRoomId")
-                                        .document("worker_LblN3rJuKgiP6WfrMp86")
+                                        .document(workerId)
                                         .collection("Chat").document().setData(
-                                        ["id": "\(UUID())" as Any,
-                                         "personalId": self.personalID as Any,
-                                         "personalInformation": "\(round(pulse))BPM" as Any,
-                                         "text": self.messageText as Any,
-                                         "timestamp": Date() as Any,
+                                        [
+                                            "id": "\(UUID())" as Any,
+                                            "personalId": workerId as Any,
+                                            "personalInformation": "\(roundPulseString) BPM" as Any,
+                                            "text": self.messageText as Any,
+                                            "timestamp": Date() as Any
                                         ]
                                     ) { error in
                                         print("hirohiro_d_error: ", error)

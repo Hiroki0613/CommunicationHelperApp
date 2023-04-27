@@ -15,7 +15,7 @@ struct PulseView: UIViewControllerRepresentable {
     var messageText: String
     func makeUIViewController(context: Context) -> UIViewController {
         print("hirohiro_messageText: ", messageText)
-        return PulseViewController(messageText: messageText, personalId: "777")
+        return PulseViewController(messageText: messageText)
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

@@ -23,11 +23,34 @@ struct WorkerTopView: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 let _ = print("hirohiro_UserDefaults: ", userDefault.deviceId, userDefault.ownerId, userDefault.workerId)
-                // TODO: 現状はリアルタイムでの更新が出来ていない状況
+                // TODO: 現状はリアルタイムでの更新が出来ていない状況。または、Firebaseが更新されたときに処理が走るようにする。userDefault.workerId != nil || workerSettingManager.workerId
+                /*
+                 
+                 1. workerIdをcoreでstateを使って持たせる。
+                 2. 初期値をオプショナルで持たせておいて、都度都度アンラップをしておく。
+                 この方法だとデータが更新しない。
+                 
+                 observerで外部からの更新を受け取るほうが現実的だと思う。
+                 observerはリアルタイム
+                 */
                 if userDefault.deviceId != nil && userDefault.ownerId != nil {
-                    if let _ = userDefault.workerId,
-                       let loginDate = userDefault.loginDate,
-                       Calendar.current.isDateInToday(loginDate) {
+//                    if let _ = userDefault.workerId,
+//                       let loginDate = userDefault.loginDate,
+//                       Calendar.current.isDateInToday(loginDate) {
+//                        WorkerChatTopView(
+//                            store: store.scope(
+//                                state: \.workerChatTopState,
+//                                action: WorkerTopAction.workerChatTopAction
+//                            )
+//                        )
+//                        .navigationBarTitleDisplayMode(.inline)
+//                        .navigationBarHidden(true)
+//                    } else {
+//                        WorkerQRCodeView()
+//                            .navigationBarTitleDisplayMode(.inline)
+//                            .navigationBarHidden(true)
+//                    }
+                    if hasAlreadyMorningMeeting() {
                         WorkerChatTopView(
                             store: store.scope(
                                 state: \.workerChatTopState,
@@ -41,6 +64,8 @@ struct WorkerTopView: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationBarHidden(true)
                     }
+                    
+                    
 //                    switch viewStore.mode {
 //                    case .startOfWork:
 //                        WorkerQRCodeView()
@@ -149,6 +174,19 @@ struct WorkerTopView: View {
                 workerSettingManager.getWorkerData()
             }
         }
+    }
+
+    private func hasAlreadyMorningMeeting() -> Bool {
+        guard let index = workerSettingManager.workers.firstIndex(where: { $0.deviceId == userDefault.deviceId }) else { return false }
+        let worker = workerSettingManager.workers[index]
+        print("hirohiro_hasAlreadyMorningMeeting: ", worker.workerId, worker.timestamp)
+        
+        if userDefault.workerId != nil || !worker.workerId.isEmpty,
+           let userDefaultLoginDate = userDefault.loginDate,
+           Calendar.current.isDateInToday(userDefaultLoginDate) || Calendar.current.isDateInToday(worker.timestamp) {
+            return true
+        }
+        return false
     }
 }
 
