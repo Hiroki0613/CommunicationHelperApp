@@ -41,6 +41,9 @@ struct WorkerChatTopView: View {
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
                 // TODO: ここでスタッフモードは、5W1Hの入力はしないようにする。オーナーと同じようにしておく。
+                /*
+                 ここのViewの表示をスタッフだった場合で分岐するだけでOKとしたい。
+                 */
                 NavigationLink(
                     destination: WorkerChatInputFiveWsAndOneHView(),
                     isActive: $isWorkerChatTopViewActive) {
