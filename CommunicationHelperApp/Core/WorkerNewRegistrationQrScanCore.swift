@@ -70,6 +70,7 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
              　2. FCMトークンは朝の調整時に毎回、データを入れ替える。そのことで、トークンが入れ替わっていたら再セットをしなおす。
              　3. FCMトークンはPush通知で使うために用意する。これが匿名ログインでも効果を発揮したら万歳である。
              　4. kavsoftの動画を参考にサンプルアプリで確認してみる。
+             　　　https://www.youtube.com/watch?v=DoITpssj-jk&list=LL&index=3
              */
         }
         return .none
