@@ -71,6 +71,7 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
              　3. FCMトークンはPush通知で使うために用意する。これが匿名ログインでも効果を発揮したら万歳である。
              　4. kavsoftの動画を参考にサンプルアプリで確認してみる。
              　　　https://www.youtube.com/watch?v=DoITpssj-jk&list=LL&index=3
+             　　　サンプルアプリで確認してみたが、何かが抜けているために出てこなかった。ここは確認しておいた方が良い。
              */
         }
         return .none
