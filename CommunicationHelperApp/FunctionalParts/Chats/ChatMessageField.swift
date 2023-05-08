@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct ChatMessageField: View {
+    @EnvironmentObject var messagesManager: MessagesManager
     @State private var message = ""
+    @State private var pulseRate: Float = 0
+    @State private var openView: Bool = false
 
     var body: some View {
         HStack {
@@ -16,22 +19,32 @@ struct ChatMessageField: View {
                 placeholder: Text("文章を入力してください"),
                 text: $message
             )
-            .frame(height: 52)
+            .foregroundColor(.black)
+            .font(.caption)
+            .frame(height: 18)
             .disableAutocorrection(true)
             Button {
-//                messagesManager.sendMessage(text: message)
-                message = ""
+                if message.isEmpty { return }
+                openView.toggle()
             } label: {
                 Image(systemName: "paperplane.fill")
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.white)
+                    .font(.caption)
                     .padding(10)
-                    .background(PrimaryColor.buttonColor)
-                    .cornerRadius(50)
+                    .background(.cyan)
+                    .cornerRadius(20)
             }
         }
+        .fullScreenCover(
+            isPresented: $openView,
+            content: {
+                PulseView(messageText: message)
+                    .onDisappear { message = "" }
+            }
+        )
         .padding(.horizontal)
         .padding(.vertical, 10)
-        .background(Color.gray)
+        .background(.mint)
         .cornerRadius(50)
         .padding()
     }
