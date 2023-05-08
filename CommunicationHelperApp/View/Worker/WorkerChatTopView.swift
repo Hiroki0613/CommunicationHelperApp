@@ -11,6 +11,7 @@ import SwiftUI
 struct WorkerChatTopView: View {
 //    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
+    @State private var isWorkerUser: Bool = true
     @StateObject var messagesManager = MessagesManager()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
@@ -46,23 +47,45 @@ struct WorkerChatTopView: View {
                  1. Seanさんの解説のようにDIを導入した方が良いかもしれない。
                  2. シンプルにif文でUIを変更しても良いかもしれない。行き着く先を同じにすると良いかも。
                  */
-                NavigationLink(
-                    destination: WorkerChatInputFiveWsAndOneHView(),
-                    isActive: $isWorkerChatTopViewActive) {
-                        Button(
-                            action: {
-                                self.isWorkerChatTopViewActive = true
-                            },
-                            label: {
-                                Text("送信する")
-                                    .foregroundColor(Color.black)
-                                    .frame(width: 200, height: 50)
-                                    .background(PrimaryColor.buttonColor)
-                                    .cornerRadius(20)
-                                    .padding()
-                            }
-                        )
-                    }
+                
+                if isWorkerUser {
+                    NavigationLink(
+                        destination: WorkerChatInputFiveWsAndOneHView(),
+                        isActive: $isWorkerChatTopViewActive) {
+                            Button(
+                                action: {
+                                    self.isWorkerChatTopViewActive = true
+                                },
+                                label: {
+                                    Text("送信する")
+                                        .foregroundColor(Color.black)
+                                        .frame(width: 200, height: 50)
+                                        .background(PrimaryColor.buttonColor)
+                                        .cornerRadius(20)
+                                        .padding()
+                                }
+                            )
+                        }
+                } else {
+                    EmptyView()
+                }
+//                NavigationLink(
+//                    destination: WorkerChatInputFiveWsAndOneHView(),
+//                    isActive: $isWorkerChatTopViewActive) {
+//                        Button(
+//                            action: {
+//                                self.isWorkerChatTopViewActive = true
+//                            },
+//                            label: {
+//                                Text("送信する")
+//                                    .foregroundColor(Color.black)
+//                                    .frame(width: 200, height: 50)
+//                                    .background(PrimaryColor.buttonColor)
+//                                    .cornerRadius(20)
+//                                    .padding()
+//                            }
+//                        )
+//                    }
                 Spacer()
             }
         }
