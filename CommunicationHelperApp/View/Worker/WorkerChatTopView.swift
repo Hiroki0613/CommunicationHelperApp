@@ -11,7 +11,7 @@ import SwiftUI
 struct WorkerChatTopView: View {
 //    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
-    @State private var isWorkerUser: Bool = true
+    @State private var isWorkerUser: Bool = false
     @StateObject var messagesManager = MessagesManager()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
@@ -67,25 +67,8 @@ struct WorkerChatTopView: View {
                             )
                         }
                 } else {
-                    EmptyView()
+                    ChatMessageField()
                 }
-//                NavigationLink(
-//                    destination: WorkerChatInputFiveWsAndOneHView(),
-//                    isActive: $isWorkerChatTopViewActive) {
-//                        Button(
-//                            action: {
-//                                self.isWorkerChatTopViewActive = true
-//                            },
-//                            label: {
-//                                Text("送信する")
-//                                    .foregroundColor(Color.black)
-//                                    .frame(width: 200, height: 50)
-//                                    .background(PrimaryColor.buttonColor)
-//                                    .cornerRadius(20)
-//                                    .padding()
-//                            }
-//                        )
-//                    }
                 Spacer()
             }
         }
@@ -98,13 +81,7 @@ struct WorkerChatTopView: View {
 
 struct ChatTopView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerChatTopView(
-//            store: Store(
-//                initialState: WorkerChatTopState(),
-//                reducer: workerChatTopReducer,
-//                environment: WorkerChatTopEnvironMent()
-//            )
-        )
+        WorkerChatTopView()
     }
 }
 
