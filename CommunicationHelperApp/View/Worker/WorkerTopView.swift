@@ -158,7 +158,7 @@ struct WorkerTopView: View {
                     send: WorkerTopAction.goToPulseView
                 )
             ) {
-                PulseView(messageText: "hirohiro_WorkerTopViewから来た")
+                PulseView(messageText: .constant("hirohiro_WorkerTopViewから来た"))
             }
             .sheet(
                 isPresented: viewStore.binding(

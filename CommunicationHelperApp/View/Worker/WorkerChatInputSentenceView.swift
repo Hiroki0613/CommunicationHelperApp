@@ -158,7 +158,7 @@ struct WorkerChatInputSentenceView: View {
         .fullScreenCover(
             isPresented: $openChatView,
             content: {
-                PulseView(messageText: messageText)
+                PulseView(messageText: $messageText)
                     .onDisappear {
                         whereText = ""
                         whoText = ""

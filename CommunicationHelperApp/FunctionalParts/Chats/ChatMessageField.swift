@@ -38,7 +38,7 @@ struct ChatMessageField: View {
         .fullScreenCover(
             isPresented: $openView,
             content: {
-                PulseView(messageText: message)
+                PulseView(messageText: $message)
                     .onDisappear { message = "" }
             }
         )

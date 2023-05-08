@@ -11,7 +11,7 @@ import SwiftUI
 struct WorkerChatTopView: View {
 //    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
-    @State private var isWorkerUser: Bool = false
+    @State private var isWorkerUser: Bool = true
     @StateObject var messagesManager = MessagesManager()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
 
