@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F260AC82A08CA4A0026AF59 /* MessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F260AC72A08CA4A0026AF59 /* MessageField.swift */; };
 		7F29D54D28F3D44600F93A87 /* CommunicationHelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */; };
 		7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29D54E28F3D44600F93A87 /* TopView.swift */; };
 		7F29D55128F3D44700F93A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F29D55028F3D44700F93A87 /* Assets.xcassets */; };
@@ -80,7 +79,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F260AC72A08CA4A0026AF59 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
 		7F29D54928F3D44600F93A87 /* CommunicationHelperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommunicationHelperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F29D54C28F3D44600F93A87 /* CommunicationHelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationHelperApp.swift; sourceTree = "<group>"; };
 		7F29D54E28F3D44600F93A87 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
@@ -364,7 +362,6 @@
 				7F29D5DE2913F48F00F93A87 /* ChatTitleRow.swift */,
 				7F50FA0D29F62B9E00CD3CA6 /* Message.swift */,
 				7F50FA0B29F62B6200CD3CA6 /* MessagesManager.swift */,
-				7F260AC72A08CA4A0026AF59 /* MessageField.swift */,
 				7F29D5E62913F74B00F93A87 /* ChatMessageBubble.swift */,
 				7F29D5E82913FA8200F93A87 /* ChatMessageField.swift */,
 			);
@@ -593,7 +590,6 @@
 				7F29D58C290448C300F93A87 /* Filter.swift in Sources */,
 				7F29D5E92913FA8200F93A87 /* ChatMessageField.swift in Sources */,
 				7F84C76729162C5400F11B01 /* OwnerTopCore.swift in Sources */,
-				7F260AC82A08CA4A0026AF59 /* MessageField.swift in Sources */,
 				7F29D5E72913F74B00F93A87 /* ChatMessageBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
