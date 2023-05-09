@@ -11,6 +11,7 @@ import SwiftUI
 struct WorkerChatTopView: View {
 //    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
+    // TODO: worker、staffで表示されるUIが変更されるように。QRコードで記録されたUserdefaultからBoolを返すようにする。
     @State private var isWorkerUser: Bool = true
     @StateObject var messagesManager = MessagesManager()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
