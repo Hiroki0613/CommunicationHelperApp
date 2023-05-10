@@ -42,13 +42,6 @@ struct WorkerChatTopView: View {
                 }
                 .padding(.vertical, 10)
                 .cornerRadius(30, corners: [.topLeft, .topRight])
-                // TODO: ここでスタッフモードは、5W1Hの入力はしないようにする。オーナーと同じようにしておく。
-                /*
-                 ここのViewの表示をスタッフだった場合で分岐するだけでOKとしたい。
-                 1. Seanさんの解説のようにDIを導入した方が良いかもしれない。
-                 2. シンプルにif文でUIを変更しても良いかもしれない。行き着く先を同じにすると良いかも。
-                 */
-                
                 if isWorkerUser {
                     NavigationLink(
                         destination: WorkerChatInputFiveWsAndOneHView(),
