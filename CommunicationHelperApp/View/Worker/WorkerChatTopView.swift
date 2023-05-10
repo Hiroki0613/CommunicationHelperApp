@@ -11,7 +11,6 @@ import SwiftUI
 struct WorkerChatTopView: View {
 //    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
-    // TODO: worker、staffで表示されるUIが変更されるように。QRコードで記録されたUserdefaultからBoolを返すようにする。
     @State private var isWorkerUser: Bool = true
     @StateObject var messagesManager = MessagesManager()
     var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
@@ -69,10 +68,22 @@ struct WorkerChatTopView: View {
         .background(PrimaryColor.background)
         .onAppear {
             messagesManager.getMessages(personalId: "")
+            isWorkerUser = checkIsWorkerUser()
         }
     }
-    
-    // TODO: isWorkerChatTopViewActiveの論理を決めるfuncを用意する。そして、onAppearで発火するようにして、表示を切り替える。
+
+    // TODO: worker、staffの表示を分岐させる処理。ロジックがよろしく無い・・・。
+    private func checkIsWorkerUser() -> Bool {
+        guard let workerId = userDefault.workerId else {
+            return true
+        }
+        if workerId.contains("worker_") {
+            return true
+        } else if workerId.contains("staff_") {
+            return false
+        }
+        return true
+    }
 }
 
 struct ChatTopView_Previews: PreviewProvider {
