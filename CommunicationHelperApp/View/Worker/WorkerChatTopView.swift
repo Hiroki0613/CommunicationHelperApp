@@ -71,6 +71,8 @@ struct WorkerChatTopView: View {
             messagesManager.getMessages(personalId: "")
         }
     }
+    
+    // TODO: isWorkerChatTopViewActiveの論理を決めるfuncを用意する。そして、onAppearで発火するようにして、表示を切り替える。
 }
 
 struct ChatTopView_Previews: PreviewProvider {
