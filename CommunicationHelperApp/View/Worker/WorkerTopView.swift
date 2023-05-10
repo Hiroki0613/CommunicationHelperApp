@@ -169,6 +169,7 @@ struct WorkerTopView: View {
                 WorkerEndOfWorkQRCodeView()
             }
             .onAppear {
+                // TODO: すでにデータを読み込んでいる＋朝礼QRコードを読んだ の場合は、getWorkerDataの処理をパスする。
                 workerSettingManager.getWorkerData()
             }
         }
