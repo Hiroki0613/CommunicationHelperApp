@@ -59,6 +59,8 @@
 		7F597486292E47040018ADF5 /* OwnerSettingSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F597485292E47040018ADF5 /* OwnerSettingSubscriptionView.swift */; };
 		7F597488293E2C290018ADF5 /* WorkerChatInputFiveWsAndOneHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F597487293E2C290018ADF5 /* WorkerChatInputFiveWsAndOneHView.swift */; };
 		7F83F6D12A0CE913007EA661 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7F83F6D02A0CE913007EA661 /* FirebaseMessaging */; };
+		7F83F6DD2A0DF1D9007EA661 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F83F6DC2A0DF1D9007EA661 /* AppDelegate.swift */; };
+		7F83F6DF2A0E187F007EA661 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F83F6DE2A0E187F007EA661 /* Key.swift */; };
 		7F84C76729162C5400F11B01 /* OwnerTopCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76629162C5400F11B01 /* OwnerTopCore.swift */; };
 		7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C7692916416300F11B01 /* TestOwnerView.swift */; };
 		7F84C76E29165FF600F11B01 /* QRCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F84C76D29165FF600F11B01 /* QRCameraView.swift */; };
@@ -127,6 +129,8 @@
 		7F597483292E44F20018ADF5 /* OwnerSettingPressureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSettingPressureView.swift; sourceTree = "<group>"; };
 		7F597485292E47040018ADF5 /* OwnerSettingSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSettingSubscriptionView.swift; sourceTree = "<group>"; };
 		7F597487293E2C290018ADF5 /* WorkerChatInputFiveWsAndOneHView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerChatInputFiveWsAndOneHView.swift; sourceTree = "<group>"; };
+		7F83F6DC2A0DF1D9007EA661 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7F83F6DE2A0E187F007EA661 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		7F84C76629162C5400F11B01 /* OwnerTopCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTopCore.swift; sourceTree = "<group>"; };
 		7F84C7692916416300F11B01 /* TestOwnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOwnerView.swift; sourceTree = "<group>"; };
 		7F84C76D29165FF600F11B01 /* QRCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraView.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				7F29D55D28F3F27900F93A87 /* GoogleService-Info.plist */,
 				7F29D55028F3D44700F93A87 /* Assets.xcassets */,
 				7F29D55228F3D44700F93A87 /* Preview Content */,
+				7F83F6DC2A0DF1D9007EA661 /* AppDelegate.swift */,
+				7F83F6DE2A0E187F007EA661 /* Key.swift */,
 			);
 			path = CommunicationHelperApp;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				7F29D5712902EB3300F93A87 /* UIImage+Ext.swift in Sources */,
 				7F59747C292A45050018ADF5 /* OwnerLoginView.swift in Sources */,
 				7F597488293E2C290018ADF5 /* WorkerChatInputFiveWsAndOneHView.swift in Sources */,
+				7F83F6DD2A0DF1D9007EA661 /* AppDelegate.swift in Sources */,
 				7F84C76A2916416300F11B01 /* TestOwnerView.swift in Sources */,
 				7F29D58429042B2000F93A87 /* ColorUtils.swift in Sources */,
 				7F29D54F28F3D44600F93A87 /* TopView.swift in Sources */,
@@ -578,6 +585,7 @@
 				7FFA0C2C294F4C6F00E2BC27 /* FirebaseUiView.swift in Sources */,
 				7F84C770291660D900F11B01 /* WorkerNewRegistrationQrScanCore.swift in Sources */,
 				7F29D5892904390100F93A87 /* HeartRateManager.swift in Sources */,
+				7F83F6DF2A0E187F007EA661 /* Key.swift in Sources */,
 				7F84C798292529C500F11B01 /* OwnerManageWorkerTopView.swift in Sources */,
 				7F29D5E12913F53200F93A87 /* WorkerChatTopView.swift in Sources */,
 				7F29D5E52913F6FC00F93A87 /* ChatMessage.swift in Sources */,
