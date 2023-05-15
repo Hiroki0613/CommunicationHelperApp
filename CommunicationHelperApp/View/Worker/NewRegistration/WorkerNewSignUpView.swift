@@ -9,6 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerNewSignUpView: View {
+    let pushNotificationSender = PushNotificationSender()
     let store: Store<WorkerTopState, WorkerTopAction>
     var backToTopViewAction: () -> Void
 
@@ -37,6 +38,15 @@ struct WorkerNewSignUpView: View {
                     Spacer().frame(height: 80)
                     Button(
                         action: {
+                            // swiftlint:disable line_length
+                            pushNotificationSender.sendPushNotification(
+                                to: "",
+                                userId: "\(UUID())",
+                                title: "iPhoneからの送信",
+                                body: "テスト配信") {
+                                    print("hirohiro_fcm_iPhone完了だべ")
+                                }
+                            // swiftlint:enable line_length
                             backToTopViewAction()
                         }, label: {
                             Text("戻る")
