@@ -32,6 +32,7 @@ class MessagesManager: ObservableObject {
             }
             self.messages = documents.compactMap { document -> Message? in
                 do {
+                    // TODO: ここでPush通知を入れること
                     return try document.data(as: Message.self)
                 } catch {
                     print("Error decoding document into Message: \(error)")
