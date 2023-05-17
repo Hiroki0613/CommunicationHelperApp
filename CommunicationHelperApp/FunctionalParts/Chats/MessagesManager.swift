@@ -32,7 +32,12 @@ class MessagesManager: ObservableObject {
             }
             self.messages = documents.compactMap { document -> Message? in
                 do {
-                    // TODO: ここでPush通知を入れること
+                    // TODO: ここでPush通知を入れること。
+                    /*
+                     1. スタッフ、オーナーの数だけループ処理を持たせる形になる。
+                     2. ただし、同時に処理をしたら動かない可能性もあるので、遅延処理を一部に入れておいた方が良いかもしれない。
+                     
+                     */
                     return try document.data(as: Message.self)
                 } catch {
                     print("Error decoding document into Message: \(error)")
