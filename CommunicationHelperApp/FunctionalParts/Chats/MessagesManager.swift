@@ -36,6 +36,7 @@ class MessagesManager: ObservableObject {
                     /*
                      1. スタッフ、オーナーの数だけループ処理を持たせる形になる。
                      2. ただし、同時に処理をしたら動かない可能性もあるので、遅延処理を一部に入れておいた方が良いかもしれない。
+                     3. 通信環境が悪いときは、切断処理をしないと何度もリトライを繰り返す可能性があるので注意。
                      
                      */
                     return try document.data(as: Message.self)
