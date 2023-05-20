@@ -38,6 +38,7 @@ class MessagesManager: ObservableObject {
                      2. ただし、同時に処理をしたら動かない可能性もあるので、遅延処理を一部に入れておいた方が良いかもしれない。
                      3. 通信環境が悪いときは、切断処理をしないと何度もリトライを繰り返す可能性があるので注意。
                      4. Push通知の構造はChatデータに載せたい。そこでループ処理したい。
+                     5. 一括で取得をするのならば、collectionGroupというものがあるらしい。
                      
                      */
                     return try document.data(as: Message.self)
