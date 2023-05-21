@@ -39,6 +39,7 @@ class MessagesManager: ObservableObject {
                      3. 通信環境が悪いときは、切断処理をしないと何度もリトライを繰り返す可能性があるので注意。
                      4. Push通知の構造はChatデータに載せたい。そこでループ処理したい。
                      5. 一括で取得をするのならば、collectionGroupというものがあるらしい。
+                     6. stringで一括で取得できるようにしたほうが良さそう・・・。
                      
                      */
                     return try document.data(as: Message.self)
