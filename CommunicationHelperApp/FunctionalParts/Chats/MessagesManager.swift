@@ -40,6 +40,7 @@ class MessagesManager: ObservableObject {
                      4. Push通知の構造はChatデータに載せたい。そこでループ処理したい。
                      5. 一括で取得をするのならば、collectionGroupというものがあるらしい。
                      6. stringで一括で取得できるようにしたほうが良さそう・・・。
+                     7. データの構造は、一通り動いてからもう一度検討したほうが良さそう。
                      
                      */
                     return try document.data(as: Message.self)
