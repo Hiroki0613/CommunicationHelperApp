@@ -19,6 +19,7 @@ protocol UserDefaultDataStore {
     var hasLogin: Bool? { get set }
     var ownerId: String? { get set }
     var deviceId: String? { get set }
+    var fcmToken: String? { get set }
     var workerId: String? { get set }
     var isBlackAndWhiteMode: Bool? { get set }
     var loginDate: Date? { get set }
@@ -49,6 +50,15 @@ private struct UserDefaultsDataStoreImpl: UserDefaultDataStore {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "deviceId")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    var fcmToken: String? {
+        get {
+            return UserDefaults.standard.object(forKey: "fcmToken") as? String
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "fcmToken")
             UserDefaults.standard.synchronize()
         }
     }
