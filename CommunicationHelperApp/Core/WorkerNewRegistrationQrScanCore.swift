@@ -63,6 +63,7 @@ let workerNewRegistrationQrScanReducer = Reducer<WorkerNewRegistrationQrScanStat
             userDefault.hasLogin = true
             state.hasReadOfficeAuthId = false
             state.hasReadDeviceId = false
+            // TODO: ここで、ownerIDを起点にして、deviceIdとfcmTokenを紐づける。fireStoreでDeviceDataをセットする。
             return Effect(value: .firstLogin)
             // TODO: QRコードを読み込んだ時についでに行うこと。　匿名ログインでも問題が無いかは要確認。
             /*
