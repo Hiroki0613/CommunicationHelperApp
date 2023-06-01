@@ -179,6 +179,7 @@ struct WorkerTopView: View {
         guard let index = workerSettingManager.workers.firstIndex(where: { $0.deviceId == userDefault.deviceId }) else { return false }
         let worker = workerSettingManager.workers[index]
         print("hirohiro_hasAlreadyMorningMeeting: ", worker.workerId, worker.timestamp)
+        // TODO: ここで,OwnerのfcmTokenを取得するようにする。
         if userDefault.workerId != nil || !worker.workerId.isEmpty,
            let userDefaultLoginDate = userDefault.loginDate,
            Calendar.current.isDateInToday(userDefaultLoginDate) || Calendar.current.isDateInToday(worker.timestamp) {
