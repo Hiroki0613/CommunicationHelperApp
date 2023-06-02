@@ -38,6 +38,8 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let fcmToken = fcmToken else { return }
         print("hirohiro_fcmToken: ", fcmToken)
+        var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
+        userDefault.fcmToken = fcmToken
     }
 }
 
