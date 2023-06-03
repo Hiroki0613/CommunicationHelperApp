@@ -39,6 +39,7 @@ extension AppDelegate: MessagingDelegate {
         guard let fcmToken = fcmToken else { return }
         print("hirohiro_fcmToken: ", fcmToken)
         var userDefault: UserDefaultDataStore = UserDefaultsDataStoreProvider.provide()
+        // TODO: FcmTokenをどのように記録するかを検討すること。自動的に更新できるようにしたい。
         userDefault.fcmToken = fcmToken
     }
 }
