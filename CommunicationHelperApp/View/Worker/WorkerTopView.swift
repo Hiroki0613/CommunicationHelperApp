@@ -175,6 +175,7 @@ struct WorkerTopView: View {
         }
     }
 
+    // TODO: ここをviewStoreに移動させれば、画面が自動更新出来ないだろうか
     private func hasAlreadyMorningMeeting() -> Bool {
         guard let index = workerSettingManager.workers.firstIndex(where: { $0.deviceId == userDefault.deviceId }) else { return false }
         let worker = workerSettingManager.workers[index]
