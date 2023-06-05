@@ -32,6 +32,7 @@ struct WorkerTopView: View {
                  
                  observerで外部からの更新を受け取るほうが現実的だと思う。
                  observerはリアルタイム
+                 3. caseで分ける。viewStoreで更新できるようにする
                  */
                 if userDefault.deviceId != nil && userDefault.ownerId != nil {
 //                    if let _ = userDefault.workerId,
