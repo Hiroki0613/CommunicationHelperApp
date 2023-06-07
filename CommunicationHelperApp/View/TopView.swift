@@ -101,7 +101,7 @@ struct TopView: View {
 //                        Spacer().frame(height: 20)
 //                    }
                 }
-                .background(PrimaryColor.background)
+                .background(PrimaryColor.backgroundGlay)
 //                .background(switchBackGrondColors())
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarHidden(true)
