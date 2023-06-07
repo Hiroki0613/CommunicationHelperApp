@@ -22,7 +22,7 @@ struct WorkerChatTopView: View {
                 ScrollViewReader { proxy in
                     ScrollView {
                         // TODO: ここに背景色を入れると、うまいこと背景が入ってくる。
-                        PrimaryColor.backgroundGreen
+                        PrimaryColor.backgroundGlay
                         ForEach(messagesManager.messages, id: \.id) { message in
                             let _ = print("hirohiro_message: ", message, userDefault.workerId ?? "userDefaultのworkerIdが取得できません")
                             let workerId = userDefault.workerId ?? ""
