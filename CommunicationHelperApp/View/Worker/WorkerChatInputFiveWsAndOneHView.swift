@@ -13,7 +13,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
 
     var body: some View {
         ZStack {
-            PrimaryColor.background
+            PrimaryColor.backgroundGlay
             VStack {
                 Spacer().frame(height: 20)
                 HStack {
@@ -45,7 +45,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
             .font(.system(size: 18))
             .foregroundColor(Color.white)
             .frame(width: 84, height: 84)
-            .background(PrimaryColor.buttonRedColor)
+            .background(PrimaryColor.buttonBlue)
             .clipShape(Circle())
     }
 }
