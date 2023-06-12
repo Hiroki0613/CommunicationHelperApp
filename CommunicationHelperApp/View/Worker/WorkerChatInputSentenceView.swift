@@ -32,7 +32,7 @@ struct WorkerChatInputSentenceView: View {
     var body: some View {
         VStack {
             ZStack {
-                PrimaryColor.buttonColor
+                PrimaryColor.backgroundGlay
                 VStack(spacing: 10) {
                     makeFiveWsAndOneHTextField(
                         placeHolder: "　どこで",
@@ -134,6 +134,10 @@ struct WorkerChatInputSentenceView: View {
                 .padding()
             }
             .frame(height: 312)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.black, lineWidth: 1)
+            )
             .cornerRadius(20)
             .padding(.horizontal, 22)
             Button(
@@ -147,7 +151,7 @@ struct WorkerChatInputSentenceView: View {
                     Text("送信")
                         .foregroundColor(Color.white)
                         .frame(width: 270, height: 70)
-                        .background(PrimaryColor.buttonRedColor)
+                        .background(PrimaryColor.buttonBlue)
                         .cornerRadius(20)
                 }
             )
@@ -193,7 +197,7 @@ struct WorkerChatInputSentenceView: View {
                 }
                 .multilineTextAlignment(.leading)
                 .frame(width: inputText.isEmpty ? 140 : inputText.size(with: UIFont.systemFont(ofSize: 16)).width + 10, height: 36.0)
-                .background(PrimaryColor.buttonRedColor.opacity(0.3))
+                .background(PrimaryColor.buttonBlue.opacity(0.3))
                 .cornerRadius(20)
                 .onSubmit {
                     onSubmitAction()
