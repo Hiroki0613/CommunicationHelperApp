@@ -31,7 +31,7 @@ struct WorkerChatTopView: View {
                         }
                     }
                     .padding(.top, 10)
-                    .background(.green)
+                    .background(PrimaryColor.backgroundGlay)
                     .onChange(of: messagesManager.lastMessageId) { id in
                         // When the lastMessageId changes, scroll to the bottom of the conversation
                         withAnimation {
