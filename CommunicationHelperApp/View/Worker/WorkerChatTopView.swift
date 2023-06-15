@@ -40,7 +40,7 @@ struct WorkerChatTopView: View {
                     }
                 }
                 .padding(.vertical, 10)
-                .cornerRadius(30, corners: [.topLeft, .topRight])
+//                .cornerRadius(30, corners: [.topLeft, .topRight])
                 if isWorkerUser {
                     NavigationLink(
                         destination: WorkerChatInputFiveWsAndOneHView(),
