@@ -51,7 +51,7 @@ struct WorkerChatTopView: View {
                                 },
                                 label: {
                                     Text("送信する")
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(Color.white)
                                         .frame(width: 200, height: 50)
                                         .background(PrimaryColor.buttonColor)
                                         .cornerRadius(20)
