@@ -65,7 +65,7 @@ struct WorkerChatTopView: View {
                 Spacer()
             }
         }
-        .background(PrimaryColor.background)
+        .background(PrimaryColor.backgroundGlay)
         .onAppear {
             messagesManager.getMessages(personalId: "")
             isWorkerUser = checkIsWorkerUser()
