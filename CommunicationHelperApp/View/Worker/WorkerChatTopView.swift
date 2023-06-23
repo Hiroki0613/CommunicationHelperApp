@@ -140,7 +140,11 @@ struct MessageBubble: View {
                         .fontWeight(.thin)
                         .padding(.all, 10)
                         .foregroundColor(.black)
-                        .background(isMessageReceived ? PrimaryColor.buttonLightGray : PrimaryColor.buttonRed)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                        .background(isMessageReceived ? PrimaryColor.chatBubbleBackground : PrimaryColor.chatBubbleBackground)
                         .cornerRadius(10)
                     Spacer().frame(width: 5)
                     VStack {
