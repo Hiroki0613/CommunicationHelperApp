@@ -33,7 +33,7 @@ struct WorkerEndOfWorkTopView: View {
                     .padding(.horizontal, 22)
                 Spacer().frame(height: 46)
                 Button(action: {
-                    // TODO: 報告が完了したことを何かしらダイアログで伝えたい。Push通知でも可。とりあえず、通知できた方が良い。双方に。
+                    // TODO: 報告が完了したことを何かしらダイアログで伝えたい。Push通知でも可。とりあえず、通知できた方が良い。双方に
                     action()
                 }, label: {
                     Text("報告")
