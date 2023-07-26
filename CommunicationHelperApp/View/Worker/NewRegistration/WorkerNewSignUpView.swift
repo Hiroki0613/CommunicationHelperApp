@@ -38,6 +38,7 @@ struct WorkerNewSignUpView: View {
                     Spacer().frame(height: 80)
                     Button(
                         action: {
+                            // TODO: ここはpush通知の処理が入っているので戻すこと
                             // swiftlint:disable line_length
                             pushNotificationSender.sendPushNotification(
                                 to: "",
