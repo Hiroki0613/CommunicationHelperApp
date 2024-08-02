@@ -35,28 +35,8 @@ struct WorkerTopView: View {
                  3. caseで分ける。viewStoreで更新できるようにする
                  */
                 if userDefault.deviceId != nil && userDefault.ownerId != nil {
-//                    if let _ = userDefault.workerId,
-//                       let loginDate = userDefault.loginDate,
-//                       Calendar.current.isDateInToday(loginDate) {
-//                        WorkerChatTopView(
-//                            store: store.scope(
-//                                state: \.workerChatTopState,
-//                                action: WorkerTopAction.workerChatTopAction
-//                            )
-//                        )
-//                        .navigationBarTitleDisplayMode(.inline)
-//                        .navigationBarHidden(true)
-//                    } else {
-//                        WorkerQRCodeView()
-//                            .navigationBarTitleDisplayMode(.inline)
-//                            .navigationBarHidden(true)
-//                    }
                     if hasAlreadyMorningMeeting() {
                         WorkerChatTopView(
-//                            store: store.scope(
-//                                state: \.workerChatTopState,
-//                                action: WorkerTopAction.workerChatTopAction
-//                            )
                         )
                         .navigationBarTitleDisplayMode(.inline)
                         .navigationBarHidden(true)
@@ -65,29 +45,6 @@ struct WorkerTopView: View {
                             .navigationBarTitleDisplayMode(.inline)
                             .navigationBarHidden(true)
                     }
-//                    switch viewStore.mode {
-//                    case .startOfWork:
-//                        WorkerQRCodeView()
-//                            .navigationBarTitleDisplayMode(.inline)
-//                            .navigationBarHidden(true)
-//                    case .working:
-//                        WorkerChatTopView(
-//                            store: store.scope(
-//                                state: \.workerChatTopState,
-//                                action: WorkerTopAction.workerChatTopAction
-//                            )
-//                        )
-//                        .navigationBarTitleDisplayMode(.inline)
-//                        .navigationBarHidden(true)
-//                    case .endOfTheWork:
-//                        WorkerEndOfWorkTopView(
-//                            action: {
-//                                viewStore.send(.goToEndOfWorkView(true))
-//                            }
-//                        )
-//                        .navigationBarTitleDisplayMode(.inline)
-//                        .navigationBarHidden(true)
-//                    }
                 } else {
                     // TODO: トップ画面ではなく、WorkerTopViewでアニノマスログインをする。
                     WorkerNewSignUpView(
@@ -99,59 +56,6 @@ struct WorkerTopView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarHidden(true)
                 }
-//                VStack {
-//                    Spacer()
-//                    HStack {
-//                        Spacer()
-//                        VStack {
-//                            if userDefault.deviceId != nil && userDefault.ownerId != nil {
-//                                Button(
-//                                    action: {
-//                                        viewStore.send(.changeView(.startOfWork))
-//                                    }, label: {
-//                                        Text("始業")
-//                                            .fontWeight(.semibold)
-//                                            .font(.system(size: 12))
-//                                            .foregroundColor(Color.black)
-//                                            .frame(maxWidth: 70, minHeight: 70)
-//                                            .background(PrimaryColor.buttonColor)
-//                                            .cornerRadius(35)
-//                                    }
-//                                )
-//                                Spacer().frame(height: 20)
-//                                Button(
-//                                    action: {
-//                                        viewStore.send(.changeView(.working))
-//                                    }, label: {
-//                                        Text("作業中")
-//                                            .fontWeight(.semibold)
-//                                            .font(.system(size: 12))
-//                                            .foregroundColor(Color.black)
-//                                            .frame(maxWidth: 70, minHeight: 70)
-//                                            .background(PrimaryColor.buttonColor)
-//                                            .cornerRadius(35)
-//                                    }
-//                                )
-//                                Spacer().frame(height: 20)
-//                                Button(
-//                                    action: {
-//                                        viewStore.send(.changeView(.endOfTheWork))
-//                                    }, label: {
-//                                        Text("終業")
-//                                            .fontWeight(.semibold)
-//                                            .font(.system(size: 12))
-//                                            .foregroundColor(Color.black)
-//                                            .frame(maxWidth: 70, minHeight: 70)
-//                                            .background(PrimaryColor.buttonColor)
-//                                            .cornerRadius(35)
-//                                    }
-//                                )
-//                                Spacer().frame(height: 20)
-//                            }
-//                        }
-//                    }
-//                    Spacer().frame(height: 20)
-//                }
             }
             .sheet(
                 isPresented: viewStore.binding(

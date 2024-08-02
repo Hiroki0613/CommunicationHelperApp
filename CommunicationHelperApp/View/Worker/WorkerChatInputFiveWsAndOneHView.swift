@@ -9,7 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatInputFiveWsAndOneHView: View {
-//    let store: Store<WorkerChatTopState, WorkerChatTopAction>
 
     var body: some View {
         ZStack {
@@ -29,12 +28,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
                     makeInputLabel(text: "どうした")
                 }
                 Spacer().frame(height: 10)
-                WorkerChatInputSentenceView(
-//                    store: store.scope(
-//                        state: \.workerChatInputFiveWsAndOneHState,
-//                        action: WorkerChatTopAction.workerChatInputFiveWsAndOneHAction
-//                    )
-                )
+                WorkerChatInputSentenceView()
                 Spacer()
             }
         }
@@ -52,13 +46,7 @@ struct WorkerChatInputFiveWsAndOneHView: View {
 
 struct WorkerFiveWsAndOneHChatInputView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkerChatInputFiveWsAndOneHView(
-//            store: Store(
-//                initialState: WorkerChatTopState(),
-//                reducer: workerChatTopReducer,
-//                environment: WorkerChatTopEnvironMent()
-//            )
-        )
+        WorkerChatInputFiveWsAndOneHView()
     }
 }
 

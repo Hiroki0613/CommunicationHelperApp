@@ -9,7 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 
 struct WorkerChatTopView: View {
-//    let store: Store<WorkerChatTopState, WorkerChatTopAction>
     @State private var isWorkerChatTopViewActive: Bool = false
     @State private var isWorkerUser: Bool = true
     @StateObject var messagesManager = MessagesManager()
@@ -18,7 +17,6 @@ struct WorkerChatTopView: View {
     var body: some View {
         VStack {
             VStack {
-//                ChatTitleRow()
                 ScrollViewReader { proxy in
                     ScrollView {
                         // TODO: ここに背景色を入れると、うまいこと背景が入ってくる。
@@ -40,7 +38,6 @@ struct WorkerChatTopView: View {
                     }
                 }
                 .padding(.vertical, 10)
-//                .cornerRadius(30, corners: [.topLeft, .topRight])
                 if isWorkerUser {
                     NavigationLink(
                         destination: WorkerChatInputFiveWsAndOneHView(),
